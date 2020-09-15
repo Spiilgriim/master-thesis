@@ -206,11 +206,48 @@ for all $m$. Therefore the fourier transform of $\mu$ is 0 and $\mu$ must be 0. 
 
   This proves that any function of $C(I_n, \R)$ can be approximated by a single-layer network with sigmoidal functions as activation function.\\
 
-  In 1991, Hornik extended in \cite{hornik_1991} the proof to bounded non-constant functions of $F(I_n,\R)$. The proof is very similar to the original one.
+  In 1991, Hornik extended in \cite{hornik_1991} gave the proof for bounded non-constant functions of $F(I_n,\R)$. The proof is very similar to the original one.\\
 
 \subsubsection{ReLU functions}
 
-ReLU functions stands for Rectified Linear Units, there are formed of two pieces of linear functions. They gained interest recently by showing convincing results in a lot of different applications. 
+ReLU functions stands for Rectified Linear Units, there are formed of two pieces of linear functions. They gained interest recently by showing convincing results in a lot of different applications.\\ 
+
+In 2016 Arora et al. \cite{arora_basu_mianjy_mukherjee_2018} showed a version of the universal approximation theorem for piecewise linear function that includes ReLU functions.\\
+
+\begin{definition}
+  We say a function $f: \R^n \to \R$ is continuous piecewise linear (PWL) if there exists a finite set of polyhedra whose union is $\R^n$, and $f$ is affine linear over each polyhedron (implies continuity because affine regions are closed and cover $\R^n$)
+\end{definition}
+
+\begin{proposition}
+  Every function in $L^q(\R^n), (1 \le q \le \infty)$ can be arbitrarily approximated in the $L^q$ norm (which for a function $f$ is given by $||f||_q = (\int |f|^q)^{1/q}$) by a ReLU Deep Neural Network.
+\end{proposition}
+
+\begin{proof}
+
+  We know that any ReLU DNN represents a PWL function, let's prove the converse.\\
+  \sv
+  By theorem 1 in \cite{wang_2005} any piecewise linear function $f: \R^n \to \R$, can be written:\\
+  \begin{center}
+    $f = \sum\limits_{j=1}^{p}s_j(\max\limits_{i\in S_j} l_i)$
+  \end{center}
+  with $l_i$ $(i\le i \le k)$ linear functions, $S_i$ $(1 \le i \le p) \subseteq \{1, ..., k\}$ with $\forall i, |S_i| \le n + 1$ and $\forall j \in \{1,...,p\},  s_j \in \{-1, +1\}$ \\
+  \sv
+  It means that any PWL convex function can be represented as a linear combination of at most $n+1$ affine pieces. That's to say a ReLU DNN with size $n+1$.\\
+  \SV
+  Let $p \in \N^*$, let $f \in L^p(\R^n)$, consider the function sequence:\\
+  \begin{center}
+    $f_n(x) = (x - \frac{k}{n})f(\frac{k}{n}) + (1 - x + \frac{k}{n})f(\frac{k+1}{n})$ with $\frac{k}{n} \le x < \frac{k+1}{n}, n \ge 1$ 
+  \end{center}
+
+  $f_n \xrightarrow[n \to \infty]{} f$, and $\forall n, f_n$ is a PWL continous function. Therefore the continuous PWL functions are dense in $L^p(\R^n)$.
+  \SV
+  Since any PWL function $\R^n \to \R$ is representable by a ReLU DNN, unniversal approximation theorem follows from the fact that the family of continuous PWL functions is dense in any $L^p(\R^n)$ space for $1 \le p \le \infty$. 
+  
+\end{proof}\\
+\SV
+In this article, Arora et al. also give a higher bound for the depth of the network. they show that the network required for any function $f \in L^q(\R^n)$ is at most $\lceil log_2(n+1) \rceil$.\\
+
+In 2018, Hannin \& Selke \cite{hanin_sellke_2018} showed that the minimal width a ReLUneural network must have in order to approximate any function $f: \R^n \to \R^m$ is $n + m$. Giving a lower bound to the width of the ReLU network.
 
 \section{Algebraic Topology}
 

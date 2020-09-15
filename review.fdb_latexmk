@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex review"] 1598233935 "review.aux" "review.bbl" "review" 1598233935
+["bibtex review"] 1599552875 "review.aux" "review.bbl" "review" 1599553108
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/ieeetr.bst" 1292289607 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "bibliography.bib" 1597730895 1557 3207eef41c00124434650c2b16b08a0d ""
-  "review.aux" 1598233935 3556 ffabbd380d5d311849462e208d73a47a "pdflatex"
+  "bibliography.bib" 1599552743 2149 019d45546351d05f82cbb0ad7f229693 ""
+  "review.aux" 1599553108 3750 5d2380e2dd8c1b3252eb92fc8c8e1b62 "pdflatex"
   (generated)
   "review.blg"
   "review.bbl"
-["pdflatex"] 1598233935 "review.tex" "review.pdf" "review" 1598233935
+["pdflatex"] 1599553107 "review.tex" "review.pdf" "review" 1599553108
   "/etc/texmf/web2c/texmf.cnf" 1597916631 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/alexandre/macros.tex" 1598233314 2049 0fe478e39d62cd88abe852d669dd66f5 ""
+  "/home/alexandre/macros.tex" 1598933689 2158 4331a1247840cfe7fe5417d3075eb149 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -153,12 +153,12 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1581979058 38841 ce3692aa899bb693b90b87eaa5d4d84e ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1597992583 165012 f177baa1c39a3ebd62c3096a43521a0d ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1597992585 4878943 ede2f48b73b721901f67c685e2ca8ad5 ""
-  "review.aux" 1598233935 3556 ffabbd380d5d311849462e208d73a47a "pdflatex"
-  "review.bbl" 1598233935 399 1ee70143b863d88e9bd1b7a4224f7376 "bibtex review"
-  "review.tex" 1598233934 10720 dc3164d6bfd057bab982840bf8951a95 ""
-  "review.toc" 1598233935 2138 7cc86426d59618aa7d7be864da0bec24 "pdflatex"
+  "review.aux" 1599553108 3750 5d2380e2dd8c1b3252eb92fc8c8e1b62 "pdflatex"
+  "review.bbl" 1599552875 920 3641816c22ce72ff8c6be9e6d70ad4e6 "bibtex review"
+  "review.tex" 1599553106 13236 c93f88f0e84f4db0212c8f5ab3c1a16f ""
+  "review.toc" 1599553108 2138 7e43b273d0317546f1b8cef50c88cde2 "pdflatex"
   (generated)
   "review.log"
-  "review.pdf"
   "review.aux"
   "review.toc"
+  "review.pdf"

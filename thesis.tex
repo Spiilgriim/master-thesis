@@ -120,7 +120,7 @@ The sigmoidal functions include the logistic function defined as:\\
 
 widely used as an activation function for neural networks.\\
 
-The first study of neural network expressiveness with sigmoidal functions date back to by G.Cybenko in 1989 \cite{cybenko_1989}. He proves that $S_\sigma$ for $\sigma$ a sigmoidal function is dense in regards of the supremum norm in $C(I_n, \R)$. The demonstration goes as follows.\\
+The first study of neural network expressiveness with sigmoidal functions date back to by G.Cybenko in 1989 \cite{cybenkoApproximationSuperpositionsSigmoidal1992}. He proves that $S_\sigma$ for $\sigma$ a sigmoidal function is dense in regards of the supremum norm in $C(I_n, \R)$. The demonstration goes as follows.\\
 
 We denote $M(I_n)$ the space of signed regular Borel measures on $I_n$\\
 
@@ -206,13 +206,13 @@ for all $m$. Therefore the fourier transform of $\mu$ is 0 and $\mu$ must be 0. 
 
   This proves that any function of $C(I_n, \R)$ can be approximated by a single-layer network with sigmoidal functions as activation function.\\
 
-  In 1991, Hornik extended in \cite{hornik_1991} gave the proof for bounded non-constant functions of $F(I_n,\R)$. The proof is very similar to the original one.\\
+  In 1991, Hornik extended in \cite{hornikApproximationCapabilitiesMultilayer1991} gave the proof for bounded non-constant functions of $F(I_n,\R)$. The proof is very similar to the original one.\\
 
 \subsubsection{ReLU functions}
 
 ReLU functions stands for Rectified Linear Units, there are formed of two pieces of linear functions. They gained interest recently by showing convincing results in a lot of different applications.\\ 
 
-In 2016 Arora et al. \cite{arora_basu_mianjy_mukherjee_2018} showed a version of the universal approximation theorem for piecewise linear function that includes ReLU functions.\\
+In 2016 Arora et al. \cite{aroraUnderstandingDeepNeural2018} showed a version of the universal approximation theorem for piecewise linear function that includes ReLU functions.\\
 
 \begin{definition}
   We say a function $f: \R^n \to \R$ is continuous piecewise linear (PWL) if there exists a finite set of polyhedra whose union is $\R^n$, and $f$ is affine linear over each polyhedron (implies continuity because affine regions are closed and cover $\R^n$)
@@ -226,7 +226,7 @@ In 2016 Arora et al. \cite{arora_basu_mianjy_mukherjee_2018} showed a version of
 
   We know that any ReLU DNN represents a PWL function, let's prove the converse.\\
   \sv
-  By theorem 1 in \cite{wang_2005} any piecewise linear function $f: \R^n \to \R$, can be written:\\
+  By theorem 1 in \cite{wangGeneralizationHingingHyperplanes2005} any piecewise linear function $f: \R^n \to \R$, can be written:\\
   \begin{center}
     $f = \sum\limits_{j=1}^{p}s_j(\max\limits_{i\in S_j} l_i)$
   \end{center}
@@ -247,21 +247,13 @@ In 2016 Arora et al. \cite{arora_basu_mianjy_mukherjee_2018} showed a version of
 \SV
 In this article, Arora et al. also give a higher bound for the depth of the network. they show that the network required for any function $f \in L^q(\R^n)$ is at most $\lceil log_2(n+1) \rceil$.\\
 
-In 2018, Hannin \& Selke \cite{hanin_sellke_2018} showed that the minimal width a ReLUneural network must have in order to approximate any function $f: \R^n \to \R^m$ is $n + m$. Giving a lower bound to the width of the ReLU network.
+In 2018, Hannin \& Selke \cite{haninApproximatingContinuousFunctions2018} showed that the minimal width a ReLUneural network must have in order to approximate any function $f: \R^n \to \R^m$ is $n + m$. Giving a lower bound to the width of the ReLU network.
 
-\section{Algebraic Topology}
+\section{Homology}
 
-\subsection{Homotopy}
+\subsection{Definition}
 
-\subsubsection{Definition}
-
-\subsubsection{Important properties}
-
-\subsection{Homology}
-
-\subsubsection{Definition}
-
-\subsubsection{$S^n$ as an $n-1$ homology}
+\subsection{$S^n$ as an $n-1$ homology}
 
 \section{Topological data Analysis}
 

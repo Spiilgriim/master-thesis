@@ -6,6 +6,7 @@
 
 \usepackage{graphicx}
 \usepackage{tikz}
+\usetikzlibrary{decorations.markings}
 \usepackage{amsmath}
 
 \input{/home/alexandre/macros.tex}
@@ -120,7 +121,7 @@ The sigmoidal functions include the logistic function defined as:\\
 
 widely used as an activation function for neural networks.\\
 
-The first study of neural network expressiveness with sigmoidal functions date back to by G.Cybenko in 1989 \cite{cybenkoApproximationSuperpositionsSigmoidal1992}. He proves that $S_\sigma$ for $\sigma$ a sigmoidal function is dense in regards of the supremum norm in $C(I_n, \R)$. The demonstration goes as follows.\\
+The first study of neural network expressiveness with sigmoidal functions date back to by G.Cybenko in 1989 \cite{cybenko_approximation_1989}. He proves that $S_\sigma$ for $\sigma$ a sigmoidal function is dense in regards of the supremum norm in $C(I_n, \R)$. The demonstration goes as follows.\\
 
 We denote $M(I_n)$ the space of signed regular Borel measures on $I_n$\\
 
@@ -206,13 +207,13 @@ for all $m$. Therefore the fourier transform of $\mu$ is 0 and $\mu$ must be 0. 
 
   This proves that any function of $C(I_n, \R)$ can be approximated by a single-layer network with sigmoidal functions as activation function.\\
 
-  In 1991, Hornik extended in \cite{hornikApproximationCapabilitiesMultilayer1991} gave the proof for bounded non-constant functions of $F(I_n,\R)$. The proof is very similar to the original one.\\
+  In 1991, Hornik extended in \cite{hornik_approximation_1991} gave the proof for bounded non-constant functions of $F(I_n,\R)$. The proof is very similar to the original one.\\
 
 \subsubsection{ReLU functions}
 
 ReLU functions stands for Rectified Linear Units, there are formed of two pieces of linear functions. They gained interest recently by showing convincing results in a lot of different applications.\\ 
 
-In 2016 Arora et al. \cite{aroraUnderstandingDeepNeural2018} showed a version of the universal approximation theorem for piecewise linear function that includes ReLU functions.\\
+In 2016 Arora et al. \cite{arora_understanding_2018} showed a version of the universal approximation theorem for piecewise linear function that includes ReLU functions.\\
 
 \begin{definition}
   We say a function $f: \R^n \to \R$ is continuous piecewise linear (PWL) if there exists a finite set of polyhedra whose union is $\R^n$, and $f$ is affine linear over each polyhedron (implies continuity because affine regions are closed and cover $\R^n$)
@@ -226,7 +227,7 @@ In 2016 Arora et al. \cite{aroraUnderstandingDeepNeural2018} showed a version of
 
   We know that any ReLU DNN represents a PWL function, let's prove the converse.\\
   \sv
-  By theorem 1 in \cite{wangGeneralizationHingingHyperplanes2005} any piecewise linear function $f: \R^n \to \R$, can be written:\\
+  By theorem 1 in \cite{wang_generalization_2005} any piecewise linear function $f: \R^n \to \R$, can be written:\\
   \begin{center}
     $f = \sum\limits_{j=1}^{p}s_j(\max\limits_{i\in S_j} l_i)$
   \end{center}
@@ -247,13 +248,53 @@ In 2016 Arora et al. \cite{aroraUnderstandingDeepNeural2018} showed a version of
 \SV
 In this article, Arora et al. also give a higher bound for the depth of the network. they show that the network required for any function $f \in L^q(\R^n)$ is at most $\lceil log_2(n+1) \rceil$.\\
 
-In 2018, Hannin \& Selke \cite{haninApproximatingContinuousFunctions2018} showed that the minimal width a ReLUneural network must have in order to approximate any function $f: \R^n \to \R^m$ is $n + m$. Giving a lower bound to the width of the ReLU network.
+In 2018, Hannin \& Selke \cite{hanin_approximating_2018} showed that the minimal width a ReLUneural network must have in order to approximate any function $f: \R^n \to \R^m$ is $n + m$. Giving a lower bound to the width of the ReLU network.
 
 \section{Homology}
 
-\subsection{Definition}
+The study of homology is part of the field of algebraic topology. We will first introduce the concept of homology, then take a look at the theoretical concept behind it by introducing $\Delta$-complex: a primitive topolgical structure that allow the study of homology. Then with the introduction of simplicial homology and finally singular homology we will complete the presentation of the fundamental objects used in the study of homolgy. We will then reconsider these tools in the context of our research. This part heavily relies on the book \textit{Algebraic Topolgy} by A. Hatcher \cite{hatcher_algebraic_2002} and the class given by P. Albin at University of Illinois \cite{albin_1_2018} with the same book as class material. 
 
-\subsection{$S^n$ as an $n-1$ homology}
+\subsection{The idea of homology}
+
+\begin{center}
+  \begin{tikzpicture}[node distance={20mm}] 
+    \node[draw=none] (1) {$x$}; 
+    \node[draw=none] (2) [above of=1] {$y$}; 
+    %\node at (1)[circle,fill,inner sep=1pt]{}
+    %\node at (2)[circle,fill,inner sep=1pt]{}
+\begin{scope}[very thick,decoration={
+    markings,
+    mark=at position 0.5 with {\arrow{latex}}}
+    ] 
+    \draw[postaction={decorate}] (1) .. controls +(left:1.5cm) and +(left:1.5cm) .. (2)
+\foreach \p in {$a$} {node[sloped,above,pos=0.5,rotate=-90, xshift=-0.2cm, yshift=-0.2cm]{\p}};
+ \draw[postaction={decorate}] (1) .. controls +(left:0.5cm) and +(left:0.5cm) .. (2)
+\foreach \p in {$b$} {node[sloped,above,pos=0.5,rotate=-90, xshift=-0.2cm, yshift=-0.2cm]{\p}};
+ \draw[postaction={decorate}] (1) .. controls +(right:0.5cm) and +(right:0.5cm) .. (2)
+\foreach \p in {$c$} {node[sloped,above,pos=0.5,rotate=90, xshift=0.2cm, yshift=-0.2cm]{\p}};
+ \draw[postaction={decorate}] (1) .. controls +(right:1.5cm) and +(right:1.5cm) .. (2)
+\foreach \p in {$d$} {node[sloped,above,pos=0.5,rotate=90, xshift=0.2cm, yshift=-0.2cm]{\p}};
+\end{scope}
+\end{tikzpicture} 
+\end{center}
+
+Consider the figure drawn above. We can see two points $x$ and $y$ as well as four edges $a$, $b$, $c$ and $d$. Consider the loops formed by travelling along the edges, for instance the path $ab^{-1}$ is a loop with $x$ as the basepoint. Something to consider is that the loop $b^{-1}a$ is basically the same loop but starting from a different basepoint, $y$ in that case. By abelianizing the process, we can consider cycles instead of loops without any basepoint.\\
+
+The abelian groups having only one operation, we will then switch to additive notations to remain in accordance with Hatcher's notations. With that new notation we can write equalities such as $(a-c) + (b-d) = (a-d) + (b-c)$. This is justified by the fact that from an algebraic point of view, there is no difference between these two cycles.\\
+
+Let us call any linear combination of edges, chains. Then the condition for a chain $ka + lb + mc + nd$ with $k,l,m,n \in \N$ to be a cycle is $k + l + m + n = 0$.\\
+
+
+
+\subsection{$\Delta$-complexes}
+
+\subsection{Simplical homology}
+
+\subsection{Singular homology}
+
+\subsection{Homology in our research}
+
+Homology exists as a computable alternative homotopy.
 
 \section{Topological data Analysis}
 

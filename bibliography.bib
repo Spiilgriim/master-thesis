@@ -1,41 +1,26 @@
 
-@article{cybenkoApproximationSuperpositionsSigmoidal1992,
+@article{cybenko_approximation_1989,
 	title = {Approximation by superpositions of a sigmoidal function},
-	volume = {5},
-	issn = {0932-4194, 1435-568X},
-	url = {http://link.springer.com/10.1007/BF02134016},
-	doi = {10.1007/BF02134016},
+	volume = {2},
+	issn = {1435-568X},
+	url = {https://doi.org/10.1007/BF02551274},
+	doi = {10.1007/BF02551274},
+	abstract = {In this paper we demonstrate that finite linear combinations of compositions of a fixed, univariate function and a set of affine functionals can uniformly approximate any continuous function ofn real variables with support in the unit hypercube; only mild conditions are imposed on the univariate function. Our results settle an open question about representability in the class of single hidden layer neural networks. In particular, we show that arbitrary decision regions can be arbitrarily well approximated by continuous feedforward neural networks with only a single internal, hidden layer and any continuous sigmoidal nonlinearity. The paper discusses approximation properties of other possible types of nonlinearities that might be implemented by artificial neural networks.},
 	language = {en},
 	number = {4},
-	urldate = {2020-09-21},
-	journal = {Mathematics of Control, Signals, and Systems},
+	urldate = {2020-10-08},
+	journal = {Mathematics of Control, Signals and Systems},
 	author = {Cybenko, G.},
 	month = dec,
-	year = {1992},
-	pages = {455--455},
-	file = {Full Text:/home/alexandre/Zotero/storage/V8KPGBEJ/Cybenko - 1992 - Approximation by superpositions of a sigmoidal fun.pdf:application/pdf}
+	year = {1989},
+	pages = {303--314}
 }
 
-@article{hornikApproximationCapabilitiesMultilayer1991,
-	title = {Approximation capabilities of multilayer feedforward networks},
-	volume = {4},
-	issn = {08936080},
-	url = {https://linkinghub.elsevier.com/retrieve/pii/089360809190009T},
-	doi = {10.1016/0893-6080(91)90009-T},
-	language = {en},
-	number = {2},
-	urldate = {2020-09-21},
-	journal = {Neural Networks},
-	author = {Hornik, Kurt},
-	year = {1991},
-	pages = {251--257}
-}
-
-@article{aroraUnderstandingDeepNeural2018,
+@article{arora_understanding_2018,
 	title = {Understanding {Deep} {Neural} {Networks} with {Rectified} {Linear} {Units}},
 	url = {http://arxiv.org/abs/1611.01491},
 	abstract = {In this paper we investigate the family of functions representable by deep neural networks (DNN) with rectified linear units (ReLU). We give an algorithm to train a ReLU DNN with one hidden layer to *global optimality* with runtime polynomial in the data size albeit exponential in the input dimension. Further, we improve on the known lower bounds on size (from exponential to super exponential) for approximating a ReLU deep net function by a shallower ReLU net. Our gap theorems hold for smoothly parametrized families of "hard" functions, contrary to countable, discrete families known in the literature. An example consequence of our gap theorems is the following: for every natural number \$k\$ there exists a function representable by a ReLU DNN with \$k{\textasciicircum}2\$ hidden layers and total size \$k{\textasciicircum}3\$, such that any ReLU DNN with at most \$k\$ hidden layers will require at least \${\textbackslash}frac\{1\}\{2\}k{\textasciicircum}\{k+1\}-1\$ total nodes. Finally, for the family of \${\textbackslash}mathbb\{R\}{\textasciicircum}n{\textbackslash}to {\textbackslash}mathbb\{R\}\$ DNNs with ReLU activations, we show a new lowerbound on the number of affine pieces, which is larger than previous constructions in certain regimes of the network architecture and most distinctively our lowerbound is demonstrated by an explicit construction of a *smoothly parameterized* family of functions attaining this scaling. Our construction utilizes the theory of zonotopes from polyhedral theory.},
-	urldate = {2020-09-21},
+	urldate = {2020-10-08},
 	journal = {arXiv:1611.01491 [cond-mat, stat]},
 	author = {Arora, Raman and Basu, Amitabh and Mianjy, Poorya and Mukherjee, Anirbit},
 	month = feb,
@@ -43,14 +28,14 @@
 	note = {arXiv: 1611.01491},
 	keywords = {Computer Science - Artificial Intelligence, Computer Science - Computational Complexity, Computer Science - Machine Learning, Condensed Matter - Disordered Systems and Neural Networks, Statistics - Machine Learning},
 	annote = {Comment: The poly(data) exact training algorithm has been improved to now be applicable to any single hidden layer R{\textasciicircum}n-{\textgreater} R ReLU DNN and there is a cleaner pseudocode for it given on page 8. Also now on page 7 there is a more precise description about when and how the Zonotope construction improves on the Theorem 4 of this paper, arXiv:1402.1869},
-	file = {arXiv Fulltext PDF:/home/alexandre/Zotero/storage/WHGK9X33/Arora et al. - 2018 - Understanding Deep Neural Networks with Rectified .pdf:application/pdf;arXiv.org Snapshot:/home/alexandre/Zotero/storage/PYLU8ZQF/1611.html:text/html}
+	file = {arXiv Fulltext PDF:/home/alexandre/Zotero/storage/TZ4FAEN9/Arora et al. - 2018 - Understanding Deep Neural Networks with Rectified .pdf:application/pdf;arXiv.org Snapshot:/home/alexandre/Zotero/storage/CH2QXZKQ/1611.html:text/html}
 }
 
-@article{haninApproximatingContinuousFunctions2018,
+@article{hanin_approximating_2018,
 	title = {Approximating {Continuous} {Functions} by {ReLU} {Nets} of {Minimal} {Width}},
 	url = {http://arxiv.org/abs/1710.11278},
 	abstract = {This article concerns the expressive power of depth in deep feed-forward neural nets with ReLU activations. Specifically, we answer the following question: for a fixed \$d\_\{in\}{\textbackslash}geq 1,\$ what is the minimal width \$w\$ so that neural nets with ReLU activations, input dimension \$d\_\{in\}\$, hidden layer widths at most \$w,\$ and arbitrary depth can approximate any continuous, real-valued function of \$d\_\{in\}\$ variables arbitrarily well? It turns out that this minimal width is exactly equal to \$d\_\{in\}+1.\$ That is, if all the hidden layer widths are bounded by \$d\_\{in\}\$, then even in the infinite depth limit, ReLU nets can only express a very limited class of functions, and, on the other hand, any continuous function on the \$d\_\{in\}\$-dimensional unit cube can be approximated to arbitrary precision by ReLU nets in which all hidden layers have width exactly \$d\_\{in\}+1.\$ Our construction in fact shows that any continuous function \$f:[0,1]{\textasciicircum}\{d\_\{in\}\}{\textbackslash}to{\textbackslash}mathbb R{\textasciicircum}\{d\_\{out\}\}\$ can be approximated by a net of width \$d\_\{in\}+d\_\{out\}\$. We obtain quantitative depth estimates for such an approximation in terms of the modulus of continuity of \$f\$.},
-	urldate = {2020-09-21},
+	urldate = {2020-10-08},
 	journal = {arXiv:1710.11278 [cs, math, stat]},
 	author = {Hanin, Boris and Sellke, Mark},
 	month = mar,
@@ -58,45 +43,50 @@
 	note = {arXiv: 1710.11278},
 	keywords = {Computer Science - Computational Complexity, Computer Science - Machine Learning, Statistics - Machine Learning, Mathematics - Combinatorics, Mathematics - Statistics Theory},
 	annote = {Comment: v2. 13p. Extended main result to higher dimensional output. Comments welcome},
-	file = {arXiv Fulltext PDF:/home/alexandre/Zotero/storage/S5AV92VU/Hanin and Sellke - 2018 - Approximating Continuous Functions by ReLU Nets of.pdf:application/pdf;arXiv.org Snapshot:/home/alexandre/Zotero/storage/CMQH7H8D/1710.html:text/html}
+	file = {arXiv Fulltext PDF:/home/alexandre/Zotero/storage/PTE5AJWV/Hanin and Sellke - 2018 - Approximating Continuous Functions by ReLU Nets of.pdf:application/pdf;arXiv.org Snapshot:/home/alexandre/Zotero/storage/PNLMGAQP/1710.html:text/html}
 }
 
-@article{gussCharacterizingCapacityNeural2018,
-	title = {On {Characterizing} the {Capacity} of {Neural} {Networks} using {Algebraic} {Topology}},
-	url = {http://arxiv.org/abs/1802.04443},
-	abstract = {The learnability of different neural architectures can be characterized directly by computable measures of data complexity. In this paper, we reframe the problem of architecture selection as understanding how data determines the most expressive and generalizable architectures suited to that data, beyond inductive bias. After suggesting algebraic topology as a measure for data complexity, we show that the power of a network to express the topological complexity of a dataset in its decision region is a strictly limiting factor in its ability to generalize. We then provide the first empirical characterization of the topological capacity of neural networks. Our empirical analysis shows that at every level of dataset complexity, neural networks exhibit topological phase transitions. This observation allowed us to connect existing theory to empirically driven conjectures on the choice of architectures for fully-connected neural networks.},
-	urldate = {2020-09-21},
-	journal = {arXiv:1802.04443 [cs, math, stat]},
-	author = {Guss, William H. and Salakhutdinov, Ruslan},
-	month = feb,
-	year = {2018},
-	note = {arXiv: 1802.04443},
-	keywords = {Computer Science - Machine Learning, Statistics - Machine Learning, Computer Science - Computational Geometry, Computer Science - Neural and Evolutionary Computing, Mathematics - Algebraic Topology},
-	annote = {Comment: 13 pages, 11 figures},
-	file = {arXiv Fulltext PDF:/home/alexandre/Zotero/storage/RWKT3EQU/Guss and Salakhutdinov - 2018 - On Characterizing the Capacity of Neural Networks .pdf:application/pdf;arXiv.org Snapshot:/home/alexandre/Zotero/storage/UA3UVQ8F/1802.html:text/html}
+@article{hornik_approximation_1991,
+	title = {Approximation capabilities of multilayer feedforward networks},
+	volume = {4},
+	issn = {0893-6080},
+	url = {http://www.sciencedirect.com/science/article/pii/089360809190009T},
+	doi = {10.1016/0893-6080(91)90009-T},
+	abstract = {We show that standard multilayer feedforward networks with as few as a single hidden layer and arbitrary bounded and nonconstant activation function are universal approximators with respect to Lp(μ) performance criteria, for arbitrary finite input environment measures μ, provided only that sufficiently many hidden units are available. If the activation function is continuous, bounded and nonconstant, then continuous mappings can be learned uniformly over compact input sets. We also give very general conditions ensuring that networks with sufficiently smooth activation functions are capable of arbitrarily accurate approximation to a function and its derivatives.},
+	language = {en},
+	number = {2},
+	urldate = {2020-10-08},
+	journal = {Neural Networks},
+	author = {Hornik, Kurt},
+	month = jan,
+	year = {1991},
+	keywords = {() approximation, Activation function, Input environment measure, Multilayer feedforward networks, Smooth approximation, Sobolev spaces, Uniform approximation, Universal approximation capabilities},
+	pages = {251--257},
+	file = {ScienceDirect Snapshot:/home/alexandre/Zotero/storage/FHS8GNKY/089360809190009T.html:text/html}
 }
 
-@article{wangGeneralizationHingingHyperplanes2005,
-	title = {Generalization of {Hinging} {Hyperplanes}},
+@article{wang_generalization_2005,
+	title = {Generalization of hinging hyperplanes},
 	volume = {51},
 	issn = {0018-9448},
-	url = {http://ieeexplore.ieee.org/document/1542439/},
+	url = {https://doi.org/10.1109/TIT.2005.859246},
 	doi = {10.1109/TIT.2005.859246},
-	language = {en},
+	abstract = {The model of hinging hyperplanes (HH) can approximate a large class of nonlinear functions to arbitrary precision, but represent only a small part of continuous piecewise-linear (CPWL) functions in two or more dimensions. In this correspondence, the influence of this drawback for black-box modeling is first illustrated by a simple example. Then it is shown that the above shortcoming can be amended by adding a sufficient number of linear functions to current hinges. It is proven that any CPWL function of n variables can be represented by a sum of hinges containing at most n+1 linear functions. Hence the model of a sum of such expanded hinges is a general representation for all CPWL functions. The structure of the novel general representation is much simpler than the existing generalized canonical representation that consists of nested absolute-value functions. This characteristic is very useful for black-box modeling. Based on the new general representation, an upper bound on the number of nestings of nested absolute-value functions of a generalized canonical representation is established, which is much smaller than the known result.},
 	number = {12},
-	urldate = {2020-09-21},
+	urldate = {2020-10-08},
 	journal = {IEEE Transactions on Information Theory},
 	author = {Wang, S. and Sun, X.},
 	month = dec,
 	year = {2005},
+	keywords = {Black-box modeling, canonical representation, continuous piecewise-linear function (CPWL), function approximation, hinging hyperplanes (HHs)},
 	pages = {4425--4431}
 }
 
-@article{raghuExpressivePowerDeep2017,
+@article{raghu_expressive_2017,
 	title = {On the {Expressive} {Power} of {Deep} {Neural} {Networks}},
 	url = {http://arxiv.org/abs/1606.05336},
 	abstract = {We propose a new approach to the problem of neural network expressivity, which seeks to characterize how structural properties of a neural network family affect the functions it is able to compute. Our approach is based on an interrelated set of measures of expressivity, unified by the novel notion of trajectory length, which measures how the output of a network changes as the input sweeps along a one-dimensional path. Our findings can be summarized as follows: (1) The complexity of the computed function grows exponentially with depth. (2) All weights are not equal: trained networks are more sensitive to their lower (initial) layer weights. (3) Regularizing on trajectory length (trajectory regularization) is a simpler alternative to batch normalization, with the same performance.},
-	urldate = {2020-09-21},
+	urldate = {2020-10-08},
 	journal = {arXiv:1606.05336 [cs, stat]},
 	author = {Raghu, Maithra and Poole, Ben and Kleinberg, Jon and Ganguli, Surya and Sohl-Dickstein, Jascha},
 	month = jun,
@@ -104,5 +94,53 @@
 	note = {arXiv: 1606.05336},
 	keywords = {Computer Science - Artificial Intelligence, Computer Science - Machine Learning, Statistics - Machine Learning},
 	annote = {Comment: Accepted to ICML 2017},
-	file = {arXiv Fulltext PDF:/home/alexandre/Zotero/storage/7E8D9UE2/Raghu et al. - 2017 - On the Expressive Power of Deep Neural Networks.pdf:application/pdf;arXiv.org Snapshot:/home/alexandre/Zotero/storage/6KX4CAAG/1606.html:text/html}
+	file = {arXiv Fulltext PDF:/home/alexandre/Zotero/storage/DQIN6B6Y/Raghu et al. - 2017 - On the Expressive Power of Deep Neural Networks.pdf:application/pdf;arXiv.org Snapshot:/home/alexandre/Zotero/storage/FZTI24XU/1606.html:text/html}
+}
+
+@article{guss_characterizing_2018,
+	title = {On {Characterizing} the {Capacity} of {Neural} {Networks} using {Algebraic} {Topology}},
+	url = {http://arxiv.org/abs/1802.04443},
+	abstract = {The learnability of different neural architectures can be characterized directly by computable measures of data complexity. In this paper, we reframe the problem of architecture selection as understanding how data determines the most expressive and generalizable architectures suited to that data, beyond inductive bias. After suggesting algebraic topology as a measure for data complexity, we show that the power of a network to express the topological complexity of a dataset in its decision region is a strictly limiting factor in its ability to generalize. We then provide the first empirical characterization of the topological capacity of neural networks. Our empirical analysis shows that at every level of dataset complexity, neural networks exhibit topological phase transitions. This observation allowed us to connect existing theory to empirically driven conjectures on the choice of architectures for fully-connected neural networks.},
+	urldate = {2020-10-08},
+	journal = {arXiv:1802.04443 [cs, math, stat]},
+	author = {Guss, William H. and Salakhutdinov, Ruslan},
+	month = feb,
+	year = {2018},
+	note = {arXiv: 1802.04443},
+	keywords = {Computer Science - Machine Learning, Statistics - Machine Learning, Computer Science - Computational Geometry, Computer Science - Neural and Evolutionary Computing, Mathematics - Algebraic Topology},
+	annote = {Comment: 13 pages, 11 figures}
+}
+
+@article{poole_exponential_2016,
+	title = {Exponential expressivity in deep neural networks through transient chaos},
+	url = {http://arxiv.org/abs/1606.05340},
+	abstract = {We combine Riemannian geometry with the mean field theory of high dimensional chaos to study the nature of signal propagation in generic, deep neural networks with random weights. Our results reveal an order-to-chaos expressivity phase transition, with networks in the chaotic phase computing nonlinear functions whose global curvature grows exponentially with depth but not width. We prove this generic class of deep random functions cannot be efficiently computed by any shallow network, going beyond prior work restricted to the analysis of single functions. Moreover, we formalize and quantitatively demonstrate the long conjectured idea that deep networks can disentangle highly curved manifolds in input space into flat manifolds in hidden space. Our theoretical analysis of the expressive power of deep networks broadly applies to arbitrary nonlinearities, and provides a quantitative underpinning for previously abstract notions about the geometry of deep functions.},
+	urldate = {2020-10-10},
+	journal = {arXiv:1606.05340 [cond-mat, stat]},
+	author = {Poole, Ben and Lahiri, Subhaneil and Raghu, Maithra and Sohl-Dickstein, Jascha and Ganguli, Surya},
+	month = jun,
+	year = {2016},
+	note = {arXiv: 1606.05340},
+	keywords = {Computer Science - Machine Learning, Condensed Matter - Disordered Systems and Neural Networks, Statistics - Machine Learning},
+	annote = {Comment: Fixed equation references},
+	file = {arXiv Fulltext PDF:/home/alexandre/Zotero/storage/HK9L8KVV/Poole et al. - 2016 - Exponential expressivity in deep neural networks t.pdf:application/pdf;arXiv.org Snapshot:/home/alexandre/Zotero/storage/L2C6LL5X/1606.html:text/html}
+}
+
+@book{hatcher_algebraic_2002,
+	address = {Cambridge ; New York},
+	title = {Algebraic topology},
+	isbn = {978-0-521-79160-1 978-0-521-79540-1},
+	publisher = {Cambridge University Press},
+	author = {Hatcher, Allen},
+	year = {2002},
+	keywords = {Algebraic topology}
+}
+
+@misc{albin_1_2018,
+	title = {1. {History} of {Algebraic} {Topology}; {Homotopy} {Equivalence} - {Pierre} {Albin}},
+	url = {https://www.youtube.com/watch?v=XxFGokyYo6g&list=PLpRLWqLFLVTCL15U6N3o35g4uhMSBVA2b},
+	abstract = {Lecture 1 of Algebraic Topology course by Pierre Albin.},
+	urldate = {2020-11-03},
+	author = {Albin, Pierre},
+	year = {2018}
 }

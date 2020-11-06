@@ -2,7 +2,8 @@
 
 \author{Alexandre Louvet}
 
-\documentclass{article}
+\documentclass[12pt]{article}
+\usepackage[legalpaper, margin=2in]{geometry}
 
 \usepackage{graphicx}
 \usepackage{tikz}
@@ -258,33 +259,82 @@ The study of homology is part of the field of algebraic topology. We will first 
 
 \begin{center}
   \begin{tikzpicture}[node distance={20mm}] 
-    \node[draw=none] (1) {$x$}; 
-    \node[draw=none] (2) [above of=1] {$y$}; 
-    %\node at (1)[circle,fill,inner sep=1pt]{}
-    %\node at (2)[circle,fill,inner sep=1pt]{}
+    \node[circle,fill,inner sep=2pt, label=below:{$x$}] (1) {}; 
+    \node[circle,fill,inner sep=2pt, label=above:{$y$}] (2) [above of=1] {}; 
 \begin{scope}[very thick,decoration={
     markings,
     mark=at position 0.5 with {\arrow{latex}}}
     ] 
     \draw[postaction={decorate}] (1) .. controls +(left:1.5cm) and +(left:1.5cm) .. (2)
 \foreach \p in {$a$} {node[sloped,above,pos=0.5,rotate=-90, xshift=-0.2cm, yshift=-0.2cm]{\p}};
- \draw[postaction={decorate}] (1) .. controls +(left:0.5cm) and +(left:0.5cm) .. (2)
+ \draw[postaction={decorate}, fill=white] (1) .. controls +(left:0.5cm) and +(left:0.5cm) .. (2)
 \foreach \p in {$b$} {node[sloped,above,pos=0.5,rotate=-90, xshift=-0.2cm, yshift=-0.2cm]{\p}};
  \draw[postaction={decorate}] (1) .. controls +(right:0.5cm) and +(right:0.5cm) .. (2)
-\foreach \p in {$c$} {node[sloped,above,pos=0.5,rotate=90, xshift=0.2cm, yshift=-0.2cm]{\p}};
+\foreach \p in {$c$} {node[sloped,above,pos=0.5,rotate=-90, xshift=0.2cm, yshift=-0.2cm]{\p}};
  \draw[postaction={decorate}] (1) .. controls +(right:1.5cm) and +(right:1.5cm) .. (2)
-\foreach \p in {$d$} {node[sloped,above,pos=0.5,rotate=90, xshift=0.2cm, yshift=-0.2cm]{\p}};
+\foreach \p in {$d$} {node[sloped,above,pos=0.5,rotate=-90, xshift=0.2cm, yshift=-0.2cm]{\p}};
 \end{scope}
 \end{tikzpicture} 
 \end{center}
 
-Consider the figure drawn above. We can see two points $x$ and $y$ as well as four edges $a$, $b$, $c$ and $d$. Consider the loops formed by travelling along the edges, for instance the path $ab^{-1}$ is a loop with $x$ as the basepoint. Something to consider is that the loop $b^{-1}a$ is basically the same loop but starting from a different basepoint, $y$ in that case. By abelianizing the process, we can consider cycles instead of loops without any basepoint.\\
+Consider the space $X_1$ in the figure drawn above. We can see two points $x$ and $y$ as well as four edges $a$, $b$, $c$ and $d$. Consider the loops formed by travelling along the edges, for instance the path $ab^{-1}$ is a loop with $x$ as the basepoint. Something to consider is that the loop $b^{-1}a$ is basically the same loop but starting from a different basepoint, $y$ in that case. By abelianizing, we can consider cycles instead of loops without any basepoint.\\
 
 The abelian groups having only one operation, we will then switch to additive notations to remain in accordance with Hatcher's notations. With that new notation we can write equalities such as $(a-c) + (b-d) = (a-d) + (b-c)$. This is justified by the fact that from an algebraic point of view, there is no difference between these two cycles.\\
 
 Let us call any linear combination of edges, chains. Then the condition for a chain $ka + lb + mc + nd$ with $k,l,m,n \in \N$ to be a cycle is $k + l + m + n = 0$.\\
 
+Now let us start to formalize these concepts. Consider $C_0$ the free abelian group spanned by the vertices $x,y$ and let $C_1$ be the free abelian group spanned by the edges $a,b,c,d$. One can define an homomorphism $\delta: C_1 \to C_0$ that sends any basis element of $C_1$ to $x-y$. Thus we have $\delta(ka+lb+mc+nd) = (k+l+m+n)a - (k+l+m+n)y$ and $ker(\delta) = \{$ cycles of $X_1$ $\}$. $\{ a-b, b-c, c-d \}$ forms a basis for this kernel, i.e. any cycle is a linear combination of the most obvious cycles of $X_1$, that conveys the information that $X_1$ has three visibles "holes" formed by the space between its four edges.\\
 
+\begin{center}
+  \begin{tikzpicture}[node distance={20mm}] 
+    \node[circle,fill,inner sep=2pt, label=below:{$x$}] (1) {}; 
+    \node[circle,fill,inner sep=2pt, label=above:{$y$}] (2) [above of=1] {}; 
+\begin{scope}[very thick,decoration={
+    markings,
+    mark=at position 0.5 with {\arrow{latex}}}
+    ] 
+    \draw[postaction={decorate}, fill={rgb:black,1;white,2}] (1) .. controls +(left:1.5cm) and +(left:1.5cm) .. (2)
+      \foreach \p in {$a$} {node[sloped,above,pos=0.5,rotate=-90, xshift=-0.2cm, yshift=-0.2cm] (3) {\p}};
+ \draw[postaction={decorate}, fill=white] (1) .. controls +(left:0.5cm) and +(left:0.5cm) .. (2)
+   \foreach \p in {$b$} {node[sloped,above,pos=0.5,rotate=-90, xshift=0.2cm, yshift=-0.2cm] (4) {\p}};
+ \draw[postaction={decorate}] (1) .. controls +(right:0.5cm) and +(right:0.5cm) .. (2)
+\foreach \p in {$c$} {node[sloped,above,pos=0.5,rotate=-90, xshift=0.2cm, yshift=-0.2cm]{\p}};
+ \draw[postaction={decorate}] (1) .. controls +(right:1.5cm) and +(right:1.5cm) .. (2)
+\foreach \p in {$d$} {node[sloped,above,pos=0.5,rotate=-90, xshift=0.2cm, yshift=-0.2cm]{\p}};
+\end{scope}
+\end{tikzpicture} 
+\end{center}
+
+Now fill the hole between edges $a$ and $b$ with a 2-cell, namely $A$ to create a new space $X_2$. Considering it as being oriented clockwise, its boundary is $a-b$. The cycle $a-b$ is homotopic to a point since it can now be contracted by sliding over $A$, it no longer encloses a hole in G. That suggests that homology should consider only the quotient group of what we found previously by $a-b$. In this quotient group the cycles $a-c$ and $b-c$ are equivalent. Which is consistent with the fact that they are homotopic in $X_2$.\\
+
+Algebraically we can now consider a pair of homomorphism $\delta_1, \delta_2$ such that $C_2 \xrightarrow{\delta_2} C_1 \xrightarrow{\delta_1} C_0$ where $C_2$ is the cyclic group spanned by $A$ and $\delta_2(A) = a-b$. The quotient group we are interrested in is $ker(\delta_1)/Im(\delta_2)$, i.e. the 1-dimensional cycles modulo those that are boundaries. We will call it the homology group $H_1(X_2)$. I can also be computed in $X_1$ by considering $C_2$ to be zero since there are no two cells in $X_2$. $H_1(X_2)$ now only admits two generators $b-c$ and $cd$ expressing the geometric fact that the number of holes reduced from 3 to 2.\\
+
+
+\begin{center}
+  \begin{tikzpicture}[node distance={20mm}] 
+    \node[circle,fill,inner sep=2pt, label=below:{$x$}] (1) {}; 
+    \node[circle,fill,inner sep=2pt, label=above:{$y$}] (2) [above of=1] {}; 
+\begin{scope}[very thick,decoration={
+    markings,
+    mark=at position 0.5 with {\arrow{latex}}}
+    ] 
+    \draw[postaction={decorate}, fill={rgb:black,1;white,2}] (1) .. controls +(left:1.5cm) and +(left:1.5cm) .. (2)
+      \foreach \p in {$a$} {node[sloped,above,pos=0.5,rotate=-90, xshift=-0.2cm, yshift=-0.2cm] (3) {\p}};
+ \draw[postaction={decorate}, fill=white] (1) .. controls +(left:0.5cm) and +(left:0.5cm) .. (2)
+   \foreach \p in {$b$} {node[sloped,above,pos=0.5,rotate=-90, xshift=0.2cm, yshift=-0.25cm] (4) {\p}};
+ \draw[postaction={decorate}] (1) .. controls +(right:0.5cm) and +(right:0.5cm) .. (2)
+\foreach \p in {$c$} {node[sloped,above,pos=0.5,rotate=-90, xshift=0.2cm, yshift=-0.2cm]{\p}};
+ \draw[postaction={decorate}] (1) .. controls +(right:1.5cm) and +(right:1.5cm) .. (2)
+\foreach \p in {$d$} {node[sloped,above,pos=0.5,rotate=-90, xshift=0.2cm, yshift=-0.2cm]{\p}};
+\end{scope}
+\draw[dotted] (3) to [out=10, in=170] (4);
+\draw (3) to [out=350, in=190] (4);
+\end{tikzpicture} 
+\end{center}
+
+Suppose we attach another 2-cell between $a$ and $b$ to create $X_3$, namely $B$. $C_2$ now consists of linear combinations of $A$ and $B$ and $\delta_2(A) = \delta_2(B) = a-b$. In the one hand, $H_1(X_3) = H_1(X_2) \approx \Z \times \Z$, but this time $ker(\delta_2) \neq 0$ and $A-B$ is its generator, hence we have $H_2(X_3) = ker(\delta_2) \approx \Z$. Topologically the cycle $A-B$ is equivalent to a sphere and it detects the presence of a "hole" enclosed by this sphere rather than a circle.\\
+
+The pattern we can see appear with these examples is rather clear. The n-cell complexes of $X$ forms free abelian groups $C_n(X)$ and one can define homomorphisms $\delta_n: C_n \to C_{n-1}$ to define homology groups $H_n(X) = ker(\delta_n)/Im(\delta_{n+1})$. The only problem now is to define $\delta_n$ for any $n$. If it is simple for small $n$ (head minus tail for a vertex), it becomes rather complicated when $n$ grows and more complex polyhedral cells appear in $X$. The most efficient approach is to decompose polyhedra into simplices which allows simple orientation and boundary computation. For that purpose we will define nice cellular complexes that will be the fundamental element for homology computation in the homology theories presented after. 
 
 \subsection{$\Delta$-complexes}
 

@@ -9,6 +9,7 @@
 \usepackage{tikz}
 \usetikzlibrary{decorations.markings}
 \usepackage{amsmath}
+\usepackage{tcolorbox}
 
 \input{/home/alexandre/macros.tex}
 
@@ -251,6 +252,9 @@ In this article, Arora et al. also give a higher bound for the depth of the netw
 
 In 2018, Hannin \& Selke \cite{hanin_approximating_2018} showed that the minimal width a ReLUneural network must have in order to approximate any function $f: \R^n \to \R^m$ is $n + m$. Giving a lower bound to the width of the ReLU network.
 
+\newpage
+\newpage
+
 \section{Homology}
 
 The study of homology is part of the field of algebraic topology. We will first introduce the concept of homology, then take a look at the theoretical concept behind it by introducing $\Delta$-complex: a primitive topolgical structure that allow the study of homology. Then with the introduction of simplicial homology and finally singular homology we will complete the presentation of the fundamental objects used in the study of homolgy. We will then reconsider these tools in the context of our research. This part heavily relies on the book \textit{Algebraic Topolgy} by A. Hatcher \cite{hatcher_algebraic_2002} and the class given by P. Albin at University of Illinois \cite{albin_1_2018} with the same book as class material. 
@@ -337,6 +341,87 @@ Suppose we attach another 2-cell between $a$ and $b$ to create $X_3$, namely $B$
 The pattern we can see appear with these examples is rather clear. The n-cell complexes of $X$ forms free abelian groups $C_n(X)$ and one can define homomorphisms $\delta_n: C_n \to C_{n-1}$ to define homology groups $H_n(X) = ker(\delta_n)/Im(\delta_{n+1})$. The only problem now is to define $\delta_n$ for any $n$. If it is simple for small $n$ (head minus tail for a vertex), it becomes rather complicated when $n$ grows and more complex polyhedral cells appear in $X$. The most efficient approach is to decompose polyhedra into simplices which allows simple orientation and boundary computation. For that purpose we will define nice cellular complexes that will be the fundamental element for homology computation in the homology theories presented after. 
 
 \subsection{$\Delta$-complexes}
+
+The most important theory of algebraic topology is called simplical homology, since it is technically complicated we will first introduce a simpler version of it called simplical homology. The natural definition spaces of simplical homology is called $\Delta$-complexes that we will introduce in this part.\\
+
+The projective plane, the klein bottle and the torus can be obtained from squares by identifying edges and givin them orientation as draw below.
+
+\begin{center}
+  \begin{tikzpicture}[node distance={20mm}] 
+    \node[draw=none, label={}] (1) {}; 
+    \node[draw=none, label={$v$}] (2) [above right of=1] {}; 
+    \node[draw=none, label={$v$}] (3) [above left of=1] {}; 
+    \node[draw=none, label=below:{$v$}] (4) [below right of=1] {}; 
+    \node[draw=none, label=below:{$v$}] (5) [below left of=1] {}; 
+\begin{scope}[very thick,decoration={
+    markings,
+    mark=at position 0.5 with {\arrow{latex}}}
+    ] 
+    \draw[postaction={decorate}] (3) -- (2)
+      \foreach \p in {$b$} {node[sloped,above,pos=0.5,rotate=0] (6) {\p}};
+    \draw[postaction={decorate}] (4) -- (2)
+      \foreach \p in {$a$} {node[sloped,above,pos=0.5,rotate=-90, xshift=0.2cm] (7) {\p}};
+    \draw[postaction={decorate}] (5) -- (4)
+      \foreach \p in {$b$} {node[sloped,above,pos=0.5,rotate=0] (8) {\p}};
+    \draw[postaction={decorate}] (5) -- (3)
+      \foreach \p in {$a$} {node[sloped,above,pos=0.5,rotate=-90, xshift=-0.2cm] (9) {\p}};
+    \draw[postaction={decorate}] (5) -- (2)
+      \foreach \p in {$c$} {node[sloped,above,pos=0.5,rotate=0] (10) {\p}};
+\end{scope}
+      
+\end{tikzpicture} 
+$T$
+\hspace{1cm}
+  \begin{tikzpicture}[node distance={20mm}] 
+    \node[draw=none, label={}] (1) {}; 
+    \node[draw=none, label={$v$}] (2) [above right of=1] {}; 
+    \node[draw=none, label={$v$}] (3) [above left of=1] {}; 
+    \node[draw=none, label=below:{$v$}] (4) [below right of=1] {}; 
+    \node[draw=none, label=below:{$v$}] (5) [below left of=1] {}; 
+\begin{scope}[very thick,decoration={
+    markings,
+    mark=at position 0.5 with {\arrow{latex}}}
+    ] 
+    \draw[postaction={decorate}] (2) -- (3)
+      \foreach \p in {$b$} {node[sloped,above,pos=0.5,rotate=0] (6) {\p}};
+    \draw[postaction={decorate}] (2) -- (4)
+      \foreach \p in {$a$} {node[sloped,above,pos=0.5,rotate=90, xshift=0.3cm] (7) {\p}};
+    \draw[postaction={decorate}] (5) -- (4)
+      \foreach \p in {$b$} {node[sloped,above,pos=0.5,rotate=0] (8) {\p}};
+    \draw[postaction={decorate}] (5) -- (3)
+      \foreach \p in {$a$} {node[sloped,above,pos=0.5,rotate=-90, xshift=-0.2cm] (9) {\p}};
+    \draw[postaction={decorate}] (5) -- (2)
+      \foreach \p in {$c$} {node[sloped,above,pos=0.5,rotate=0] (10) {\p}};
+\end{scope}
+\end{tikzpicture}
+$\R P^2$
+\hspace{1cm}
+  \begin{tikzpicture}[node distance={20mm}] 
+    \node[draw=none, label={}] (1) {}; 
+    \node[draw=none, label={$v$}] (2) [above right of=1] {}; 
+    \node[draw=none, label={$v$}] (3) [above left of=1] {}; 
+    \node[draw=none, label=below:{$v$}] (4) [below right of=1] {}; 
+    \node[draw=none, label=below:{$v$}] (5) [below left of=1] {}; 
+\begin{scope}[very thick,decoration={
+    markings,
+    mark=at position 0.5 with {\arrow{latex}}}
+    ] 
+    \draw[postaction={decorate}] (3) -- (2)
+      \foreach \p in {$b$} {node[sloped,above,pos=0.5,rotate=0] (6) {\p}};
+    \draw[postaction={decorate}] (2) -- (4)
+      \foreach \p in {$a$} {node[sloped,above,pos=0.5,rotate=90, xshift=0.3cm] (7) {\p}};
+    \draw[postaction={decorate}] (5) -- (4)
+      \foreach \p in {$b$} {node[sloped,above,pos=0.5,rotate=0] (8) {\p}};
+    \draw[postaction={decorate}] (5) -- (3)
+      \foreach \p in {$a$} {node[sloped,above,pos=0.5,rotate=-90, xshift=-0.2cm] (9) {\p}};
+    \draw[postaction={decorate}] (5) -- (2)
+      \foreach \p in {$c$} {node[sloped,above,pos=0.5,rotate=0] (10) {\p}};
+\end{scope}
+\end{tikzpicture}
+$K$
+\end{center}
+
+
 
 \subsection{Simplical homology}
 

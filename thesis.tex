@@ -54,7 +54,7 @@ The study of neural network expressiveness consists of the problem described abo
 In particular if $S_f$ is dense in a subset $A \subseteq \F(I_n, \R)$ we will say that a single-layer feed-forward neural network (Fig. 1) with $f$ as its activation function is a \textit{universal approximator} of $A$. Considering a neural network has a finite number of nodes neural network expressiveness also consists of the study of the rate of approach of the approximation, i.e. the sudy of \\
 
 \begin{center}
-  $\lim\limits_{N \to \infty} H(N) = \max\limits_{h\in A} (\min\limits_{G_n \in S_f} (\parallel G_n - h \parallel))$ with $\parallel . \parallel$ the cannonical norm on $\F(I_n, \R)$
+  $\lim\limits_{N \to \infty} H(N) = \max\limits_{h\in A} (\min\limits_{G_n \in S_f} (\parallel G_n - h \parallel))$ with $\parallel . \parallel$ the canonical norm on $\F(I_n, \R)$
 \end{center}
 
 The study of that limit and especially of its asympatotic approximation gives an idea of the efficiency of the approximator, i.e. the amount of node to add to the network to improve the approximation.\\
@@ -253,7 +253,7 @@ In this article, Arora et al. also give a higher bound for the depth of the netw
 In 2018, Hannin \& Selke \cite{hanin_approximating_2018} showed that the minimal width a ReLUneural network must have in order to approximate any function $f: \R^n \to \R^m$ is $n + m$. Giving a lower bound to the width of the ReLU network.
 
 \newpage
-\newpage
+\afterpage{\null\newpage}
 
 \section{Homology}
 
@@ -344,9 +344,11 @@ The pattern we can see appear with these examples is rather clear. The n-cell co
 
 The most important theory of algebraic topology is called simplical homology, since it is technically complicated we will first introduce a simpler version of it called simplical homology. The natural definition spaces of simplical homology is called $\Delta$-complexes that we will introduce in this part.\\
 
-The projective plane, the klein bottle and the torus can be obtained from squares by identifying edges and givin them orientation as draw below.
+The projective plane, the klein bottle and the torus can be obtained from squares by identifying edges and giving them orientation as draw below.
 
+\tcbset{top=0pt,right=10pt,left=10pt,bottom=0pt,nobeforeafter, colframe=blue!75!black,colback=white,fonttitle=\bfseries,center title}
 \begin{center}
+  \tcbox[title=$T$]{
   \begin{tikzpicture}[node distance={20mm}] 
     \node[draw=none, label={}] (1) {}; 
     \node[draw=none, label={$v$}] (2) [above right of=1] {}; 
@@ -370,8 +372,9 @@ The projective plane, the klein bottle and the torus can be obtained from square
 \end{scope}
       
 \end{tikzpicture} 
-$T$
-\hspace{1cm}
+}
+\hspace{0.5cm}
+\tcbox[title=$\R P^2$]{
   \begin{tikzpicture}[node distance={20mm}] 
     \node[draw=none, label={}] (1) {}; 
     \node[draw=none, label={$v$}] (2) [above right of=1] {}; 
@@ -394,8 +397,9 @@ $T$
       \foreach \p in {$c$} {node[sloped,above,pos=0.5,rotate=0] (10) {\p}};
 \end{scope}
 \end{tikzpicture}
-$\R P^2$
-\hspace{1cm}
+}
+\hspace{0.5cm}
+\tcbox[title=$K$]{
   \begin{tikzpicture}[node distance={20mm}] 
     \node[draw=none, label={}] (1) {}; 
     \node[draw=none, label={$v$}] (2) [above right of=1] {}; 
@@ -418,10 +422,20 @@ $\R P^2$
       \foreach \p in {$c$} {node[sloped,above,pos=0.5,rotate=0] (10) {\p}};
 \end{scope}
 \end{tikzpicture}
-$K$
+}
 \end{center}
 
+In fact any closed surface can be constructed this way, i.e. by cutting a polygon along its diagonals and identifying pairs of edges. The idea between $\Delta$-complexes is to generalize this idea to any dimension. The n-dimensional analog of the triangle is called the n-simplex.This is the smallest convex set in a Euclidean space $\R^m$ containing $n + 1$ points $v_0 , ... , v_n$ that do not lie in a hyperplane of dimension less than $n$. The points $v_i$ are the vertices of the simplex and the simplex is denoted $[v_0, ..., v_n]$. The standard n-simplex is:\\
 
+\begin{center}
+  $\Delta^n = \{ (t_0,...t_n) \in \R^{n+1} \mid \sum_i t_i  = 1$ and $t_i \ge 0$ for all $i \}$
+\end{center}
+
+Its vertices are the unit vectors along the coordinate axes.\\
+
+It is important to keep track of an ordering for the vertices and an n-simplex will always be considered with an ordering for its vertices. This will allow us to give an orientation for its edges $[v_iv_j]$ with respect to the ordering of the indices. It also determines a canonical linear homeomorphism from the standart n-simplex $\Delta^n$ into any other n-simplex preserving the order of the vertices: $(t_0, ..., t_n) \mapsto \sum_i t_i v_i$. The corfficients are the barycentric coordinates of the points $sum_i t_i v_i$ in $[v_0, ..., v_n]$.\\
+
+If we delete one of the vertices of an n-simples $[v_0, ..., v_n]$, the remaining n vertices span an (n-1)-simplex, called face of $[v_0, ..., v_n]$ that will conventionnaly keep the same orientation as in $[v_0, ..., v_n]$.\\
 
 \subsection{Simplical homology}
 
@@ -431,12 +445,16 @@ $K$
 
 Homology exists as a computable alternative homotopy.
 
+\newpage
+\afterpage{\null\newpage}
 \section{Topological data Analysis}
 
 \subsection{Fundamental concepts}
 
 \subsection{Persistent homology}
 
+\newpage
+\afterpage{\null\newpage}
 \section{Knot theory}
 
 \subsection{Definition}
@@ -447,12 +465,16 @@ Homology exists as a computable alternative homotopy.
 
 \subsubsection{Algorithms}
 
+\newpage
+\afterpage{\null\newpage}
 \section{Measuring neural network expressiveness}
 
 \subsection{Using topological data analysis}
 
 \subsection{Using trajectories}
 
+\newpage
+\afterpage{\null\newpage}
 \section{The study of trajectories from a knot theory perspective}
 
 \subsection{Methodology}
@@ -460,6 +482,9 @@ Homology exists as a computable alternative homotopy.
 \subsection{Algorithms}
 
 \subsection{Results}
+
+\newpage
+\afterpage{\null\newpage}
 
 \section{Extending the study of expressiveness with topological data analysis} 
 \subsection{Methodology}
@@ -469,6 +494,7 @@ Homology exists as a computable alternative homotopy.
 \subsection{Results}
 
 \newpage
+\afterpage{\null\newpage}
 
 \bibliography{bibliography}
 

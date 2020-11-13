@@ -10,6 +10,7 @@
 \usetikzlibrary{decorations.markings}
 \usepackage{amsmath}
 \usepackage{tcolorbox}
+\usepackage{enumitem}
 
 \input{/home/alexandre/macros.tex}
 
@@ -378,8 +379,8 @@ The projective plane, the klein bottle and the torus can be obtained from square
   \begin{tikzpicture}[node distance={20mm}] 
     \node[draw=none, label={}] (1) {}; 
     \node[draw=none, label={$v$}] (2) [above right of=1] {}; 
-    \node[draw=none, label={$v$}] (3) [above left of=1] {}; 
-    \node[draw=none, label=below:{$v$}] (4) [below right of=1] {}; 
+    \node[draw=none, label={$w$}] (3) [above left of=1] {}; 
+    \node[draw=none, label=below:{$w$}] (4) [below right of=1] {}; 
     \node[draw=none, label=below:{$v$}] (5) [below left of=1] {}; 
 \begin{scope}[very thick,decoration={
     markings,
@@ -435,7 +436,55 @@ Its vertices are the unit vectors along the coordinate axes.\\
 
 It is important to keep track of an ordering for the vertices and an n-simplex will always be considered with an ordering for its vertices. This will allow us to give an orientation for its edges $[v_iv_j]$ with respect to the ordering of the indices. It also determines a canonical linear homeomorphism from the standart n-simplex $\Delta^n$ into any other n-simplex preserving the order of the vertices: $(t_0, ..., t_n) \mapsto \sum_i t_i v_i$. The corfficients are the barycentric coordinates of the points $sum_i t_i v_i$ in $[v_0, ..., v_n]$.\\
 
-If we delete one of the vertices of an n-simples $[v_0, ..., v_n]$, the remaining n vertices span an (n-1)-simplex, called face of $[v_0, ..., v_n]$ that will conventionnaly keep the same orientation as in $[v_0, ..., v_n]$.\\
+If we delete one of the vertices of an n-simplex $[v_0, ..., v_n]$, the remaining n vertices span an (n-1)-simplex, called face of $[v_0, ..., v_n]$ that will conventionnaly keep the same orientation as in $[v_0, ..., v_n]$. The union of all the face of $\Delta^n$ is the boundary of $\Delta^n$, noted $\delta \Delta^n$. The open simplex $\mathring{\Delta}^n$ is $\Delta^n - \delta \Delta^n$, is the interior of $\Delta^n$.\\
+
+A $\Delta$-complex on a topological space $X$ is a collection of maps $\sigma_\alpha : \Delta^n \to X$  with the following properties:\\
+
+\begin{enumerate}[label=(\roman*)]
+  \item The restriction $\sigma_\alpha \mid \mathring{\Delta}^n$ is injective, and each point of $X$ is in the image of exactly one such restriction $\sigma_\alpha \mid \mathring{\Delta}^n$.
+  \item Each restriction if $\sigma_\alpha$ to a face of $\Delta^n$ is one if the maps $\sigma_\beta : \Delta^{n-1} \to X$ (identifying the face of $\Delta^n$ with the face of $\Delta^{n-1}$ using the canonical linear homeomorphism between them and preserving the vertices ordering).
+  \item A set $A \subset X$ is open if and only if $\sigma_\alpha^{-1}(A)$ is open in $\Delta^n$ for each $\sigma_\alpha$.
+\end{enumerate}
+
+The earlier decompositions of the torus, projective plane, and Klein bottle into two triangles, three edges, and one or two vertices allow well-definess of associated $\Delta$-complex structures with a total of six $\sigma_\alpha$'s for the torus and Klein bottle and seven for the projective plane. The orientation of edges are compatible with an ordering of the vertices (example below). This ordering determine the maps $\sigma_\alpha$.
+
+\begin{center}
+\tcbox[title=$\R P^2$]{
+  \begin{tikzpicture}[node distance={10mm}] 
+    \node[draw=none, label={}] (1) {}; 
+    \node[draw=none, label={}] (2) [below left of=1] {}; 
+    \node[draw=none, label={}] (3) [below right of=1] {}; 
+    \node[draw=none, label={}] (4) [above right of=1] {}; 
+    \node[draw=none, label=below:{0}] (5) [below left of=2] {}; 
+    \node[draw=none, label=below:{2}] (6) [below right of=3] {}; 
+    \node[draw=none, label={1}] (7) [above right of=4] {}; 
+    \node[draw=none, label={}] (8) [above left of=1] {}; 
+    \node[draw=none, label={}] (9) [below left of=8] {}; 
+    \node[draw=none, label={}] (10) [above left of=8] {}; 
+    \node[draw=none, label={}] (11) [above right of=8] {}; 
+    \node[draw=none, label={1}] (12) [above right of=11] {}; 
+    \node[draw=none, label={2}] (13) [above left of=10] {}; 
+    \node[draw=none, label=below:{0}] (14) [below left of=9] {}; 
+\begin{scope}[very thick,decoration={
+    markings,
+    mark=at position 0.5 with {\arrow{latex}}}
+    ] 
+    \draw[postaction={decorate}] (5) -- (6)
+      \foreach \p in {$b$} {node[sloped,above,pos=0.5,rotate=0] (17) {\p}};
+    \draw[postaction={decorate}] (7) -- (6)
+      \foreach \p in {$a$} {node[sloped,above,pos=0.5,rotate=90, xshift=0.3cm] (15) {\p}};
+    \draw[postaction={decorate}] (5) -- (7)
+      \foreach \p in {$c$} {node[sloped,above,pos=0.5,rotate=0] (16) {\p}};
+    \draw[postaction={decorate}] (14) -- (13)
+      \foreach \p in {$a$} {node[sloped,above,pos=0.5,rotate=-90, xshift=-0.3cm] (18) {\p}};
+    \draw[postaction={decorate}] (13) -- (12)
+      \foreach \p in {$b$} {node[sloped,above,pos=0.5,rotate=0] (19) {\p}};
+    \draw[postaction={decorate}] (14) -- (12)
+      \foreach \p in {$c$} {node[sloped,above,pos=0.5,rotate=0] (20) {\p}};
+\end{scope}
+\end{tikzpicture}
+}
+\end{center}
 
 \subsection{Simplical homology}
 

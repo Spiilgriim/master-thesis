@@ -11,6 +11,8 @@
 \usepackage{amsmath}
 \usepackage{tcolorbox}
 \usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{changepage}
 
 \input{/home/alexandre/macros.tex}
 
@@ -254,7 +256,9 @@ In this article, Arora et al. also give a higher bound for the depth of the netw
 In 2018, Hannin \& Selke \cite{hanin_approximating_2018} showed that the minimal width a ReLUneural network must have in order to approximate any function $f: \R^n \to \R^m$ is $n + m$. Giving a lower bound to the width of the ReLU network.
 
 \newpage
-\afterpage{\null\newpage}
+\thispagestyle{empty}
+\mbox{}
+\newpage
 
 \section{Homology}
 
@@ -343,7 +347,7 @@ The pattern we can see appear with these examples is rather clear. The n-cell co
 
 \subsection{$\Delta$-complexes}
 
-The most important theory of algebraic topology is called simplical homology, since it is technically complicated we will first introduce a simpler version of it called simplical homology. The natural definition spaces of simplical homology is called $\Delta$-complexes that we will introduce in this part.\\
+The most important theory of algebraic topology is called simplicial homology, since it is technically complicated we will first introduce a simpler version of it called simplicial homology. The natural definition spaces of simplicial homology is called $\Delta$-complexes that we will introduce in this part.\\
 
 The projective plane, the klein bottle and the torus can be obtained from squares by identifying edges and giving them orientation as draw below.
 
@@ -446,7 +450,7 @@ A $\Delta$-complex on a topological space $X$ is a collection of maps $\sigma_\a
   \item A set $A \subset X$ is open if and only if $\sigma_\alpha^{-1}(A)$ is open in $\Delta^n$ for each $\sigma_\alpha$.
 \end{enumerate}
 
-The earlier decompositions of the torus, projective plane, and Klein bottle into two triangles, three edges, and one or two vertices allow well-definess of associated $\Delta$-complex structures with a total of six $\sigma_\alpha$'s for the torus and Klein bottle and seven for the projective plane. The orientation of edges are compatible with an ordering of the vertices (example below). This ordering determine the maps $\sigma_\alpha$.
+The earlier decompositions of the torus, projective plane, and Klein bottle into two triangles, three edges, and one or two vertices allow well-definess of associated $\Delta$-complex structures with a total of six $\sigma_\alpha$'s for the torus and Klein bottle and seven for the projective plane. The orientation of edges are compatible with an ordering of the vertices (example below). This ordering determines the maps $\sigma_\alpha$.
 
 \begin{center}
 \tcbox[title=$\R P^2$]{
@@ -486,7 +490,102 @@ The earlier decompositions of the torus, projective plane, and Klein bottle into
 }
 \end{center}
 
-\subsection{Simplical homology}
+\subsection{Simplicial homology}
+
+Let us now define the simplicial homology groups of a $\Delta$-complex $X$. Let $\Delta_n(X)$ be the free abelian group with basis the open $n$-simplices $e^n_\alpha$ of $X$. The elements of $\Delta_n(X)$ are called n-chains and are of the form $\sum_\alpha n_\alpha e^n_\alpha$ with $n_\alpha \in \Z$. Equivalently, this could be written as $\sum_\alpha n_\alpha \sigma_\alpha$ where $\sigma_\alpha : \Delta^n \to X$ is the characteristic map of $e^n_\alpha$ with image the closure of $e^n_\alpha$. Such a sum can be considered as a finite collection, or "chain", of $n$-simplices in $X$.\\
+
+The boundary of the $n$-simplex $[v_0, ..., v_n]$ consists of the various $(n-1)$-dimensional simplices $[v_0, ... , \hat{v_i} , ... , v_n]$ (indicates all $v_{k}, 1 \le k \le n$ but $i$). We might wish that the boundary of  $[v_0, ..., v_n]$ be the $(n-1)$-chain formed by the sum of the faces $[v_0, ... ,\hat{v_i} , ... , v_n]$. It turns out to be betters to insert sign to take into account orientations. It allow to coherently orient all the faces of the simplex. That is why we let the boundary be $\sum_i (-1)^i [v_0, ... , \hat{v_i} , ... , v_n]$.\\
+
+
+\tcbset{colback=white,colframe=black,top=10mm,bottom=10mm}
+\begin{tcolorbox}
+\begin{multicols}{2}
+  \begin{center}
+  \begin{tikzpicture}[node distance={20mm}] 
+    \node[draw=none, label={}] (1) {}; 
+    \node[draw=none, label=right:{$v_1$}] (2) [above right of=1] {}; 
+    \node[draw=none, label=left:{$v_0$}] (3) [above left of=1] {}; 
+\begin{scope}[very thick,decoration={
+    markings,
+    mark=at position 0.5 with {\arrow{latex}}}
+    ] 
+    \draw[postaction={decorate}] (3) -- (2)
+      \foreach \p in {} {node[sloped,above,pos=0.5,rotate=90, xshift=0.3cm] (5) {\p}};
+\end{scope}
+\end{tikzpicture}
+\\
+  \begin{tikzpicture}[node distance={20mm}] 
+    \node[draw=none, label={$v_2$}] (1) {}; 
+    \node[draw=none, label=right:{$v_1$}] (2) [below right of=1] {}; 
+    \node[draw=none, label=left:{$v_0$}] (3) [below left of=1] {}; 
+\begin{scope}[very thick,decoration={
+    markings,
+    mark=at position 0.5 with {\arrow{latex}}}
+    ] 
+    \draw[postaction={decorate}] (1) -- (3)
+      \foreach \p in {} {node[sloped,above,pos=0.5,rotate=0] (4) {\p}};
+    \draw[postaction={decorate}] (3) -- (2)
+      \foreach \p in {} {node[sloped,above,pos=0.5,rotate=90, xshift=0.3cm] (5) {\p}};
+    \draw[postaction={decorate}] (2) -- (1)
+      \foreach \p in {} {node[sloped,above,pos=0.5,rotate=0] (5) {\p}};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\begin{center}
+
+
+\columnbreak
+
+$\delta [v_0,v_1] = [v_1] - [v_0]$\\
+\vspace{2.3cm}
+
+$\delta [v_0, v_1, v_2] = [v_1, v_2] - [v_0, v_2] + [v_0, v_1]$
+
+\end{center}
+\end{multicols}
+\end{tcolorbox}
+\\
+
+We define a boundary homomorphism for a general $\Delta$-complex $X$, $\delta_n : \Delta_n (X) \to \Delta_{n-1} (X)$ by specifying its values on the absis elements:\\
+
+\begin{center}
+
+  $\delta_n(\sigma_\alpha) = \sum_i (-1)^i \sigma_\alpha \mid [v_0 , ... , \hat{v_i} , ... , v_n]$
+
+\end{center}
+
+The image set of $\delta_n$ is $\Delta_{n-1} (X)$ since each restriction $\sigma_\alpha \mid [v_0 , ... , \hat{v_i} , ... , v_n]$ is the caracteristic map of an $(n-1)$-simplex of $X$.\\
+
+\begin{lemma}
+
+  The composition $\Delta_n (X) \xrightarrow{\delta_n} \Delta_{n-1} (X) \xrightarrow{\delta_{n-1}} \Delta_{n-2} (X)$ is zero.
+
+\end{lemma}
+
+\begin{proof}
+
+  We have $\delta_n(\sigma) = \sum_i (-1)^i \sigma \mid [v_0, ... , \hat{v_i} , ... , v_n] $, hence \\
+  \vspace{-10pt}
+  \begin{center}
+  $\delta_{n-1}\delta_n (\sigma) = \sum\limits_{j < i} (-1)^i (-1)^j \sigma \mid [v_0, ... , \hat{v_j} , ... , \hat{v_j} , ... , v_n]$
+  \sv
+$+ \sum\limits_{j > i} (-1)^i (-1)^{j-1} \sigma \mid [v_0, ... , \hat{v_i}, ... , \hat{v_j} , ... , v_n] = 0$.
+\end{center}
+
+  The last equality comes from the switch of $i$ and $j$ in the second sum.
+
+\end{proof}
+\\
+
+We end up with a sequence of homomorphisms of abelian groups:\\
+
+\begin{center}
+  $... \to C_{n+1} \xrightarrow{\delta_{n+1}} C_n \xrightarrow{\delta_n} C_{n-1} \to ... \to C_1 \xrightarrow{\delta_1} C_0 \xrightarrow{\delta_0} 0$
+\end{center}
+
+with $\delta_n\delta_{n+1} = 0$ for each $n$ (cf Lemma 2).We call such a sequence a chain complex. The equation $\delta_n \delta_{n+1} = 0$ is equivalent to the inclusion Im $\delta_{n+1} \subset$ Ker $\delta_n$. We can define the $n^{th}$ homology group of the chain complex to be the quotient group $H_n =$ Ker $\delta_n$/Im $\delta_{n+1}$. The elements of Ker $\delta_n$ are called cycle and elements of Im $\delta_{n+1}$ are called boundaries.Elements of $H_n$ are cosets of Im $\delta_{n+1}$ called homology classes. Two cycles representing the same homology class are said to be homologous, it means their difference is a boundary.\\
+
+In the case of $C_n = \Delta_n(X)$, the homology group Ker $\delta_n$/Im$\delta_{n+1}$ will be denoted $H^\Delta_n(X)$ and called the $n^{th}$ simplicial homology group of $X$. 
 
 \subsection{Singular homology}
 
@@ -495,7 +594,10 @@ The earlier decompositions of the torus, projective plane, and Klein bottle into
 Homology exists as a computable alternative homotopy.
 
 \newpage
-\afterpage{\null\newpage}
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
 \section{Topological data Analysis}
 
 \subsection{Fundamental concepts}
@@ -503,7 +605,10 @@ Homology exists as a computable alternative homotopy.
 \subsection{Persistent homology}
 
 \newpage
-\afterpage{\null\newpage}
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
 \section{Knot theory}
 
 \subsection{Definition}
@@ -515,7 +620,10 @@ Homology exists as a computable alternative homotopy.
 \subsubsection{Algorithms}
 
 \newpage
-\afterpage{\null\newpage}
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
 \section{Measuring neural network expressiveness}
 
 \subsection{Using topological data analysis}
@@ -523,7 +631,10 @@ Homology exists as a computable alternative homotopy.
 \subsection{Using trajectories}
 
 \newpage
-\afterpage{\null\newpage}
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
 \section{The study of trajectories from a knot theory perspective}
 
 \subsection{Methodology}
@@ -533,7 +644,9 @@ Homology exists as a computable alternative homotopy.
 \subsection{Results}
 
 \newpage
-\afterpage{\null\newpage}
+\thispagestyle{empty}
+\mbox{}
+\newpage
 
 \section{Extending the study of expressiveness with topological data analysis} 
 \subsection{Methodology}
@@ -543,7 +656,9 @@ Homology exists as a computable alternative homotopy.
 \subsection{Results}
 
 \newpage
-\afterpage{\null\newpage}
+\thispagestyle{empty}
+\mbox{}
+\newpage
 
 \bibliography{bibliography}
 

@@ -2,19 +2,20 @@
 
 \author{Alexandre Louvet}
 
-\documentclass[12pt]{article}
-\usepackage[legalpaper, margin=2in]{geometry}
+\documentclass[12pt, a4paper]{article}
+\usepackage[margin=3cm, top=35mm, headheight=20pt]{geometry}
 
+\usepackage{fancyhdr}
 \usepackage{graphicx}
+\graphicspath{{/home/alexandre/Documents/KIT/Research/presentations/thesis/images/}}
 \usepackage{tikz}
 \usetikzlibrary{decorations.markings}
 \usepackage{amsmath}
 \usepackage{tcolorbox}
 \usepackage{enumitem}
 \usepackage{multicol}
-\usepackage{changepage}
 
-\input{/home/alexandre/macros.tex}
+\input{/home/alexandre/Documents/KIT/Research/presentations/thesis/macros.tex}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
@@ -26,6 +27,10 @@
 \newenvironment{keywords}{}{}
 
 \def\layersep{2.5cm}
+
+\pagestyle{fancy}
+\fancyhead[R]{\thepage}
+\cfoot{}
 
 \begin{document}
 \newpage
@@ -262,9 +267,13 @@ In 2018, Hannin \& Selke \cite{hanin_approximating_2018} showed that the minimal
 
 \section{Homology}
 
-The study of homology is part of the field of algebraic topology. We will first introduce the concept of homology, then take a look at the theoretical concept behind it by introducing $\Delta$-complex: a primitive topolgical structure that allow the study of homology. Then with the introduction of simplicial homology and finally singular homology we will complete the presentation of the fundamental objects used in the study of homolgy. We will then reconsider these tools in the context of our research. This part heavily relies on the book \textit{Algebraic Topolgy} by A. Hatcher \cite{hatcher_algebraic_2002} and the class given by P. Albin at University of Illinois \cite{albin_1_2018} with the same book as class material. 
+The study of homology is part of the field of algebraic topology. We will first introduce the concept of homology, then take a look at the theoretical concept behind it by introducing $\Delta$-complex: a primitive topolgical structure that allow the study of homology. Then with the introduction of simplicial homology we will complete the presentation of the fundamental objects used in our research and in the study of homology. We will then reconsider these tools in the context of our research. This part heavily relies on the book \textit{Algebraic Topolgy} by A. Hatcher \cite{hatcher_algebraic_2002} and the class given by P. Albin at University of Illinois \cite{albin_1_2018} with the same book as class material. 
 
 \subsection{The idea of homology}
+
+In algebraic topology, the most fundamental object to study is the homotopy, that roughly studies "paths". This study leads to the definition of the fundamental group $\pi_1(X)$ that gives information on the topological stucture of a space $X$ for low-dimensional space. However the fundamental group $\pi_1(X)$ can not for instance distinguish the different spheres $S^n, n\ge 2$. A workaround for that problem would be to generalize the notion of homotopy to higher dimensions with different groups $\pi^n(X)$ generalizing the concept of homotopy in higher dimension. \\
+
+However the homotopy groups suffers a serious drawback in their difficult computationality for high dimensions. Even for simple spaces like spheres, the calculation of $\pi_i(S^n)$ turns out to be very difficult for $i > n$. That is why homology exists as a computable alternative homotopy.\\
 
 \begin{center}
   \begin{tikzpicture}[node distance={20mm}] 
@@ -604,11 +613,26 @@ The simplicial homology is defined for simplical complexes. These are the $\Delt
 
 Compared with $\Delta$-complexes, simplicial complexes require more computation. For example a simplicial complex structure for the torus would require 14 triangles, 21 edges and 7 vertices. It can be shown that any $\Delta$-complex can be subdivided in a simplical complex.\\
 
-\subsection{Singular homology}
+
+It is worth mentionning that simplicial homology has flaws such as the one mentionend before. That is why in the current theory of homology, simplicial homology has been replaced with a more complete theory of homologies named singular homology. The improvements of simplicial homology brought by singular are not useful for our research, that is why we will not be discussing this theory in this paper. The theory is however thoroughly explained in \cite{hatcher_algebraic_2002}.
 
 \subsection{Homology in our research}
 
-Homology exists as a computable alternative homotopy.
+Our research is concerned with the capacity of neural wetwork to properly express after training different difficulty of problems depending on their width. There would be different approach to chosing a way to measure this difficulty that would relate to different applied problems. The first approach would be to look at the dimension of the problem.\\
+
+\begin{center}
+  \includegraphics[scale=0.4]{mnist.png}
+\end{center}
+
+For instance the MNIST problem, aims to classify 28x28 pixels images of handwritten digits in 10 classes representing the 10 digits. For instance in 2003 in \cite{simard_best_2003}, a team of researcher used a nimple neural network of 2 layers with respectively 100 and 10 hidden units to classify the MNIST dataset (they used convolutional layers before inputing data in their network making the input dimension even greater) to obtain an accuracy of 98.81\%. One could expect that solving the same problem of image classification for instance and using different image size and depth of networks would be an interresting way to study the problem of expressiveness.\\
+
+However two major problems occur in that case. How to choose the classification problem with the certainty that the problem itself is not going to be a problem simpler than it looks. This relates to an hypothesis called the manifold hypothesis. The manifold hypothesis holds roughly as follows: "real-world high-dimensional data lie on low-dimensional manifolds embedded within the high-dimensional space". Meaning that complex data that needs a lot of parameters to be perfectly described are caracterized by few simple parameters up to continuous deformations defined as above. Considering this hypothesis that has not been disproved, a certain image recognition problem such as MNIST could be relying on the separation of a space of smaller dimension that the 784 dimensions space that you would expect from 28x28 pixels images.\\
+
+The second problem is the problem of thresholding for accuracy since it is almost impossible to reach 100\%. One would have to chose a value over which one considers the problem as correctly classified and below which it is considered not classified. That choice would be rather arbitrary and it would be hard to evaluate the value of the results as far as they might change radically with a slight change in the choice of the threshold.\\
+
+This point is non-specific to the choice of accuracy as a measure since in any case the training of a neural network is a process with a random component involved and independently of the measure choice, the problem of training artifacts and imprecicions might rise. Although one should try to chose a measure that will reduce as much as possible this incontrollable component in the research.\\
+
+For that purpose, we have chosen to use homology of the data as our measure. Using homology garantees an independence from the problem chosen since homologies can take different forms du to its topological nature. Moreover if the manifold hypothesis happends to be true, the study of homology in rather small dimension and how neural networks of different depth perform on it might have applications even in high dimension problems. Unlike accuracy the perfect classification in terms of homology is something reachable since homology is studied without regard to continuous deformations ($\approx$ topologically), errors and imprecision will mostly be ignored.\\
 
 \newpage
 \thispagestyle{empty}

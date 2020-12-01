@@ -761,12 +761,14 @@ Now that we can find an estimation for a manifold that would concentrate all or 
 
 A result in topology and statistics showed that:
 \begin{center}
-  $\widehat{S} = \bigcup\limits_{i=1}{n}B(X_i,\varepsilon)$
+  $\widehat{S} = \bigcup\limits_{i=1}^{n}B(X_i,\varepsilon)$
 \end{center}
 
 has the homology of $S$ with high probabiity as long as $S$ has a positive reach and $\varepsilon$ remains relatively small compared to it. The reach $r$ of a set $S$ is the largest real number such that any point within distance $r$ of $S$ has a unique projection on $S$.
 
 \subsection{Persistent homology}
+
+Persistent homology is the computation side of homology theory. Persistent homology is the name given to an algorithm which aim is to compute the topological features of data. We have discussed in detail homology from a mathematical point of view in part \textbf{2} and have shown that for $n \ge 2$ an $n$-dimensional sphere has for homology group: $H_n^\Delta(\S^n) \approx \Z$. To simplify vocabulary and notation we are now to be writting using betti numbers. Betti numbers of an $n$-dimensional topological space $X$ counts the power of $\Z$ each group $(H_k^\Delta(X))_{0 \le k \le n}$ is topologically equivalent to. In the case of the torus $T$, the betti number are $(1,2,1,0)$. Recalling the formula to compute $H_k^\Delta(X) = \frac{\text{Ker} \delta_n}{\text{Im} \delta_{n+1}}$, since $C_{n+1} = \emptyset$, $\delta_{n+1} = 0$ and hence any value $(H_k^\Delta(X))_{k > n} = 0$. Therefore, it is conventionally admitted not to write betti numbers above that value. 
 
 \newpage
 \thispagestyle{empty}

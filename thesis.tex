@@ -761,14 +761,82 @@ Now that we can find an estimation for a manifold that would concentrate all or 
 
 A result in topology and statistics showed that:
 \begin{center}
-  $\widehat{S} = \bigcup\limits_{i=1}^{n}B(X_i,\varepsilon)$
+  $\widehat{S} = \bigcup\limits_{i=1}^{n}\B(X_i,\varepsilon)$
 \end{center}
 
 has the homology of $S$ with high probabiity as long as $S$ has a positive reach and $\varepsilon$ remains relatively small compared to it. The reach $r$ of a set $S$ is the largest real number such that any point within distance $r$ of $S$ has a unique projection on $S$.
 
 \subsection{Persistent homology}
 
-Persistent homology is the computation side of homology theory. Persistent homology is the name given to an algorithm which aim is to compute the topological features of data. We have discussed in detail homology from a mathematical point of view in part \textbf{2} and have shown that for $n \ge 2$ an $n$-dimensional sphere has for homology group: $H_n^\Delta(\S^n) \approx \Z$. To simplify vocabulary and notation we are now to be writting using betti numbers. Betti numbers of an $n$-dimensional topological space $X$ counts the power of $\Z$ each group $(H_k^\Delta(X))_{0 \le k \le n}$ is topologically equivalent to. In the case of the torus $T$, the betti number are $(1,2,1,0)$. Recalling the formula to compute $H_k^\Delta(X) = \frac{\text{Ker} \delta_n}{\text{Im} \delta_{n+1}}$, since $C_{n+1} = \emptyset$, $\delta_{n+1} = 0$ and hence any value $(H_k^\Delta(X))_{k > n} = 0$. Therefore, it is conventionally admitted not to write betti numbers above that value. 
+Persistent homology is the computation side of homology theory. Persistent homology is the name given to an algorithm which aim is to compute the topological features of data. We have discussed in detail homology from a mathematical point of view in part \textbf{2} and have shown that for $n \ge 2$ an $n$-dimensional sphere has for homology group: $H_n^\Delta(\S^n) \approx \Z$. To simplify vocabulary and notation we are now to be writting using betti numbers. Betti numbers of an $n$-dimensional topological space $X$ counts the rank of each group $(H_k^\Delta(X))_{0 \le k \le n}$ is topologically equivalent to. In the case of the torus $T$, the betti number are $(1,2,1,0)$. Recalling the formula to compute $H_k^\Delta(X) = \frac{\text{Ker} \delta_n}{\text{Im} \delta_{n+1}}$, since $C_{n+1} = \emptyset$, $\delta_{n+1} = 0$ and hence any value $(H_k^\Delta(X))_{k > n} = 0$. Therefore, it is conventionally admitted not to write betti numbers above that value. 
+
+To properly define persistet homology one must first define the distance function between a set $S$ and a point $x$. It is written as:
+\begin{center}
+  $d_s(x) = \inf\limits_{y\in S} ||x-y||$  
+\end{center}
+
+The lower level sets of the distance function are
+
+\begin{center}
+  $L_\varepsilon = \lbrace x : d_S(x) \le \varepsilon \rbrace$
+\end{center}
+
+It is equivalent to writting:
+
+\begin{center}
+  $L_\varepsilon = \bigcup\limits_{x \in S} B(x,\varepsilon)$ 
+\end{center}
+
+As $\varepsilon$ increases, $L_\varepsilon$ changes. Different topological features (represented by the homology groups and the betti numbers) will appear and disappear. Consider $\S^1$, at first when $\epsilon < 1$, we have the betti numbers being $(0,1,0)$ and once $\varepsilon$ reaches 1, the betti numbers become $(1,0,0)$ (cf Figure \ref{fig:betti_s1}). 
+
+\begin{figure}[h]
+  \begin{minipage}[c]{.32\linewidth}
+             \centering
+            \includegraphics[width=1.0\textwidth]{circle_small_eps.png}
+         \end{minipage}
+         \hfill%   
+         \begin{minipage}[c]{.32\linewidth}
+             \centering
+            \includegraphics[width=1.0\textwidth]{circle_mid_eps.png}
+        \end{minipage}
+         \hfill%   
+         \begin{minipage}[c]{.32\linewidth}
+             \centering
+            \includegraphics[width=1.0\textwidth]{circle_big_eps.png}
+        \end{minipage}
+        \caption{Three plots for a dataset with data on $\S^1$. The betti numbers are from left to right: $(10,0,0)$, $(0,1,0)$, $(1,0,0)$}
+  \label{fig:betti_s1}
+\end{figure}
+
+Considering the evolution of $L_\varepsilon$, one can draw a persistence diagram (cf Figure \ref{fig:persistence_diagram}) and a barcode diagram (cf Figure \ref{fig:persistence_barcode}) that are equivalent. The barcode diagram represents the time of birth and death of each topological feature with a bar for each persistent generator. You will note that the full circle obtained from the merge of all balls around each point is considered to be the obtained from one of the original generator hence its big persistence. The persistence diagram represent with a point the birth and death of each topological feature, considering the symetry of our figure, there are 9 points on coordinate $\approx(0,0.1)$.\\ 
+
+\begin{figure}[p]
+             \centering
+            \includegraphics[height=.45\textheight]{circle_persistence_diagram.png}
+        \caption{The persistence diagram of dataset from Figure \ref{fig:betti_s1}}
+        \label{fig:persistence_diagram}
+\end{figure}
+
+\begin{figure}[p]
+             \centering
+            \includegraphics[width=.45\textheight]{circle_persistence_barcode.png}
+        \caption{The barcode diagram of dataset from Figure \ref{fig:betti_s1}}
+        \label{fig:persistence_barcode}
+\end{figure}
+
+Note that an infinite is defined on the right of the barcode and the top of the y-axis of the persistence diagram. It corresponds to the value of $\varepsilon_\infty = \max\limits_{x,y \in S} ||x-y||$. Equivalently $\forall x,y \in \S, x \in \B(y ,\varepsilon_\infty)$ and $y \in \B(x, \varepsilon_\infty)$. To the different persistence, we define the bottleneck distance. Given two persistence diagram $D_1, D_2$:
+
+\begin{center}
+  $\delta_\infty(D_1, D_2) = \inf\limits_{\gamma} \sup\limits_{z \in D_1} ||z - \gamma(z)||_\infty$
+\end{center}
+
+with $\gamma$ covering the set of bijections between $D_1$ and $D_2$. The image behind it is to overlay the two diagrams and look at how to match the points as well as possible to minimize the distance between them.\\
+
+To compute the dimension of the structure persistent homology one uses $\Delta$-complexes by using an object called the $\check{C}$ech complex $C_\varepsilon$. It is defined as follows. All singletons are included in $C_\varepsilon$, there are $0$-dimensional simplices. All pairs of points $X_i, X_j$ such that $||X_i - X_j|| \le \varepsilon$ are included in $C_\varepsilon$, these are $1$-dimensional simplices. Each triplet $X_i, X_j, X_k$ such that $B(X_i, \varepsilon/2) \cap B(X_j, \varepsilon/2) \cap B(X_k, \varepsilon/2) \neq \emptyset$ is included, these are 2-dimensional simplices. And so on.\\ 
+
+A more computationally efficient way to compute complexes is called the Vectoris-Rips complex $V_\epsilon$ and is defined as follows. A simplex is included in $V_\epsilon$ if each parir of vertices is no more than $\varepsilon$ apart. It can be shown that the persistent homology defined by $V_\varepsilon$ approximates the persistent homology defined by $C_\varepsilon$ .
+
+
 
 \newpage
 \thispagestyle{empty}

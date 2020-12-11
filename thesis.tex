@@ -6,7 +6,7 @@
 \usepackage[margin=3cm, top=35mm, headheight=20pt]{geometry}
 
 \usepackage{fancyhdr}
-\usepackage{graphicx}
+\usepackage{float, graphicx}
 \graphicspath{{/home/alexandre/Documents/KIT/Research/presentations/thesis/images/}}
 \usepackage{tikz}
 \usetikzlibrary{decorations.markings}
@@ -845,9 +845,55 @@ A more computationally efficient way to compute complexes is called the Vectoris
 
 \section{Knot theory}
 
+Knot theory is a part of topology concerned with the study of mathematical knots. They are inspired by real life knots  that can be done on ropes or shoelaces but differs in the sense that the ends are joined together so that it can not be undone. There are multiple ways to describe knots and we will cover some of them. One of the key concepts of knot theory is equivalence. Two knots are considered equivalent if they can be transformed in each other without cutting the rope open. We will formalize these notions in this part relying on the class given by Pr. Anthony Bosman at Andrew University \cite{anthony_bosman_knot_2019}.
+
 \subsection{Fundamental concepts}
 
-\subsection{Knot determinant}
+\begin{definition}
+  A knot is an embedding of a circle in 3-dimensional euclidian space $\R^3$
+\end{definition}
+
+A knot is bounded by all of its homeomorphism since we are studying it from a topological point of view. Two mathematical knots are equivalent if they are ambient isotopic (can be deformed into the other via a deformation of $\R^3$ upon itself).\\
+
+\begin{definition}
+  let $N$ and $M$ be manifolds and $g$ and $h$ be embeddings of $N$ and $M$. A continuous map:
+   \begin{center}
+     $F: M \times [0,1] \to M$
+   \end{center}
+  is defined to be an ambient isotopy taking $g$ to $h$ if $F_0$ is the identity and each map $F_t$ is an homeomorphism from $M$ to itself, and $F_1 \circ g = h$.
+\end{definition}
+
+That is to say there is a map $F$ with a parameter $t$ ranging from 0 to 1, sending for $t=0$, $h$ to itself and for $t = 1$, $h$ to $g$.\\
+
+In 1927, Reidemeister showed that ambient isotopy was equivalent to a set of three moves that can be performed on knots \cite{reidemeister_elementare_1927}. The three moves are as follow:
+
+\begin{itemize}
+    \item Type I: Twist
+\begin{figure}[H]
+             \centering
+            \includegraphics[height=100pt]{r1.png}
+          \caption{By Parcly Taxel- Own work, FAL, https://commons.wikimedia.org/w/index.php?curid=68523335}
+        \label{fig:r_1}
+\end{figure}
+    \item Type II: Poke
+\begin{figure}[H]
+             \centering
+            \includegraphics[height=100pt]{r2.png}
+          \caption{By Parcly Taxel- Own work, FAL, https://commons.wikimedia.org/w/index.php?curid=68523334}
+        \label{fig:r_2}
+\end{figure}
+    \item Type III: Slide 
+\begin{figure}[H]
+             \centering
+            \includegraphics[height=100pt]{r3.png}
+          \caption{By Parcly Taxel- Own work, FAL, https://commons.wikimedia.org/w/index.php?curid=68523336}
+        \label{fig:r_3}
+\end{figure}
+  \end{itemize}
+
+i.e. two knots are equivalent if they can transformed into each others using only these three moves.
+
+\subsection{Knot invariants}
 
 \subsubsection{Definition}
 

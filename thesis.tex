@@ -8,6 +8,9 @@
 \usepackage{fancyhdr}
 \usepackage{float, graphicx}
 \graphicspath{{/home/alexandre/Documents/KIT/Research/presentations/thesis/images/}}
+\usepackage[font=small,labelfont=bf,
+   justification=centering,
+   format=plain]{caption}
 \usepackage{tikz}
 \usetikzlibrary{decorations.markings}
 \usepackage{amsmath}
@@ -891,13 +894,161 @@ In 1927, Reidemeister showed that ambient isotopy was equivalent to a set of thr
 \end{figure}
   \end{itemize}
 
-i.e. two knots are equivalent if they can transformed into each others using only these three moves.
+i.e. two knots are equivalent if they can transformed into each others using only these three moves.\\
+
+Knot are composed of crossings and components. The crossings are the point where the embedding overlaps itself and the components are the parts of the embedding between the crossing. We will later number the components and crossings to perform computations on knots. It is important to note that cannonically the knots are classified in category representing the minimal number of crossing that can be obtained by a representation of a knot. You can find the beginning of the knot table sorted by increasing number of crossings in Figure \ref{fig:knot_table}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.6\textwidth]{knot_table.png}
+  \caption{Knot table up to 7 crossings knots By Jkasd - Own work, Public Domain, https://commons.wikimedia.org/w/index.php?curid=3937733}
+  \label{fig:knot_table}
+\end{figure}
 
 \subsection{Knot invariants}
 
-\subsubsection{Definition}
+One of the main question of knot theory is to find a way to identify any two equivalent knots. As of today, such method is still to be found. Two knots that might seem very different can be equivalent as shown in Figure \ref{fig:unknot}. To partially solve the problem, researcher have found knot invariants, that is to say mathematical object computable from any knot representation and that will always be equal for two representation of the same knot. We will be in this section introducing some of these and explain the one we will be using for our research.\\
 
-\subsubsection{Algorithms}
+\begin{figure}[H]
+  \begin{minipage}[c]{.2\textwidth}
+  \centering
+  \includegraphics[width=.95\textwidth]{knot_unfolding-0.png}
+    
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{.2\textwidth}
+  \centering
+  \includegraphics[width=.95\textwidth]{knot_unfolding-10.png}
+    
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{.2\textwidth}
+  \centering
+  \includegraphics[width=.95\textwidth]{knot_unfolding-20.png}
+    
+  \end{minipage}\\
+  \begin{minipage}[c]{.2\textwidth}
+  \centering
+  \includegraphics[width=.95\textwidth]{knot_unfolding-30.png}
+    
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{.2\textwidth}
+  \centering
+  \includegraphics[width=.95\textwidth]{knot_unfolding-40.png}
+    
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{.2\textwidth}
+  \centering
+  \includegraphics[width=.95\textwidth]{knot_unfolding-50.png}
+    
+  \end{minipage}
+  \caption{Knot unfolding By Kuchtact - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=77971069}
+  \label{fig:unknot}
+  
+\end{figure}
+
+\subsubsection{Tricolorability (or 3-colorability)}
+
+Tricolorability is a criterion to color the components of a knot following two rules:
+
+\begin{itemize}
+  \item All components must be colored
+  \item At each crossing either all three components are either all of the same color either all of different colors ($\Longleftrightarrow$ one can find only one or the three colors at each crossing). 
+\end{itemize}
+
+For instance the trefoil is 3-colorable as shown is Figure \ref{fig:trefoil_color} unlike the figure-eight knot (Figure \ref{fig:figure8})\\
+
+
+\begin{figure}[H]
+  \begin{minipage}[c]{.4\textwidth}
+    \centering
+    \includegraphics[width=.80\textwidth]{trefoil_color.png}
+    \caption{Colored trefoil (original image: By Marnanel - Image:TrefoilKnot-01.png, Public Domain, https://commons.wikimedia.org/w/ index.php?curid=3246080)}
+    \label{fig:trefoil_color}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{.4\textwidth}
+    \centering
+    \includegraphics[width=.80\textwidth]{figure_eight.png}
+    \caption{Colored trefoil (original image: By Talifero - File:Knots\_eight\_shamrock.svg, Public Domain, https://commons.m.wikimedia.org/wiki/ File:Knots\_eight\_shamrock.svg)}
+    \label{fig:figure8}
+  \end{minipage}  
+\end{figure}
+
+\begin{proposition}
+  Tricolorabitily is a knot invariant
+\end{proposition}
+
+\begin{proof}
+
+To prove that 3-colorability is a knot invariant it is sufficient to show that the tricolorability of a knot is preserved with the Reidemeister moves. This task is fairly simple though it might involve to test a lot of cases.
+
+\begin{itemize}
+  \item Type I: Twist. This move is straight forward since starting with only one component, the only starting point is of having a single color, the solution of keeping the same color is obvious.
+\begin{figure}[H]
+             \centering
+            \includegraphics[height=100pt]{r1_colored.png}
+          \caption{Original image: By Parcly Taxel- Own work, FAL, https://commons.wikimedia.org/w/index.php?curid=68523335}
+        \label{fig:r_1_colored}
+\end{figure}
+
+\item Type II: Poke. For this move there are two possible configuration as starter since both components can have the same color or a different one. In both case it is possible to find a coloration that fits.
+
+\begin{figure}[H]
+  \begin{minipage}[c]{.5\textwidth}
+             \centering
+            \includegraphics[height=100pt]{r2_colored_2.png}
+    
+  \end{minipage}
+  \begin{minipage}[c]{.5\textwidth}
+             \centering
+            \includegraphics[height=100pt]{r2_colored.png}
+    
+  \end{minipage}
+          \caption{Original imageBy Parcly Taxel- Own work, FAL, https://commons.wikimedia.org/w/index.php?curid=68523334}
+        \label{fig:r_2_colored}
+\end{figure}
+
+\item Type III: Silde. This move could have up to 8 possibilities but the possibilities where exactly one of the crossings is of different colors is not possible since it goes against the rules of tricolorability. We end up with 5 cases that all admit a solution.   
+
+\begin{figure}[H]
+  \begin{minipage}[c]{.3\textwidth}
+             \centering
+            \includegraphics[height=100pt]{r3_colored_2.png}
+    
+  \end{minipage}
+  \begin{minipage}[c]{.3\textwidth}
+             \centering
+            \includegraphics[height=100pt]{r3_colored.png}
+    
+  \end{minipage}
+  \begin{minipage}[c]{.3\textwidth}
+             \centering
+            \includegraphics[height=100pt]{r3_colored_3.png}
+    
+  \end{minipage}
+  \begin{minipage}[c]{.5\textwidth}
+             \centering
+            \includegraphics[height=100pt]{r3_colored_4.png}
+    
+  \end{minipage}
+  \begin{minipage}[c]{.5\textwidth}
+             \centering
+            \includegraphics[height=100pt]{r3_colored_5.png}
+    
+  \end{minipage}
+          \caption{Original imageBy Parcly Taxel- Own work, FAL, https://commons.wikimedia.org/w/index.php?curid=68523336}
+        \label{fig:r_3_colored}
+\end{figure}
+\end{itemize}
+
+Note that a solution is admissible only if the components that link with the rest of the knot can preserve their color so that the move do not interfere with the rest of the knot.
+
+\end{proof}
+
+\subsection{Algorithms}
 
 \newpage
 \thispagestyle{empty}

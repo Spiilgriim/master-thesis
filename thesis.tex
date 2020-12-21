@@ -871,6 +871,27 @@ A knot is bounded by all of its homeomorphism since we are studying it from a to
   is defined to be an ambient isotopy taking $g$ to $h$ if $F_0$ is the identity and each map $F_t$ is an homeomorphism from $M$ to itself, and $F_1 \circ g = h$.
 \end{definition}
 
+Knot representation might for further explained purpose be oriented giving an orientation to each of its crossings. We will result with two types of crossings left-handed crossing and right-handed crossings as shown in Figure \ref{fig:oriented_knot}
+
+\begin{figure}[H]
+  \begin{minipage}[c]{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\textwidth]{trefoil_oriented.png}    
+  \end{minipage}
+  \begin{minipage}[c]{.20\textwidth}
+  \centering
+  \includegraphics[width=.9\textwidth]{left_crossing.png}    
+  \caption{Left crossing}
+  \end{minipage}
+  \begin{minipage}[c]{.20\textwidth}
+  \centering
+  \includegraphics[width=.9\textwidth]{right_crossing.png}    
+  \caption{Right crossing}
+  \end{minipage}
+  \caption{On the left an oriented trefoil, on the right a left-handed knot and a right-handed knot}
+  \label{fig:oriented_knot} 
+\end{figure}
+
 That is to say there is a map $F$ with a parameter $t$ ranging from 0 to 1, sending for $t=0$, $h$ to itself and for $t = 1$, $h$ to $g$.\\
 
 In 1927, Reidemeister showed that ambient isotopy was equivalent to a set of three moves that can be performed on knots \cite{reidemeister_elementare_1927}. The three moves are as follow:
@@ -1097,7 +1118,7 @@ $
 $
 \end{center}
 
-The knot determinant is then the determinant of the matrix $A$. In the case of the previously obtained matrix, 3.\\
+The knot determinant is then the determinant of the matrix $A$ with one line and column removed. In the case of the previously obtained matrix, 3.\\
 
 In the same fashion as the proof done for tricolorability one can show that the determinant is a knot invariant by showing its invariability under the Reidemeister moves.\\
 
@@ -1143,9 +1164,85 @@ We can see that eventhough more values are possible it can not allow to discrimi
 
 \subsubsection{Alexander polynomial}
 
+The last knot invariant that we will introduce in this paper is the Alexander polynomial. Its definition is close to the one of the determinant. To compute the Alexander polynomial, one will first construct a matrix $A$ with coefficients $a_{i,j}$ defined as such: 
 
+\begin{center}
+  $a_{i,j} =
+  \begin{cases}
+    t &\text{if component $i$ is the enterd under left-handed crossing $j$}\\
+    -1 &\text{if component $i$ is the exits under left-handed crossing $j$}\\
+    1-t &\text{if component $i$ is overcrossing at crossing $j$}\\
+    0 &\text{otherwise}
+  \end{cases}$
+\end{center}
 
-\subsection{Algorithms}
+\begin{figure}[H]
+  \begin{minipage}[c]{.50\textwidth}
+  \centering
+  \includegraphics[width=.3\textwidth]{left_crossing_number.png}    
+  \caption{Left crossing}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{.50\textwidth}
+  \centering
+  \includegraphics[width=.3\textwidth]{right_crossing_number.png}    
+  \caption{Right crossing}
+  \end{minipage}
+  \label{fig:oriented_knot_alexander} 
+\end{figure}
+
+Then in the same manner, one can compute the determinant after removing one line and column of the matrix. For the trefoil we obtain:\\
+
+\begin{center}
+$
+  A = \kbordermatrix{
+    & I & II & III \\
+    1 & -1 & t & 1-t  \\
+    2 & t & 1-t & -1  \\
+    3 & 1-t & -1 & t  \\
+  }
+$
+\end{center}
+
+After normalization, we obtain the polynomial: $t - 1 + t^{-1}$. The polynomial obtained by this method can differ from a factor $\pm t^n, n \in \N$. To solve that issue we normalize it so that it looks symetric (Laurent polynomial) and denote if $\Delta_k(t)$. We can with that method write a table of the Alexabder polynomial for the first knots:\\
+
+\begin{center}
+  \begin{tabular}{| c | c |}
+    \hline
+    knot & $\Delta_k(t)$\\
+    \hline
+    $3_1$ & $t - 1 + t^{-1}$\\
+    \hline
+    $4_1$ & $-t + 3 -t^{-1}$\\
+    \hline
+    $5_1$ & $t^2 - t + t - t^{-1} + t^{-2}$\\
+    \hline
+    $5_2$ & $2t - 3 + 2t^{-1}$\\
+    \hline
+    $6_1$ & $-2t + 5 -2t^{-1}$\\
+    \hline
+    $6_2$ & $-t^2 + 3t -3 + 3t^{-1} - t^{-2}$\\
+    \hline
+    $6_3$ & $t^2 - 3t +5 -3t^{-1} + t^{-2}$\\
+    \hline
+    $7_1$ & $t^3 - t^2 +t -1 + t^{-1} - t^{-2} + t^{-3}$\\
+    \hline
+    $7_2$ & $3t -5 + 3t^{-1}$\\
+    \hline
+    $7_3$ & $2t^2 - 3t + 3 - 3t^{-1} + 2t^{-2}$\\
+    \hline
+    $7_4$ & $4t -7 + 4t^{-1}$\\
+    \hline
+    $7_5$ & $2t^2 - 4t + 5 - 4t^{-1} + 2t^{-2}$\\
+    \hline
+    $7_6$ & $-t^2 +5t -7 +5t^{-1} - t^{-2}$\\
+    \hline
+    $7_7$ & $t^2 -5t +9 -5t^{-1} + t^{-2}$\\
+    \hline
+  \end{tabular}
+\end{center}
+
+With the Alexander polynomial one can discrimainate any two knots with up to seven crossings. Though the alexander polynomial can not discriminate any to knots as explained in the introduction. An interesting property of the Alexander polynomial is that $\Delta_k(-1) = det(K)$ (the knot determinant).
 
 \newpage
 \thispagestyle{empty}

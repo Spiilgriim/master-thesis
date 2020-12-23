@@ -71,7 +71,7 @@ depending on the choice of $f \in \F(\R,\R)$. In the previous equation $y_j \in 
 
 The study of neural network expressiveness consists of the problem described above when $f$ is a function used as an activation function for neural network. The study of density can be on the whole set $\F(I_n,\R)$ or on subsets of it such as $\C(I_n,\R)$ the set of continuous functions from $I_n$ to $\R$.\\
 
-In particular if $S_f$ is dense in a subset $A \subseteq \F(I_n, \R)$ we will say that a single-layer feed-forward neural network (Fig. 1) with $f$ as its activation function is a \textit{universal approximator} of $A$. Considering a neural network has a finite number of nodes neural network expressiveness also consists of the study of the rate of approach of the approximation, i.e. the sudy of \\
+In particular if $S_f$ is dense in a subset $A \subseteq \F(I_n, \R)$ we will say that a single-layer feed-forward neural network (Figure \ref{fig:nn}) with $f$ as its activation function is a \textit{universal approximator} of $A$. Considering a neural network has a finite number of nodes neural network expressiveness also consists of the study of the rate of approach of the approximation, i.e. the sudy of \\
 
 \begin{center}
   $\lim\limits_{N \to \infty} H(N) = \max\limits_{h\in A} (\min\limits_{G_n \in S_f} (\parallel G_n - h \parallel))$ with $\parallel . \parallel$ the canonical norm on $\F(I_n, \R)$
@@ -79,6 +79,8 @@ In particular if $S_f$ is dense in a subset $A \subseteq \F(I_n, \R)$ we will sa
 
 The study of that limit and especially of its asympatotic approximation gives an idea of the efficiency of the approximator, i.e. the amount of node to add to the network to improve the approximation.\\
 
+\begin{figure}[H]
+  
 \begin{center}
   \begin{tikzpicture}[shorten >=1pt,->,draw=black!50, node distance=\layersep]
       \tikzstyle{every pin edge}=[<-,shorten <=1pt]
@@ -116,8 +118,10 @@ The study of that limit and especially of its asympatotic approximation gives an
       \node[annot,left of=hl] {Input layer};
       \node[annot,right of=hl] {Output layer};
   \end{tikzpicture}\\
-Fig 1: A single-layer feed-forward neural network with $n=4$ and $N=8$
 \end{center}
+\caption{A single-layer feed-forward neural network with $n=4$ and $N=8$}
+\label{fig:nn}
+\end{figure}
 
 \subsection{Universal Approximator}
 

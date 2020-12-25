@@ -1281,7 +1281,56 @@ With the Alexander polynomial one can discrimainate any two knots with up to sev
 
 \section{Measuring neural network expressiveness}
 
+In this section we will explain how the topic of quantifying neural network expressiveness has been tackled by researchers and introduce the different research articles on which our work relies.\\
+
+The concept of measuring neural network expressiveness induces to use some concept as a measure of difficulty of expression. In this section we will see how some previously introduced concepts can be used as measures: betti numbers and circle embeddings. 
+
 \subsection{Using topological data analysis}
+
+In this section we will focus on the use of betti as a measure for neural netwok expresiveness.\\
+
+In \cite{bianchini_complexity_2014}, Bianchini and Scarselli have offered proofs on the number of neurons required in different architecture of neural network to properly express a dataset betti numbers. They have worked on determining upper bounds and lower bounds on the number of neurons required in network of a certain depth to be able to express the homology represented by its sum of betti numbers with different activation functions. Their result are summed up in Table \ref{tab:betti_up_low_bound} that can also be found in \cite{bianchini_complexity_2014}.\\
+
+Let $X$ be a topological space. We denote $\B(X) = \sum\limits_{i} \B_i(X)$ where $\B_i(X)$ is the number of $i$-dimensional homology in $X$.
+
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}{| l | l | l | c |}
+      \hline
+Inputs                  & \multicolumn{1}{c|}{Layers} & \multicolumn{1}{c|}{Activation function} & \multicolumn{1}{c|}{Bound} \\
+      \hline
+\multicolumn{4}{|c|}{Upper Bounds}                            \\
+      \hline
+n      & 3      & threshold           & $O(h^n)$            \\
+      \hline
+n      & 3      & arctan           & $O((n+h)^{n+2})$            \\
+      \hline
+n      & 3      & polynomial of degree $r$           & $\frac{1}{2}(2+r)(1+r)^{n-1}$            \\
+      \hline
+1      & 3      & arctan           & $h$            \\
+      \hline
+n      & any    & arctan           & $2^{h(2h-1)}O((nl+n)^{n+2h})$            \\
+      \hline
+n      & any    & tanh           & $2^{(h(h-1))/2}O((nl+n)^{n+h})$            \\
+      \hline
+n      & any      & polynomial of degree $r$           & $\frac{1}{2}(2+r^l)(1+r^l)^{n-1}$            \\
+      \hline
+\multicolumn{4}{|c|}{Lower bounds}                            \\
+      \hline
+n      & 3      & any sigmoid         & $(\frac{h-1}{n})^n$\\
+      \hline
+n      & any & any sigmoid         & $2^{l-1}$ \\
+      \hline
+n      & any      & polynomial of degree $r \ge 2$    & $2^{l-1}$\\
+      \hline
+\end{tabular}
+  \end{center}
+  
+  \caption{Upper bounds and lowers bounds on the growth of $\B(X)$ for networks with $h$ neurons, $n$ input and $l$ hidden layers}
+  \label{tab:betti_up_low_bound}
+\end{table}
+
+To prove these bounds they use the function sum representation of neural networks as introduced in \textbf{Section 1} as well as classical function analysis inequalities.
 
 \subsection{Using trajectories}
 

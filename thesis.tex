@@ -40,6 +40,8 @@
 \fancyhead[R]{\thepage}
 \cfoot{}
 
+\pagenumbering{gobble} 
+
 \begin{document}
 \newpage
 \maketitle
@@ -49,6 +51,10 @@
 
 \newpage
 
+\setcounter{page}{0}
+\pagenumbering{roman}
+\setcounter{page}{1}
+
 \tableofcontents
 
 \newpage
@@ -56,6 +62,18 @@
 \listoffigures
 
 \newpage
+
+\listoftables
+
+\newpage
+
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+\setcounter{page}{0}
+\pagenumbering{arabic}
+\setcounter{page}{1}
 
 \section{Neural network expressiveness}
 
@@ -1126,8 +1144,9 @@ The knot determinant is then the determinant of the matrix $A$ with one line and
 
 In the same fashion as the proof done for tricolorability one can show that the determinant is a knot invariant by showing its invariability under the Reidemeister moves.\\
 
-The results of the computation of knot determinants for the knots up to 7 crossings is as follows:\\
+The results of the computation of knot determinants for the knots up to 7 crossings can be seen in Table \ref{tab:knot_determinant}.
 
+\begin{table}[H]
 \begin{center}
   \begin{tabular}{| c | c |}
     \hline
@@ -1163,6 +1182,9 @@ The results of the computation of knot determinants for the knots up to 7 crossi
     \hline
   \end{tabular}
 \end{center}
+  \caption{Knot table \& determinant}
+\label{tab:knot_determinant}
+\end{table}
 
 We can see that eventhough more values are possible it can not allow to discriminate all knots. Another interesting result obained from the knot determinant is that knot determinant give the $p$-coloration of a knot. Extending the concept of $3$-coloration by keeping the same rules (1 or 3 colors at each crossing), we notice that a $p$-coloration is possible iff $p$ is a divisor of the knot determinant.
 
@@ -1208,8 +1230,9 @@ $
 $
 \end{center}
 
-After normalization, we obtain the polynomial: $t - 1 + t^{-1}$. The polynomial obtained by this method can differ from a factor $\pm t^n, n \in \N$. To solve that issue we normalize it so that it looks symetric (Laurent polynomial) and denote if $\Delta_k(t)$. We can with that method write a table of the Alexabder polynomial for the first knots:\\
+After normalization, we obtain the polynomial: $t - 1 + t^{-1}$. The polynomial obtained by this method can differ from a factor $\pm t^n, n \in \N$. To solve that issue we normalize it so that it looks symetric (Laurent polynomial) and denote if $\Delta_k(t)$. We can with that method write a table of the Alexander polynomial as seen in Table \ref{tab:knot_alexander} for the knots up to 7 crossings.
 
+\begin{table}[H]
 \begin{center}
   \begin{tabular}{| c | c |}
     \hline
@@ -1245,6 +1268,9 @@ After normalization, we obtain the polynomial: $t - 1 + t^{-1}$. The polynomial 
     \hline
   \end{tabular}
 \end{center}
+  \caption{Knot table and Alexander polynomial}
+\label{tab:knot_alexander}
+\end{table}
 
 With the Alexander polynomial one can discrimainate any two knots with up to seven crossings. Though the alexander polynomial can not discriminate any to knots as explained in the introduction. An interesting property of the Alexander polynomial is that $\Delta_k(-1) = det(K)$ (the knot determinant).
 

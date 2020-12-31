@@ -1330,8 +1330,31 @@ n      & any      & polynomial of degree $r \ge 2$    & $2^{l-1}$\\
   \label{tab:betti_up_low_bound}
 \end{table}
 
-To prove these bounds they use the function sum representation of neural networks as introduced in \textbf{Section 1} as well as classical function analysis inequalities.
+To prove these bounds they use the function sum representation of neural networks as introduced in \textbf{Section 1} as well as classical function analysis inequalities.\\
 
+In \cite{guss_characterizing_2018}, Guss and Salakhutdinov relying on \cite{bianchini_complexity_2014} proposed a statistical approach to the problem of giving a value to the way each Betti numbers would affect the topological expressivity of the neural network since \cite{bianchini_complexity_2014} only relies on the sum $\B(X)$.\\
+
+To study the difficulty of learning homologically complex data, they considered fully-connected ReLU neural networks of depth $d \in [1 ... 6]$ and width $h_l = \beta_0(X)$ when $1 \le l \ge d$ and $h_l \in [1 ... 500]$ when $l = 0$. It sums up with a first layer of variable width (up to 500) and the other layers width being fixed at the number of connected components (0-homology) of $X$. These networks would then be trained using standard cross-entripy loss with Adam optimizer, a fixed learning rate of 0.01 and an increasing batch size schedule.\\
+
+They used dataset composed of two classes of 5000 points one of randomly distributed points the other one of mixtures of the uniform distribution on $\S^1$ and $\B^2$. They limited their study to $n=2$. They studied the output for datasets continuously ranging from $H(X) = \{\Z^1, 0\}$ to $H(X) = \{\Z^{30}, \Z^{30}\}$. They trained 100 of the previously described networks on each dataset and compiled the results in Figure \ref{fig:guss_results}.
+
+
+In Figure \ref{fig:guss_results} we can see two distincts parts. The upper part refers to the characterization of $H_0(X)$. Each of the four plots is representing the probability of expressing $H_0(X)$ depending on $\B_0(X)$ and the number of hidden units on the fist layer of the network (the other layers having a number of hidden units fixed to $B_0(X)$). On these plots the number of hidden units ranges from $0$ to $14$ and $\B_0(X)$ from $3$ to $15$.\\
+
+The second plot presents the same results for the proper characterization of $\B_1(X)$ with this time $\B_1(X) \in \{1,2\}$ and hidden units ranging from $0$ to 14.\\
+
+We can see some clear tendency (that would be expected) that expression of $H_n(X)$ is improving with the reduction of $\B_n(X)$, and the increase of $l$ and $d$. The interrest of such result lies in the fact of giving a possible approximation of the evolution of the probability depending on each of these parameters.\\
+
+Unfortunately the authors did not provide the full results and code of their research.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{guss_res.png}
+  \caption{Results on the characterization of homologies with different neural networks architecture}
+  \label{fig:guss_results}
+  
+\end{figure}
+\newpage
 \subsection{Using trajectories}
 
 \newpage

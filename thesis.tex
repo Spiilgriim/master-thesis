@@ -1357,6 +1357,72 @@ Unfortunately the authors did not provide the full results and code of their res
 \newpage
 \subsection{Using trajectories}
 
+The idea of studying trajectories to evaluate neural network expressivity comes from \cite{raghu_expressive_2017} itself relying on \cite{poole_exponential_2016} and \cite{pascanu_number_2014}.\\
+
+In \cite{raghu_expressive_2017}, Raghu introduces various variables of interrest for neural network expressivity relying on the otion of transition of activation patterns. Activation patters denotes all the way threshold-based activation functions such as ReLU and hard-tanh can activate or not at the same time. For a ReLU function we would consider it active if in the non-constant part and non-active if in the constant part. Activation patterns is a concept at network scale to summarize the existence of inputs and activation function parameters leading to different activation and non-activation of each neuron of the network.\\
+
+To study transition Raghu introduces the unifying concept of trajectories. Trajectories are defined as follows:
+
+\begin{definition}
+  Given two points $x_0, x_1 \in \R^n$, $x(t)$ between $x_0$ and $x_1$ is a trajectory if there exists $f: [0,1] \to \R^n$ with $f(0) = 0$ and $f(1) = 1$ such that $x(t) = (1-f(t))x_0 + f(t)x_1$. 
+\end{definition}\\
+
+This can include simple example such as a line with $f(t) = t$ or a circular arc with $f(t) = sin(\frac{\pi t}{2})$ but in general $x(t)$ might be more complicated. This definition is obviously linked to the concept of path in topology and therefore includes loops.\\
+
+For piecewise linear activation functions such as ReLU and hard tanh, the function computed by the network is also piecewise linear since the linear sum of composition of piecewise linear functions is itself piecewise linear.
+
+\begin{definition}
+  We say a neuron with piecewise linear activation function transitions between input $x$ and $x+\delta$ if its activation function switches between $x$ and $x+\delta$
+\end{definition}
+
+With all the previously introduced concepts we can now give a proper definition to the activation pattern:
+
+\begin{definition}
+  The activation pattern $AP(F_A(x,W))$ of network with weights $W$, architecture $A$ and input $x$ is a string of form $\{0,1\}^{\text{number of neurons}}$ for ReLU networks and $\{-1,0,1\}^{\text{number of neurons}}$ for hard tanh networks coding the linear region of the activation function of every neuron.
+\end{definition}
+
+We can aswell define $T(F_A(x(t),W))$ the number of transition undergone by the network when $x$ sweept along $x(t)$.\\
+
+In \cite{pascanu_number_2014}, Montufar et al. provide a bound on the number of transition by constructing a set of weights $W_0$ resulting in an exponential increase of the number of transition with the depth of the network i.e.\\
+
+\begin{center}
+  $\forall W,$ $T(F_A_1([0,1],W)) < T(F_A_1([0,1],W_0))$  
+\end{center}
+
+with $A_1$ a fully connected network with one hidden layer.\\
+
+We denote $U(n,k,m)$ the upper bound on the number of activation patterns for a fully connected network with $n$ hidden layers of width $k$ and inputs in $\R^m$. Raghu shows that for a ReLU network we have $U(n,k,m) = O(k^{nm})$ and for hard tanh $U(n,k,m) = O((2k)^{nm})$.\\
+
+Going back to the definition of trajectory, we define the trajectory length:
+
+\begin{definition}
+  For a trajectory $x(t)$, we define $l(x(t))$ its length to be the standard arc length:
+  \begin{center}
+    $l(x(t)) = \int_t \lVert \frac{dx(t)}{dt} \rVert$
+  \end{center}
+ 
+\end{definition}
+
+Raghu then show that length grows exponentially with length in most cases. Formally:\\
+
+\begin{theorem}
+  Let $F_A(x,W)$ be a ReLU or hard tanh random neural network and $x(t)$ a one-dimensional trajectory with $x(t + \delta)$ having a non trivial perpendicular component to $x(t)$ for all $t,\delta$. Then with $z^{(d)}(x(t)) = z^{(d)}(t)$ the image of the trajectory in layer $d$ of the network we have:
+  \begin{center}
+    $\mathbb{E}[l(z^{(d)}(t))] \ge O(\frac{\sigma_w \sqrt{k}}{\sqrt{k+1}})^d l(x(t))$ for ReLU networks\\
+    $\mathbb{E}[l(z^{(d)}(t))] \ge O(\frac{\sigma_w \sqrt{k}}{\sqrt{\sigma_w^2 + \sigma_b^2 + k\sqrt{\sigma_w^2 + \sigma_b^2}}})^d l(x(t))$ for hard tanh
+  \end{center}
+  with $\sigma_w$ the standard deviation of weights, $\sigma_b$ the standard deviation of bias and $k$ the width of the network.
+\end{theorem}
+
+Therefore, the length of the trajectory grows exponentially with depth and hence expressivity. A figure of that growth can be seen in Figure \ref{fig:traj_growth}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{traj_growth.png}
+  \caption{Projected circular trajectory at increasing layers in a width 100 neural network}
+  \label{fig:traj_growth}
+\end{figure}
+
 \newpage
 \thispagestyle{empty}
 \mbox{}

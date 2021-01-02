@@ -1,0 +1,32 @@
+\BOOKMARK [1][-]{section.1}{Neural network expressiveness}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Definition}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Universal Approximator}{section.1}% 3
+\BOOKMARK [3][-]{subsubsection.1.2.1}{Sigmoidal functions}{subsection.1.2}% 4
+\BOOKMARK [3][-]{subsubsection.1.2.2}{ReLU functions}{subsection.1.2}% 5
+\BOOKMARK [1][-]{section.2}{Homology}{}% 6
+\BOOKMARK [2][-]{subsection.2.1}{The idea of homology}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.2}{-complexes}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.3}{Simplicial homology}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.4}{Homology in our research}{section.2}% 10
+\BOOKMARK [1][-]{section.3}{Topological data Analysis}{}% 11
+\BOOKMARK [2][-]{subsection.3.1}{Introduction to TDA method's}{section.3}% 12
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Density Clustering}{subsection.3.1}% 13
+\BOOKMARK [3][-]{subsubsection.3.1.2}{Low dimensional subsets}{subsection.3.1}% 14
+\BOOKMARK [2][-]{subsection.3.2}{Persistent homology}{section.3}% 15
+\BOOKMARK [1][-]{section.4}{Knot theory}{}% 16
+\BOOKMARK [2][-]{subsection.4.1}{Fundamental concepts}{section.4}% 17
+\BOOKMARK [2][-]{subsection.4.2}{Knot invariants}{section.4}% 18
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Tricolorability \(or 3-colorability\)}{subsection.4.2}% 19
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Knot determinant}{subsection.4.2}% 20
+\BOOKMARK [3][-]{subsubsection.4.2.3}{Alexander polynomial}{subsection.4.2}% 21
+\BOOKMARK [1][-]{section.5}{Measuring neural network expressiveness}{}% 22
+\BOOKMARK [2][-]{subsection.5.1}{Using topological data analysis}{section.5}% 23
+\BOOKMARK [2][-]{subsection.5.2}{Using trajectories}{section.5}% 24
+\BOOKMARK [1][-]{section.6}{The study of trajectories from a knot theory perspective}{}% 25
+\BOOKMARK [2][-]{subsection.6.1}{Methodology}{section.6}% 26
+\BOOKMARK [2][-]{subsection.6.2}{Algorithms}{section.6}% 27
+\BOOKMARK [2][-]{subsection.6.3}{Results}{section.6}% 28
+\BOOKMARK [1][-]{section.7}{Extending the study of expressiveness with topological data analysis}{}% 29
+\BOOKMARK [2][-]{subsection.7.1}{Methodology}{section.7}% 30
+\BOOKMARK [2][-]{subsection.7.2}{Algorithms}{section.7}% 31
+\BOOKMARK [2][-]{subsection.7.3}{Results}{section.7}% 32

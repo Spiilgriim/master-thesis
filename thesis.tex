@@ -21,6 +21,8 @@
 \usepackage{kbordermatrix}
 \usepackage{hyperref}
 \usepackage{algorithm,algorithmic}
+\usepackage{diagbox}
+\usepackage{adjustbox}
 
 \renewcommand{\kbldelim}{[}% Left delimiter
 \renewcommand{\kbrdelim}{]}% Right delimiter
@@ -364,7 +366,7 @@ Now let us start to formalize these concepts. Consider $C_0$ the free abelian gr
 
 Now fill the hole between edges $a$ and $b$ with a 2-cell, namely $A$ to create a new space $X_2$. Considering it as being oriented clockwise, its boundary is $a-b$. The cycle $a-b$ is homotopic to a point since it can now be contracted by sliding over $A$, it no longer encloses a hole in G. That suggests that homology should consider only the quotient group of what we found previously by $a-b$. In this quotient group the cycles $a-c$ and $b-c$ are equivalent. Which is consistent with the fact that they are homotopic in $X_2$.\\
 
-Algebraically we can now consider a pair of homomorphism $\delta_1, \delta_2$ such that $C_2 \xrightarrow{\delta_2} C_1 \xrightarrow{\delta_1} C_0$ where $C_2$ is the cyclic group spanned by $A$ and $\delta_2(A) = a-b$. The quotient group we are interrested in is $ker(\delta_1)/Im(\delta_2)$, i.e. the 1-dimensional cycles modulo those that are boundaries. We will call it the homology group $H_1(X_2)$. I can also be computed in $X_1$ by considering $C_2$ to be zero since there are no two cells in $X_2$. $H_1(X_2)$ now only admits two generators $b-c$ and $cd$ expressing the geometric fact that the number of holes reduced from 3 to 2.\\
+Algebraically we can now consider a pair of homomorphism $\delta_1, \delta_2$ such that $C_2 \xrightarrow{\delta_2} C_1 \xrightarrow{\delta_1} C_0$ where $C_2$ is the cyclic group spanned by $A$ and $\delta_2(A) = a-b$. The quotient group we are interested in is $ker(\delta_1)/Im(\delta_2)$, i.e. the 1-dimensional cycles modulo those that are boundaries. We will call it the homology group $H_1(X_2)$. I can also be computed in $X_1$ by considering $C_2$ to be zero since there are no two cells in $X_2$. $H_1(X_2)$ now only admits two generators $b-c$ and $cd$ expressing the geometric fact that the number of holes reduced from 3 to 2.\\
 
 
 \begin{center}
@@ -673,7 +675,7 @@ Our research is concerned with the capacity of neural wetwork to properly expres
   \label{fig:mnist}
 \end{figure}
 
-For instance the MNIST problem, aims to classify 28x28 pixels images of handwritten digits in 10 classes representing the 10 digits (see Figure \ref{fig:mnist}). For instance in 2003 in \cite{simard_best_2003}, a team of researcher used a simple neural network of 2 layers with respectively 100 and 10 hidden units to classify the MNIST dataset (they used convolutional layers before inputing data in their network making the input dimension even greater) to obtain an accuracy of 98.81\%. One could expect that solving the same problem of image classification for instance and using different image size and depth of networks would be an interresting way to study the problem of expressiveness.\\
+For instance the MNIST problem, aims to classify 28x28 pixels images of handwritten digits in 10 classes representing the 10 digits (see Figure \ref{fig:mnist}). For instance in 2003 in \cite{simard_best_2003}, a team of researcher used a simple neural network of 2 layers with respectively 100 and 10 hidden units to classify the MNIST dataset (they used convolutional layers before inputing data in their network making the input dimension even greater) to obtain an accuracy of 98.81\%. One could expect that solving the same problem of image classification for instance and using different image size and depth of networks would be an interesting way to study the problem of expressiveness.\\
 
 However two major problems occur in that case. How to choose the classification problem with the certainty that the problem itself is not going to be a problem simpler than it looks. This relates to an hypothesis called the manifold hypothesis. The manifold hypothesis holds roughly as follows: "real-world high-dimensional data lie on low-dimensional manifolds embedded within the high-dimensional space". Meaning that complex data that needs a lot of parameters to be perfectly described are caracterized by few simple parameters up to continuous deformations defined as above. Considering this hypothesis that has not been disproved, a certain image recognition problem such as MNIST could be relying on the separation of a space of smaller dimension that the 784 dimensions space that you would expect from 28x28 pixels images.\\
 
@@ -1295,6 +1297,8 @@ The concept of measuring neural network expressiveness induces to use some conce
 
 \subsection{Using topological data analysis}
 
+\label{sec:tda_bib}
+
 In this section we will focus on the use of betti as a measure for neural netwok expresiveness.\\
 
 In \cite{bianchini_complexity_2014}, Bianchini and Scarselli have offered proofs on the number of neurons required in different architecture of neural network to properly express a dataset betti numbers. They have worked on determining upper bounds and lower bounds on the number of neurons required in network of a certain depth to be able to express the homology represented by its sum of betti numbers with different activation functions. Their result are summed up in Table \ref{tab:betti_up_low_bound} that can also be found in \cite{bianchini_complexity_2014}.\\
@@ -1351,7 +1355,7 @@ In Figure \ref{fig:guss_results} we can see two distincts parts. The upper part 
 
 The second plot presents the same results for the proper characterization of $\B_1(X)$ with this time $\B_1(X) \in \{1,2\}$ and hidden units ranging from $0$ to 14.\\
 
-We can see some clear tendency (that would be expected) that expression of $H_n(X)$ is improving with the reduction of $\B_n(X)$, and the increase of $l$ and $d$. The interrest of such result lies in the fact of giving a possible approximation of the evolution of the probability depending on each of these parameters.\\
+We can see some clear tendency (that would be expected) that expression of $H_n(X)$ is improving with the reduction of $\B_n(X)$, and the increase of $l$ and $d$. The interest of such result lies in the fact of giving a possible approximation of the evolution of the probability depending on each of these parameters.\\
 
 Unfortunately the authors did not provide the full results and code of their research.
 
@@ -1368,7 +1372,7 @@ Unfortunately the authors did not provide the full results and code of their res
 
 The idea of studying trajectories to evaluate neural network expressivity comes from \cite{raghu_expressive_2017} itself relying on \cite{poole_exponential_2016} and \cite{pascanu_number_2014}.\\
 
-In \cite{raghu_expressive_2017}, Raghu introduces various variables of interrest for neural network expressivity relying on the otion of transition of activation patterns. Activation patters denotes all the way threshold-based activation functions such as ReLU and hard-tanh can activate or not at the same time. For a ReLU function we would consider it active if in the non-constant part and non-active if in the constant part. Activation patterns is a concept at network scale to summarize the existence of inputs and activation function parameters leading to different activation and non-activation of each neuron of the network.\\
+In \cite{raghu_expressive_2017}, Raghu introduces various variables of interest for neural network expressivity relying on the otion of transition of activation patterns. Activation patters denotes all the way threshold-based activation functions such as ReLU and hard-tanh can activate or not at the same time. For a ReLU function we would consider it active if in the non-constant part and non-active if in the constant part. Activation patterns is a concept at network scale to summarize the existence of inputs and activation function parameters leading to different activation and non-activation of each neuron of the network.\\
 
 To study transition Raghu introduces the unifying concept of trajectories. Trajectories are defined as follows:
 
@@ -1565,9 +1569,9 @@ The result of the experiment described in this section are summed up in Figure \
 
 Figure \ref{fig:knot_results} represents the evolution of the knot determinant through the layers of networks. each of the subgraph represents a hidden layer from 1 on the top left to 9 on the bottom right. On each of the subgraph the bar represents the absolute number of occurences of a determinant for instance at layer 1 we obtained about 40 knots with determinant 0, 85 with determinant 1, 45 with determinant 3 and 5 with determinant 5.\\
 
-Note that using our alorithm unknots have determinant 0 if they are entangled unknots (more than 1 component) and 1 ifthey are trivial unknots (1 component and 0 crossing).\\
+Note that using our alorithm unknots have determinant 0 if they are entangled unknots (more than 1 component) and 1 if they are trivial unknots (1 component and 0 crossing).\\
 
-We can see that as layers go up, the knots end up as entangled unknots. An interresting following to this research would be to see if it is possible to create a neural network or set of weights that result in a different knot that an entangled unknot. 
+We can see that as layers go up, the knots end up as entangled unknots. An interesting following to this research would be to see if it is possible to create a neural network or set of weights that result in a different knot that an entangled unknot. 
 
 \newpage
 \thispagestyle{empty}
@@ -1575,13 +1579,173 @@ We can see that as layers go up, the knots end up as entangled unknots. An inter
 \newpage
 
 \section{Extending the study of expressiveness with topological data analysis} 
+
+In this section, we detail the work on using homology for neural entwork expressiveness inspired by the research detailed in \textbf{Section \ref{sec:tda_bib}} where we try to extend the experiment introduced by Guss in \cite{guss_characterizing_2018} to understand quantitatively the influence of a neural network architecture on it capacity to characterizing homologies in different dimension. 
+
 \subsection{Methodology}
+
+\begin{definition}
+  Let $(X, D)$ be a metric space with $D : X^2 \to \R^+$. Let $c \in X$ and $r \in \R$.\\
+  \\
+  $\B(c,r)$ is the topological ball of radius $r > 0 $ centered on $x$:
+  \begin{center}
+    $\B(c,r) = \{ x \in X \mid D(x,c) \le r \}$ 
+  \end{center}
+  $\S(c,r)$ is the topological sphere of radius $r > 0$ centered on $x$:
+  \begin{center}
+    $\S(c,r) = \{ x \in X \mid D(x,c) = r \}$ 
+  \end{center}
+  $\mathfrak{S}(c,[r_1,r_2])$ is the thick sphere of border ranging from $r_1$ to $r_2 \ne 0$ ($0 \le r1 \le r_2$) centered on $x$:
+  \begin{center}
+    $\mathfrak{S}(c,[r_1, r_2]) = \{ x \in X \mid r1 \le D(x,c) \le r_2 \}$ 
+  \end{center}
+  \label{def:ball_sphere}
+\end{definition}
+
+Note that a ball is a particular case of thick sphere where $r_1 = 0$ and spheres are thick spheres with $r_1 = r_2$. Thick sphere is unlike spheres and balls not a rigorous term of topology since it is always equivalent to a sphere or a ball but it is the concept we will use to informatically modelize our balls and spheres.\\
+
+Let $n \in \N^*$, we will consider $X = \R^n$ containing $N_B$ balls $\B_i, 1 \le i \le nB$ and $N_S$ spheres or thick sphere $\S_j, 1 \le j \le N_S$ (cf Definition \ref{def:ball_sphere}) of dimension at most $n$. We informatically modelise this set in the following manner: \\ 
+
+We used datasets of 50000 points split in two non-intersecting classes labelled "0" and "1". The points of class "1" are uniformly spread across various topological spheres and balls. In our case uniformly will mean that the points are uniformly distributed across the volume of the topological feature and that the number of points in each topological feature is proportional to its importance in the sum of volumes of topological features in our set of interest. \\
+
+The points of class "0" are distributed uniformly in the space $X \backslash \{\bigcup\limits_{i=1}^{N_B} \B_i \bigcup \bigcup\limits_{j=1}^{N_S} \S_i \}$.\\
+
+For the result that we will present in \textbf{Section \ref{sec:homology_results}}. We trained network on twelve different sets of dimension 2, 3 and 4 with one to three topological features. On each of these sets we trained 20 sets of fully-connected networks of width 8 and depth 1,2,4,6,8,10,12,14,16 with random initialization for 2000 epochs. To train the networks we used the sparse categorical entropy as loss function, a batch size of 10 and the Adam optimizer with 80\% of the data used as training data and 20\% as validation data. We used Keras \cite{chollet2015keras} with a tensorflow backend in python3. 
+
 
 \subsection{Algorithms}
 
-In this section we introduce the different algorithm implemented for the research described in this section. All the algorithm have been implemented in python and can be found in the code available on github: \url{https://github.com/Spiilgriim/nn-expressiveness} and the file and line to look for the python file including the implementation can be found in the algorithm title.
+In this section we introduce the different algorithm implemented for the research described in this section. All the algorithm have been implemented in python and can be found in the code available on github: \url{https://github.com/Spiilgriim/nn-expressiveness} and the file and line to look for the python file including the implementation can be found in the algorithm title.\\
+
+First we will detail the algorithm to generate our datasets consisting of balls and spheres. Denote $n \ge 2$ the dimension of the space, $B = \{(\B(c_i, r_i), d_i, o_i)\}_{1 \le i \le N_B}$ the set of balls in $X$ as well as their dimension $d_i$ and orientation $o_i$, $S = \{(\mathfrak{S}(c_j, [r_{1_j}, r_{2_j}]), d_j, o_i)\}_{1 \le j \le N_S}$ the set of thick sphere and P the number of points in each class. The orintation of balls and spheres is an array of that indicates the index of the elements of the cannonical basis constituing the hyperplane of $\R^n$ in which the feature does not live. For instance in $\R^3$ writting the cannonical basis $\{(1,0,0), (0,1,0), (0,0,1)\}$, $(\B(0,1),2,[1])$ is a 2-dimensional ball centered at the point $(0,0,0)$ of radius $1$ and living in the plane spanned by $\{(0,1,0),(0,0,1)\}$. In the python implementation some of the parameters might be decided randomly or with the help of other parameters.\\
+
+In the algorithm $z$ will refer to a random number between 0 and 1.
+
+\begin{algorithm}[H]
+  \begin{algorithmic}[1]
+    \STATE points $\gets []$
+    \STATE $X \gets S$
+    \FOR{$\B_i \in B$}
+    \STATE $X \gets X::(\mathfrak{S}(c_i, [0, r_i]), d_i, o_i)$
+    \ENDFOR
+    \STATE sum $\gets 0$
+    \FOR{$i = 1$ to $N_B + N_S$}
+    \STATE sum $\gets \text{sum}+ {r_{i_1}}^{d_i} - {r_{i_2}}^{d_i}$
+    \ENDFOR
+    \FOR{$i = 1$ to $N_B + N_S$}
+    \FOR{$j = 1$ to $\lfloor \frac{{r_{i_1}}^{d_i} - {r_{i_2}}^{d_i}}{sum} \rfloor$}
+    \STATE temp $\gets 0_{\R^n}$
+    \STATE radius $ \gets (r_{i_1} * z_1 + r_{i_2} * (1 - z_1))$
+    \FOR{$e = 1$ to $n$}
+    \IF{$e \notin o_i$}
+    \STATE temp$_i \gets (2*z_2 - 1)$
+    \ENDIF
+    \ENDFOR
+    \STATE points $\gets$ points$::\frac{\text{radius}}{\sqrt{\sum\limits_{i=1}^n \text{temp}_i}} \times \text{temp}$
+    \ENDFOR
+    \ENDFOR
+    
+  \end{algorithmic}
+  \caption{Generation of topological features ({\fontfamily{cmtt}\selectfont generate\_data\_dimension.py l.167})}
+  \label{alg:topo_gen}
+\end{algorithm}
+
+We have also designed an algorithm to compute betti numbers for spheres and balls that is a more efficient than persistent homology memory-wise due to the limitation to simple topological features. We write $T \in \R^+$ the threshold chosen to compute betti numbers, it corresponds to the radius up to which imaginary balls around each point grow in the persistent homology algorithm. We denote $G$ a graph, $C(G)$ the list of connected components of $G$, $M(X)$ the matrix corresponding to the concatenation of the points of the set $X$ and we extend the definition of $D: X \times A \to \R$ with $A$ a subset of $X$ as $D(x,A) = \underset{y \in A}{\min}$ $D(x,y)$.
+
+\begin{algorithm}[H]
+  \begin{algorithmic}[1]
+    \STATE betti $\gets \underbrace{[0 ... 0]}_{n \text{ times}}$
+    \STATE $G\_\text{node} \gets$ points
+    \STATE $G\_\text{edge} \gets []$
+    \FOR{$i,j \in \text{points}$}
+    \IF{$d(i,j) \le T$}
+    \STATE $G\_\text{edge} \gets G\_\text{edge}::(i,j)$
+    \ENDIF
+    \ENDFOR
+    \FOR{$\mathcal{C} \in C(G)$}
+    \STATE compute barycenter $B$ of $\mathcal{C}$
+    \IF{$D(\mathcal{C},B) \le T$}
+    \STATE betti$_0 \gets$ betti$_0 + 1$
+    \ELSE
+    \STATE betti$_{rank(\mathcal{C}) - 1} \gets$ betti$_{rank(\mathcal{C}) - 1} + 1$
+    \ENDIF
+    \ENDFOR
+  \end{algorithmic}
+\caption{Custom persistent homology}
+\end{algorithm}
 
 \subsection{Results}
+
+\label{sec:homology_results}
+
+In Table \ref{tab:betti_res} and Table \ref{tab:bottleneck_res}, one can see the results obtained for the experiments described in this section. 
+
+\begin{table}[H]
+  \centering
+  \begin{adjustbox}{angle=-90}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    \diagbox{depth}{betti} & [3,0] & [1,1] & [1,0] & [0,0,1] & [0,1,0] & [1,1,0] & [1,0,1] & [0,0,0,1] & [0,0,1,0] & [1,0,1,0] & [1,0,0,1]\\
+    \hline
+    1 & 13 & 12 & 11 & 15 & 13 & 4 & 2 & 19 & 20 & 13 & 9\\
+    \hline
+    2 & 18 & 19 & 2 & 19 & 15 & 14 & 12 & 17 & 19 & 18 & 6\\
+    \hline
+    4 & 18 & 19 & 5 & 17 & 12 & 12 & 14 & 17 & 20 & 19 & 13\\
+    \hline
+    6 & 19 & 17 & 1 & 19 & 15 & 14 & 13 & 18 & 20 & 20 & 14\\
+    \hline
+    8 & 17 & 15 & 2 & 18 & 15 & 14 & 19 & 17 & 20 & 20 & 15\\
+    \hline
+    10 & 15 & 13 & 1 & 19 & 13& 14 & 18 & 18 & 19 & 18 & 10\\
+    \hline
+    12 & 15 & 10 & 2 & 16 & 9 & 13 & 17 & 16 & 20 & 17 & 13\\
+    \hline
+    14 & 16 & 9 & 1 & 14 & 7 & 12 & 15 & 16 & 17 & 14 & 10\\
+    \hline
+    16 & 10 & 6 & 1 & 7 & 6 & 12 & 10 & 13 & 12 & 13 & 8\\
+    \hline
+  \end{tabular}
+\end{adjustbox}
+    \caption{The number of occurence of the same betti numbers between the original data persistence diagram and the networks data persistence diagram}
+    \label{tab:betti_res}
+\end{table}
+
+
+\begin{table}[H]
+  \centering
+  \begin{adjustbox}{angle=-90}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    \diagbox{depth}{betti} & [3,0] & [1,1] & [1,0] & [0,0,1] & [0,1,0] & [1,1,0] & [1,0,1] & [0,0,0,1] & [0,0,1,0] & [1,0,1,0] & [1,0,0,1]\\
+    \hline
+    1 & 0.077 & 0.088 & 0.033 & 0.035 & 0.038 & 0.137 & 0.137 & 0.025 & 0.031 & 0.198 & 0.181 \\
+    \hline
+    2 & 0.033 & 0.058 & 0.016 & 0.021 & 0.035 & 0.046 & 0.079 & 0.025 & 0.027 & 0.110 & 0.125 \\
+    \hline
+    4 & 0.023 & 0.019 & 0.011 & 0.019 & 0.043 & 0.050 & 0.034 & 0.025 & 0.029 & 0.051 & 0.054 \\
+    \hline
+    6 & 0.013 & 0.012 & 0.006 & 0.020 & 0.040 & 0.035 & 0.024 & 0.024 & 0.024 & 0.035 & 0.059 \\
+    \hline
+    8 & 0.025 & 0.011 & 0.010 & 0.017 & 0.042 & 0.041 & 0.019 & 0.028 & 0.028 & 0.050 & 0.041 \\
+    \hline
+    10 & 0.028 & 0.016 & 0.006 & 0.019 & 0.039 & 0.036 & 0.024 & 0.028 & 0.026 & 0.056 & 0.047 \\
+    \hline
+    12 & 0.031 & 0.009 & 0.007 & 0.018 & 0.043 & 0.041 & 0.023 & 0.026 & 0.032 & 0.051 & 0.071 \\
+    \hline
+    14 & 0.023 & 0.010 & 0.007 & 0.019 & 0.041 & 0.042 & 0.021 & 0.023 & 0.027 & 0.040 & 0.067 \\
+    \hline
+    16 & 0.025 & 0.020 & 0.012 & 0.020 & 0.044 & 0.041 & 0.024 & 0.023 & 0.034 & 0.055 & 0.046 \\
+    \hline
+  \end{tabular}
+\end{adjustbox}
+    \caption{The average bottleneck distance between the original data persistence diagram and the networks data persistence diagram}
+    \label{tab:bottleneck_res}
+\end{table}
+
+In table \ref{tab:betti_res} we can see a tendency for the number of propercharacterization to first go up since the network gets deeper and more expressive as expected and then down. The drop in the number of proper characterization is due to the difficulty to train big networks since they would require more epoch than used but we could not for time reasons allocate more time to the network training considering how long the process is. Another problem we faced in the case where the topological feature only live in a strict subspace of $X$ is that we might see the appearance of training artifacts in the region where there should be no points. This causes the computation of betti numbers to return a resul different from the original one because it changes the dimension in which the feature lives in.\\
+
+Finally another problem with this experiment is the time required to train enough networks and train them properly. To reproduce Guss' experiment described in \textbf{Section \ref{sec:tda_bib}} with only 2000 epoch of training on an NVIDIA RTX 2080 and 16 GB of RAM we would need approximately 50 days of uninterrupted computation. The results obtained with the various training are yet insufficent to draw any significant conclusion but with the availability of the code and its documentation should allow anyone with enough computation power to run statistically significant experiments and draw the numeric conclusion.
 
 \newpage
 \thispagestyle{empty}

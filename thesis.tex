@@ -1,7 +1,3 @@
-\title{On studying neural network expressiveness using topological data analysis and knot theory}
-
-\author{Alexandre Louvet}
-
 \documentclass[12pt, a4paper]{article}
 \usepackage[margin=3cm, top=35mm, headheight=20pt]{geometry}
 
@@ -23,6 +19,8 @@
 \usepackage{algorithm,algorithmic}
 \usepackage{diagbox}
 \usepackage{adjustbox}
+\usepackage{CJKutf8}
+
 
 \renewcommand{\kbldelim}{[}% Left delimiter
 \renewcommand{\kbrdelim}{]}% Right delimiter
@@ -40,20 +38,64 @@
 
 \def\layersep{2.5cm}
 
-\pagestyle{fancy}
-\fancyhead[R]{\thepage}
-\cfoot{}
 
 \pagenumbering{gobble} 
 
 \begin{document}
-\newpage
-\maketitle
-\begin{abstract}
-  In this paper we summarize the state of the art on the question of neural network expressiveness both on the theoretical approach to the problem with the study of universal approximators and some practical approaches using topological data analysis and trajectories. We then propose an analysis of the question from a knot theory perspective and share results using studied methods for datasets in dimension 3 and 4.
-\end{abstract}
+   \vspace{20mm}
+   \begin{center}
+   {\LARGE 2021 Graduation Thesis}
+   \end{center}
+
+   \vspace{20mm}
+   {\begin{center} \LARGE \textbf{Neural Network Topological Expressiveness} \end{center}}
+   {\begin{center} \Large \textbf{The science of understanding neural networks' behavior problem-independently} \end{center}}
+   \vspace{40mm}
+   \begin{center}
+   {\Large February 2021}
+   \end{center}
+   \begin{center}
+   {\Large Kyushu Institute of Technology, Faculty of Information Engineering
+   \\ \vspace{3mm}
+   Department of Interdisciplinary Informatics}
+   \end{center}
+   \vspace{3mm}
+   \begin{center}
+   {\Large 19677504-1}
+   \end{center}
+   \begin{center}
+   {\Large Alexandre Louvet}
+   \end{center}
+  \vspace{20mm}
+  \begin{center}
+  {\Large Supervisor: Aoi Honda}
+  \end{center}
+
 
 \newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+{\LARGE \textbf{Acknowledgements}}
+
+\vspace{20mm}
+
+\textit{Thanks to my family and friends for their constant support through my research}\\
+
+\textit{Merci à ma famille et mes amis pour leur soutient sans faille pendant mes recherches}\\
+
+\begin{CJK}{UTF8}{min} 私の研究を通して絶え間ないサポートをしてくれた家族や友人に感謝します  \end{CJK} (Maybe better translation required)\\
+
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+\pagestyle{fancy}
+\fancyhead[R]{\thepage}
+\cfoot{}
 
 \setcounter{page}{0}
 \pagenumbering{roman}
@@ -62,9 +104,15 @@
 \tableofcontents
 
 \newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
 
 \listoffigures
 
+\newpage
+\thispagestyle{empty}
+\mbox{}
 \newpage
 
 \listoftables
@@ -85,7 +133,7 @@
 
 \subsection{Definition}
 
-Let $I_n$ denote the $n$-dimensional unit cube $[0,1]^n$ and $\F(I_n,\R)$ be the space of functions from $I_n$ to $\R$. We want to study the density of the subsets $S_f$ of $\F(I_n,\R)$ that can be written as follows:\\
+Let $I_n$ denote the $n$-dimensional unit cube $[0,1]^n$ and $\F(I_n,\R)$ be the space of functions from $I_n$ to $\R$. We want to study the density of the subsets $S_f$ of $\F(I_n,\R)$ that can be written:\\
 
 \begin{center}
   $S_f = \{G_N(x) \in \F(I_n,\R) \mid G(x) = \sum\limits_{i=1}^{N} \alpha_i f(y_j^T x + \theta_j )\}$, $N \in \N $
@@ -93,13 +141,15 @@ Let $I_n$ denote the $n$-dimensional unit cube $[0,1]^n$ and $\F(I_n,\R)$ be the
 
 depending on the choice of $f \in \F(\R,\R)$. In the previous equation $y_j \in \R^n$ and $\alpha_j, \theta \in \R$, $y^T$ is the transpose of y and $y^Tx$ is the inner product of $y$ and $x$.\\
 
-The study of neural network expressiveness consists of the problem described above when $f$ is a function used as an activation function for neural network. The study of density can be on the whole set $\F(I_n,\R)$ or on subsets of it such as $\C(I_n,\R)$ the set of continuous functions from $I_n$ to $\R$.\\
+The study of neural network expressiveness consists of the problem described above when $f$ is a function used as an activation function for neural network. The study of density can be on the whole set $\F(I_n,\R)$ or on subsets of it such as $\mathcal{C}(I_n,\R)$ the set of continuous functions from $I_n$ to $\R$.\\
 
-In particular if $S_f$ is dense in a subset $A \subseteq \F(I_n, \R)$ we will say that a single-layer feed-forward neural network (Figure \ref{fig:nn}) with $f$ as its activation function is a \textit{universal approximator} of $A$. Considering a neural network has a finite number of nodes neural network expressiveness also consists of the study of the rate of approach of the approximation, i.e. the sudy of \\
+In particular if $S_f$ is dense in a subset $A \subseteq \F(I_n, \R)$ we will say that a single-layer feed-forward neural network (Figure \ref{fig:nn}) with $f$ as its activation function is a \textit{universal approximator} of $A$. Considering that a neural network has a finite number of nodes neural network expressiveness also consists of the study of the rate of approach of the approximation, i.e. the study of \\
 
 \begin{center}
-  $\lim\limits_{N \to \infty} H(N) = \max\limits_{h\in A} (\min\limits_{G_n \in S_f} (\parallel G_n - h \parallel))$ with $\parallel . \parallel$ the canonical norm on $\F(I_n, \R)$
+  $\lim\limits_{N \to \infty} H(N) = \max\limits_{h\in A} (\min\limits_{G_n \in S_f} (\parallel G_n - h \parallel))$ 
 \end{center}
+
+with $\parallel . \parallel$ the canonical norm on $\F(I_n, \R)$\\
 
 The study of that limit and especially of its asympatotic approximation gives an idea of the efficiency of the approximator, i.e. the amount of node to add to the network to improve the approximation.\\
 
@@ -149,11 +199,11 @@ The study of that limit and especially of its asympatotic approximation gives an
 
 \subsection{Universal Approximator}
 
-In this section we will study the different subsets on which the logistic and ReLU functions acts as universal approximators.\\ 
+In this section we will study the different subsets on which the logistic and ReLU functions act as universal approximators.\\ 
 
 \subsubsection{Sigmoidal functions}
 
-We say that a function $\sigma \in \F(I_n, \R)$ is a sigmoidal function if:\\
+We say that a function $\sigma \in \F(I_n, \R)$ is a sigmoidal function if:
 
 \begin{center}
   $\sigma(x) \to
@@ -163,7 +213,7 @@ We say that a function $\sigma \in \F(I_n, \R)$ is a sigmoidal function if:\\
   \end{cases}$
 \end{center}
 
-The sigmoidal functions include the logistic function defined as:\\
+The sigmoidal functions include the logistic function defined as:
 
 \begin{center}
   $f(x) = \frac{1}{1+e^{-x}}$
@@ -171,7 +221,7 @@ The sigmoidal functions include the logistic function defined as:\\
 
 widely used as an activation function for neural networks.\\
 
-The first study of neural network expressiveness with sigmoidal functions date back to by G.Cybenko in 1989 \cite{cybenko_approximation_1989}. He proves that $S_\sigma$ for $\sigma$ a sigmoidal function is dense in regards of the supremum norm in $C(I_n, \R)$. The demonstration goes as follows.\\
+The first study of neural network expressiveness with sigmoidal functions dates back to by G.Cybenko in 1989 \cite{cybenko_approximation_1989}. He proved that $S_\sigma$ for $\sigma$ a sigmoidal function is dense in regards of the supremum norm in $C(I_n, \R)$. The demonstration goes as follows.\\
 
 We denote $M(I_n)$ the space of signed regular Borel measures on $I_n$\\
 
@@ -190,18 +240,21 @@ We denote $M(I_n)$ the space of signed regular Borel measures on $I_n$\\
 \end{theorem}
 
 \begin{proof}
-  Let $S \subset C(I_n)$ be the set of the function of the form $G(x)$. S in a linear subset of $C(I_n)$. Let us show that the closure of $S$ is $C(I_n)$.\\
-  Assume it is not the case. Then the closure of $S$, denoted $R$, is a proper subspace of $C(I_n)$. Using the Hahn-Banach theorem, there esists $L$ a bounded linear functional on $C(I_n)$ with $L \ne 0$ and  $L(R) = L(S) = 0$\\
-  Using the Riesz Representation Theorem, we obtain:\\
+  Let $S \subset C(I_n)$ be the set of the function of the form $G(x)$. S is a linear subset of $C(I_n)$. Let us show that the closure of $S$ is $C(I_n)$.\\
+
+  Assume it is not the case. Then the closure of $S$, denoted $R$, is a proper subspace of $C(I_n)$. Using the Hahn-Banach theorem, there exists $L$ a bounded linear functional on $C(I_n)$ with $L \ne 0$ and  $L(R) = L(S) = 0$\\
+
+  Using the Riesz representation theorem, we obtain:
   \begin{center}
     $L(h) = \int\limits_{I_n} h(x)d\mu(x)$
   \end{center}
-  for some $\mu \in M(I_n)$, for all $h\in C(I_n)$. Since $\sigma(y^Tx + \theta_i)  \in R$, we have\\
+  for some $\mu \in M(I_n)$, for all $h\in C(I_n)$. Since $\sigma(y^Tx + \theta_i)  \in R$, we have
   \begin{center}
     $\forall y, \theta \int\limits_{I_n} \sigma(y^Tx + \theta) d\mu(x) = 0$
   \end{center}
-  Since $\sigma$ is discriminatory, we have $\mu = 0$ and $L = 0$ follows!
-  Hence the closure of $S$ is $C(I_n)$ and by definition $S$ is dense in $C(I_n)$
+  Since $\sigma$ is discriminatory, we have $\mu = 0$ and $L = 0$ follows!\\
+  
+  Therefore the closure of $S$ is $C(I_n)$ and by definition $S$ is dense in $C(I_n)$
 \end{proof}\\
 \Sv
   Now let us show that sigmoidal functions are discriminatory.
@@ -231,7 +284,7 @@ Thus $\sigma_\lambda(x)$ converges pointwise and boundedly to:
 \end{center}
 as $\lambda \to +\infty$\\
 \sv
-Let $\Pi_{y,\theta} = \{x \mid y^Tx+\theta = 0\}$ and let $H_{y,\theta} = \{x \mid y^Tx + \theta > 0\}$. Lesbegue bounded convergence theorem gives us:\\
+Let $\Pi_{y,\theta} = \{x \mid y^Tx+\theta = 0\}$ and let $H_{y,\theta} = \{x \mid y^Tx + \theta > 0\}$. Lesbegue bounded convergence theorem gives us:
 \begin{center}
   $0 = \int\limits_{I_n}\sigma_\lambda(x)d\mu(x)$\\
   $ = \int\limits_{I_n} \gamma(x)d\mu(x)$\\
@@ -239,7 +292,7 @@ Let $\Pi_{y,\theta} = \{x \mid y^Tx+\theta = 0\}$ and let $H_{y,\theta} = \{x \m
 \end{center}
 for all $\phi, \theta, y$\\
 \sv
-Fix $y$, we write \\
+Fix $y$, we write
 \begin{center}
   $F(h) = \int_{I_n}h(y^Tx)d\mu(x)$
 \end{center}
@@ -247,8 +300,8 @@ Note that $F$ is a bounded function on $L^\infty(\R)$ since $\mu$ is a signed me
 \begin{center}
   $F(h) = \int_{I_n} h(y^Tx) d\mu(x) = \mu(\Pi_{y,-\theta}) + \mu(H_{y,-\theta}) = 0$
 \end{center}
-By linearity $F(h) = 0$ for indicator function on any interval and hence for any simple function (sum of indicator functions) and since simple functions are dense in $L^{\infty}(\R), F = 0$.
-In particular it is true for the bounded function $s(u) = sin(m.u)$ and $c(u) = cos(m.u)$. It gives:
+By linearity $F(h) = 0$ for indicator functions on any interval and hence for any simple function (sum of indicator functions). Since simple functions are dense in $L^{\infty}(\R), F = 0$.
+In particular it is true for the bounded functions $s(u) = sin(m.u)$ and $c(u) = cos(m.u)$. It gives:
 \begin{center}
   $F(s+ic) = \int_{I_n} cos(m^Tx) + i sin(m^Tx) d\mu(x) = \int_{I_n} exp(im^Tx)d\mu(x) = 0$
 \end{center}
@@ -257,7 +310,7 @@ for all $m$. Therefore the fourier transform of $\mu$ is 0 and $\mu$ must be 0. 
 
   This proves that any function of $C(I_n, \R)$ can be approximated by a single-layer network with sigmoidal functions as activation function.\\
 
-  In 1991, Hornik extended in \cite{hornik_approximation_1991} gave the proof for bounded non-constant functions of $F(I_n,\R)$. The proof is very similar to the original one.\\
+  In 1991, Hornik extended in \cite{hornik_approximation_1991} Cybenko's theorem giving the proof for bounded non-constant functions of $F(I_n,\R)$. The proof is very similar to the original one.\\
 
 \subsubsection{ReLU functions}
 
@@ -277,15 +330,15 @@ In 2016 Arora et al. \cite{arora_understanding_2018} showed a version of the uni
 
   We know that any ReLU DNN represents a PWL function, let's prove the converse.\\
   \sv
-  By theorem 1 in \cite{wang_generalization_2005} any piecewise linear function $f: \R^n \to \R$, can be written:\\
+  By theorem 1 in \cite{wang_generalization_2005} any piecewise linear function $f: \R^n \to \R$, can be written:
   \begin{center}
     $f = \sum\limits_{j=1}^{p}s_j(\max\limits_{i\in S_j} l_i)$
   \end{center}
   with $l_i$ $(i\le i \le k)$ linear functions, $S_i$ $(1 \le i \le p) \subseteq \{1, ..., k\}$ with $\forall i, |S_i| \le n + 1$ and $\forall j \in \{1,...,p\},  s_j \in \{-1, +1\}$ \\
   \sv
-  It means that any PWL convex function can be represented as a linear combination of at most $n+1$ affine pieces. That's to say a ReLU DNN with size $n+1$.\\
+  It means that any PWL convex function can be represented as a linear combination of at most $n+1$ affine pieces, i.e. a ReLU DNN with size $n+1$.\\
   \SV
-  Let $p \in \N^*$, let $f \in L^p(\R^n)$, consider the function sequence:\\
+  Let $p \in \N^*$, let $f \in L^p(\R^n)$, consider the function sequence:
   \begin{center}
     $f_n(x) = (x - \frac{k}{n})f(\frac{k}{n}) + (1 - x + \frac{k}{n})f(\frac{k+1}{n})$ with $\frac{k}{n} \le x < \frac{k+1}{n}, n \ge 1$ 
   \end{center}
@@ -296,9 +349,9 @@ In 2016 Arora et al. \cite{arora_understanding_2018} showed a version of the uni
   
 \end{proof}\\
 \SV
-In this article, Arora et al. also give a higher bound for the depth of the network. they show that the network required for any function $f \in L^q(\R^n)$ is at most $\lceil log_2(n+1) \rceil$.\\
+In this article, Arora et al. also gave a higher bound for the depth of the network. They showed that the network required for any function $f \in L^q(\R^n)$ is of at most depth $\lceil log_2(n+1) \rceil$.\\
 
-In 2018, Hannin \& Selke \cite{hanin_approximating_2018} showed that the minimal width a ReLUneural network must have in order to approximate any function $f: \R^n \to \R^m$ is $n + m$. Giving a lower bound to the width of the ReLU network.
+In 2018, Hannin \& Selke \cite{hanin_approximating_2018} showed that the minimal width a ReLU neural network must have in order to approximate any function $f: \R^n \to \R^m$ a depth $d \ge n + m$ giving a lower bound to the width of the ReLU network.
 
 \newpage
 \thispagestyle{empty}
@@ -308,11 +361,11 @@ In 2018, Hannin \& Selke \cite{hanin_approximating_2018} showed that the minimal
 \section{Homology}
 \label{sec:homology}
 
-The study of homology is part of the field of algebraic topology. We will first introduce the concept of homology, then take a look at the theoretical concept behind it by introducing $\Delta$-complex: a primitive topolgical structure that allow the study of homology. Then with the introduction of simplicial homology we will complete the presentation of the fundamental objects used in our research and in the study of homology. We will then reconsider these tools in the context of our research. This part heavily relies on the book \textit{Algebraic Topolgy} by A. Hatcher \cite{hatcher_algebraic_2002} and the class given by P. Albin at University of Illinois \cite{albin_1_2018} with the same book as class material. 
+The study of homology is part of the field of algebraic topology. We will first introduce the concept of homology, then take a look at the theoretical concept behind it by introducing $\Delta$-complexes: a primitive topological structure that allows the study of homology. Then with the introduction of simplicial homology we will complete the presentation of the fundamental objects used in our research in the study of homology. We will then reconsider these tools in the context of our research. This part heavily relies on the book \textit{Algebraic Topolgy} by A. Hatcher \cite{hatcher_algebraic_2002} and the class given by P. Albin at University of Illinois \cite{albin_1_2018} with the same book as class material. 
 
 \subsection{The idea of homology}
 
-In algebraic topology, the most fundamental object to study is the homotopy, that roughly studies "paths". This study leads to the definition of the fundamental group $\pi_1(X)$ that gives information on the topological stucture of a space $X$ for low-dimensional space. However the fundamental group $\pi_1(X)$ can not for instance distinguish the different spheres $\mathcal{S}^n, n\ge 2$. A workaround for that problem would be to generalize the notion of homotopy to higher dimensions with different groups $\pi^n(X)$ generalizing the concept of homotopy in higher dimension. \\
+In algebraic topology, the most fundamental object to study is the homotopy, that roughly studies "paths". This study leads to the definition of the fundamental group $\pi_1(X)$ that gives information on the topological stucture of a space $X$ for low-dimensional space. However the fundamental group $\pi_1(X)$ can not for instance distinguish the different spheres $\mathcal{S}^n, n\ge 2$. A workaround for that problem is to generalize the notion of homotopy to higher dimensions with different groups $\pi_n(X)$ generalizing the concept of homotopy in higher dimension. \\
 
 However the homotopy groups suffers a serious drawback in their difficult computationality for high dimensions. Even for simple spaces like spheres, the calculation of $\pi_i(\mathcal{S}^n)$ turns out to be very difficult for $i > n$. That is why homology exists as a computable alternative homotopy.\\
 
@@ -340,7 +393,7 @@ Consider the space $X_1$ in the figure drawn above. We can see two points $x$ an
 
 The abelian groups having only one operation, we will then switch to additive notations to remain in accordance with Hatcher's notations. With that new notation we can write equalities such as $(a-c) + (b-d) = (a-d) + (b-c)$. This is justified by the fact that from an algebraic point of view, there is no difference between these two cycles.\\
 
-Let us call any linear combination of edges, chains. Then the condition for a chain $ka + lb + mc + nd$ with $k,l,m,n \in \N$ to be a cycle is $k + l + m + n = 0$.\\
+Let us call any linear combination of edges, \textit{chains}. Then the condition for a chain $ka + lb + mc + nd$ with $k,l,m,n \in \N$ to be a cycle is $k + l + m + n = 0$.\\
 
 Now let us start to formalize these concepts. Consider $C_0$ the free abelian group spanned by the vertices $x,y$ and let $C_1$ be the free abelian group spanned by the edges $a,b,c,d$. One can define an homomorphism $\delta: C_1 \to C_0$ that sends any basis element of $C_1$ to $x-y$. Thus we have $\delta(ka+lb+mc+nd) = (k+l+m+n)a - (k+l+m+n)y$ and $ker(\delta) = \{$ cycles of $X_1$ $\}$. $\{ a-b, b-c, c-d \}$ forms a basis for this kernel, i.e. any cycle is a linear combination of the most obvious cycles of $X_1$, that conveys the information that $X_1$ has three visibles "holes" formed by the space between its four edges.\\
 
@@ -366,7 +419,7 @@ Now let us start to formalize these concepts. Consider $C_0$ the free abelian gr
 
 Now fill the hole between edges $a$ and $b$ with a 2-cell, namely $A$ to create a new space $X_2$. Considering it as being oriented clockwise, its boundary is $a-b$. The cycle $a-b$ is homotopic to a point since it can now be contracted by sliding over $A$, it no longer encloses a hole in G. That suggests that homology should consider only the quotient group of what we found previously by $a-b$. In this quotient group the cycles $a-c$ and $b-c$ are equivalent. Which is consistent with the fact that they are homotopic in $X_2$.\\
 
-Algebraically we can now consider a pair of homomorphism $\delta_1, \delta_2$ such that $C_2 \xrightarrow{\delta_2} C_1 \xrightarrow{\delta_1} C_0$ where $C_2$ is the cyclic group spanned by $A$ and $\delta_2(A) = a-b$. The quotient group we are interested in is $ker(\delta_1)/Im(\delta_2)$, i.e. the 1-dimensional cycles modulo those that are boundaries. We will call it the homology group $H_1(X_2)$. I can also be computed in $X_1$ by considering $C_2$ to be zero since there are no two cells in $X_2$. $H_1(X_2)$ now only admits two generators $b-c$ and $cd$ expressing the geometric fact that the number of holes reduced from 3 to 2.\\
+Algebraically we can now consider a pair of homomorphism $\delta_1, \delta_2$ such that $C_2 \xrightarrow{\delta_2} C_1 \xrightarrow{\delta_1} C_0$ where $C_2$ is the cyclic group spanned by $A$ and $\delta_2(A) = a-b$. The quotient group we are interested in is $ker(\delta_1)/Im(\delta_2)$, i.e. the 1-dimensional cycles modulo those that are boundaries. We will call it the homology group $H_1(X_2)$. It can also be computed in $X_1$ by considering $C_2$ to be zero since there are no 2-cells in $X_1$. $H_1(X_2)$ now only admits two generators $b-c$ and $c - d$ expressing the geometric fact that the number of holes reduced from 3 to 2.\\
 
 
 \begin{center}
@@ -391,14 +444,14 @@ Algebraically we can now consider a pair of homomorphism $\delta_1, \delta_2$ su
 \end{tikzpicture} 
 \end{center}
 
-Suppose we attach another 2-cell between $a$ and $b$ to create $X_3$, namely $B$. $C_2$ now consists of linear combinations of $A$ and $B$ and $\delta_2(A) = \delta_2(B) = a-b$. In the one hand, $H_1(X_3) = H_1(X_2) \approx \Z \times \Z$, but this time $ker(\delta_2) \neq 0$ and $A-B$ is its generator, hence we have $H_2(X_3) = ker(\delta_2) \approx \Z$. Topologically the cycle $A-B$ is equivalent to a sphere and it detects the presence of a "hole" enclosed by this sphere rather than a circle.\\
+Suppose we attach another 2-cell between $a$ and $b$ to create $X_3$, namely $B$. $C_2$ now consists of linear combinations of $A$ and $B$ and $\delta_2(A) = \delta_2(B) = a-b$. On the one hand, $H_1(X_3) = H_1(X_2) \approx \Z \times \Z$, but on the other hand $ker(\delta_2) \neq 0$ and $A-B$ is its generator, hence we have $H_2(X_3) = ker(\delta_2) \approx \Z$. Topologically the cycle $A-B$ is equivalent to a sphere and it detects the presence of a "hole" enclosed by this sphere rather than a circle.\\
 
 The pattern we can see appear with these examples is rather clear. The n-cell complexes of $X$ forms free abelian groups $C_n(X)$ and one can define homomorphisms $\delta_n: C_n \to C_{n-1}$ to define homology groups $H_n(X) = ker(\delta_n)/Im(\delta_{n+1})$. The only problem now is to define $\delta_n$ for any $n$. If it is simple for small $n$ (head minus tail for a vertex), it becomes rather complicated when $n$ grows and more complex polyhedral cells appear in $X$. The most efficient approach is to decompose polyhedra into simplices which allows simple orientation and boundary computation. For that purpose we will define nice cellular complexes that will be the fundamental element for homology computation in the homology theories presented after. 
 
 \subsection{$\Delta$-complexes}
 \label{sec:delta_complexes}
 
-The most important theory of algebraic topology is called simplicial homology, since it is technically complicated we will first introduce a simpler version of it called simplicial homology. The natural definition spaces of simplicial homology is called $\Delta$-complexes that we will introduce in this part.\\
+The most important theory of algebraic topology is called singular homology, since it is technically complicated we will use a simpler version of it called simplicial homology. The natural definition spaces of simplicial homology is called $\Delta$-complexes that we will introduce in this part.\\
 
 The projective plane, the klein bottle and the torus can be obtained from squares by identifying edges and giving them orientation as draw below.
 
@@ -489,7 +542,7 @@ In fact any closed surface can be constructed this way, i.e. by cutting a polygo
 
 Its vertices are the unit vectors along the coordinate axes.\\
 
-It is important to keep track of an ordering for the vertices and an n-simplex will always be considered with an ordering for its vertices. This will allow us to give an orientation for its edges $[v_iv_j]$ with respect to the ordering of the indices. It also determines a canonical linear homeomorphism from the standart n-simplex $\Delta^n$ into any other n-simplex preserving the order of the vertices: $(t_0, ..., t_n) \mapsto \sum_i t_i v_i$. The corfficients are the barycentric coordinates of the points $sum_i t_i v_i$ in $[v_0, ..., v_n]$.\\
+It is important to keep track of an ordering for the vertices and an n-simplex will always be considered with an ordering for its vertices. That will allow us to give an orientation for its edges $[v_iv_j]$ with respect to the ordering of the indices. It also determines a canonical linear homeomorphism from the standard n-simplex $\Delta^n$ into any other n-simplex preserving the order of the vertices: $(t_0, ..., t_n) \mapsto \sum_i t_i v_i$. The coefficients are the barycentric coordinates of the points $\sum_i t_i v_i$ in $[v_0, ..., v_n]$.\\
 
 If we delete one of the vertices of an n-simplex $[v_0, ..., v_n]$, the remaining n vertices span an (n-1)-simplex, called face of $[v_0, ..., v_n]$ that will conventionnaly keep the same orientation as in $[v_0, ..., v_n]$. The union of all the face of $\Delta^n$ is the boundary of $\Delta^n$, noted $\delta \Delta^n$. The open simplex $\mathring{\Delta}^n$ is $\Delta^n - \delta \Delta^n$, is the interior of $\Delta^n$.\\
 
@@ -503,8 +556,9 @@ A $\Delta$-complex on a topological space $X$ is a collection of maps $\sigma_\a
 
 The earlier decompositions of the torus, projective plane, and Klein bottle into two triangles, three edges, and one or two vertices allow well-definess of associated $\Delta$-complex structures with a total of six $\sigma_\alpha$'s for the torus and Klein bottle and seven for the projective plane. The orientation of edges are compatible with an ordering of the vertices (example below). This ordering determines the maps $\sigma_\alpha$.
 
+\begin{figure}[H]
 \begin{center}
-\tcbox[title=$\R P^2$]{
+\tcbox[title=$T$]{
   \begin{tikzpicture}[node distance={10mm}] 
     \node[draw=none, label={}] (1) {}; 
     \node[draw=none, label={}] (2) [below left of=1] {}; 
@@ -526,8 +580,8 @@ The earlier decompositions of the torus, projective plane, and Klein bottle into
     ] 
     \draw[postaction={decorate}] (5) -- (6)
       \foreach \p in {$b$} {node[sloped,above,pos=0.5,rotate=0] (17) {\p}};
-    \draw[postaction={decorate}] (7) -- (6)
-      \foreach \p in {$a$} {node[sloped,above,pos=0.5,rotate=90, xshift=0.3cm] (15) {\p}};
+    \draw[postaction={decorate}] (6) -- (7)
+      \foreach \p in {$a$} {node[sloped,above,pos=0.5,rotate=-90, xshift=0.3cm] (15) {\p}};
     \draw[postaction={decorate}] (5) -- (7)
       \foreach \p in {$c$} {node[sloped,above,pos=0.5,rotate=0] (16) {\p}};
     \draw[postaction={decorate}] (14) -- (13)
@@ -540,6 +594,9 @@ The earlier decompositions of the torus, projective plane, and Klein bottle into
 \end{tikzpicture}
 }
 \end{center}
+\caption{The $\delta$-complex structure of the torus $T$}
+\label{fig:delta_torus}
+\end{figure}
 
 \subsection{Simplicial homology}
 
@@ -597,7 +654,7 @@ $\delta [v_0, v_1, v_2] = [v_1, v_2] - [v_0, v_2] + [v_0, v_1]$
 \end{tcolorbox}
 \\
 
-We define a boundary homomorphism for a general $\Delta$-complex $X$, $\delta_n : \Delta_n (X) \to \Delta_{n-1} (X)$ by specifying its values on the absis elements:\\
+We define a boundary homomorphism for a general $\Delta$-complex $X$, $\delta_n : \Delta_n (X) \to \Delta_{n-1} (X)$ by specifying its values on the basis elements:
 
 \begin{center}
 
@@ -611,6 +668,7 @@ The image set of $\delta_n$ is $\Delta_{n-1} (X)$ since each restriction $\sigma
 
   The composition $\Delta_n (X) \xrightarrow{\delta_n} \Delta_{n-1} (X) \xrightarrow{\delta_{n-1}} \Delta_{n-2} (X)$ is zero.
 
+  \label{lemma:delta_comp}
 \end{lemma}
 
 \begin{proof}
@@ -628,18 +686,19 @@ $+ \sum\limits_{j > i} (-1)^i (-1)^{j-1} \sigma \mid [v_0, ... , \hat{v_i}, ... 
 \end{proof}
 \\
 
-We end up with a sequence of homomorphisms of abelian groups:\\
+We end up with a sequence of homomorphisms of abelian groups:
 
 \begin{center}
   $... \to C_{n+1} \xrightarrow{\delta_{n+1}} C_n \xrightarrow{\delta_n} C_{n-1} \to ... \to C_1 \xrightarrow{\delta_1} C_0 \xrightarrow{\delta_0} 0$
 \end{center}
 
-with $\delta_n\delta_{n+1} = 0$ for each $n$ (cf Lemma 2).We call such a sequence a chain complex. The equation $\delta_n \delta_{n+1} = 0$ is equivalent to the inclusion Im $\delta_{n+1} \subset$ Ker $\delta_n$. We can define the $n^{th}$ homology group of the chain complex to be the quotient group $H_n =$ Ker $\delta_n$/Im $\delta_{n+1}$. The elements of Ker $\delta_n$ are called cycle and elements of Im $\delta_{n+1}$ are called boundaries.Elements of $H_n$ are cosets of Im $\delta_{n+1}$ called homology classes. Two cycles representing the same homology class are said to be homologous, it means their difference is a boundary.\\
+with $\delta_n\delta_{n+1} = 0$ for each $n$ (cf Lemma \ref{lemma:delta_comp}).We call such a sequence a chain complex. The equation $\delta_n \delta_{n+1} = 0$ is equivalent to the inclusion Im $\delta_{n+1} \subset$ Ker $\delta_n$. We can define the $n^{th}$ homology group of the chain complex to be the quotient group $H_n =$ Ker $\delta_n$/Im $\delta_{n+1}$. The elements of Ker $\delta_n$ are called cycles and elements of Im $\delta_{n+1}$ are called boundaries. Elements of $H_n$ are cosets of Im $\delta_{n+1}$ called homology classes. Two cycles representing the same homology class are said to be homologous, it means their difference is a boundary.\\
 
-In the case of $C_n = \Delta_n(X)$, the homology group Ker $\delta_n$/Im$\delta_{n+1}$ will be denoted $H^\Delta_n(X)$ and called the $n^{th}$ simplicial homology group of $X$. \\
+In the case of $C_n = \Delta_n(X)$, the homology group Ker $\delta_n$/Im $\delta_{n+1}$ will be denoted $H^\Delta_n(X)$ and called the $n^{th}$ simplicial homology group of $X$. \\
 
-Example: Let us take $X = T$, the torus with the $\Delta$-complex structure pictured in \textbf{Section \ref{sec:delta_complexes}}. For recall, the structure has one vertex $v$, three edges $a, b, c$ and two 2-simplices $U$ and $V$. $\delta_1 = v - v = 0$ so $H_0^\Delta(X) \approx \Z$. Since $\delta_2 U = a + b - c = \delta_2 L$ and $\{a, b, a+ b - c\}$ is a basis for $\Delta_1(T)$, $H_1^\Delta(X) = \frac{\Delta_1(X)}{\delta_2(U)}$, it follows that $H_1^\Delta(X) \approx \Z \oplus \Z$ with basis the homology classes $[a]$ and $[b]$. Since there are no 3-simplices, $H_2^\Delta(T)$ is equal to Ker$\delta_2$, which is infinite cyclic generated by $U-L$ since $\delta(pU+qL) = (p+q)(a+b-c) = 0$ iff $p = -q$.\\
-Therefore:\\
+Example: Let us take $X = T$, the torus with the $\Delta$-complex structure pictured in Figure \ref{fig:delta_torus}. For recall, the structure has one vertex $v$, three edges $a, b, c$ and two 2-simplices $U$ and $V$. $\delta_1 = v - v = 0$ so $H_0^\Delta(X) \approx \Z$. Since $\delta_2 U = a + b - c = \delta_2 L$ and $\{a, b, a+ b - c\}$ is a basis for $\Delta_1(T)$, $H_1^\Delta(X) = \frac{\delta_1(X)}{\delta_2(U)}$, it follows that $H_1^\Delta(X) \approx \Z \oplus \Z$ with basis the homology classes $[a]$ and $[b]$. Since there are no 3-simplices, $H_2^\Delta(T)$ is equal to Ker$\delta_2$, which is infinite cyclic generated by $U-L$ since $\delta(pU+qL) = (p+q)(a+b-c) = 0$ iff $p = -q$.\\
+
+Therefore:
 \begin{center}
   $H_n^\Delta(X) \approx
   \begin{cases}
@@ -656,7 +715,7 @@ Therefore:\\
 A $\Delta$-complex structure can be otained on $\S^n$ by taking two copies of $\Delta^n$ and identifying boundaries using the identity map. Using previous notations, we have Ker$\delta_n$ an infinite cycle generated by $U-L$. Therefore $H_n^\Delta(\S^n) \approx \Z$.
 \end{proof}\\
 
-The simplicial homology is defined for simplical complexes. These are the $\Delta$-complexed whose simplices are uniquely determined by their vertices. Each $n$-simplex has $n+1$ distinct vertices and no other $n$-simplex has the same set of vertices. A simplicial complex can be described as a set $X_0$ of vertices and sets $X_n$ of $n$-simplices which are $(n+1)$-elements subsets of $X_0$. It is required that each $(k+1)$-element subset of the vertices of an $n$-simplex in $X_n$ is a $k$-simplix in $X_k$.\\
+The simplicial homology is defined for simplical complexes. These are the $\Delta$-complexed whose simplices are uniquely determined by their vertices. Each $n$-simplex has $n+1$ distinct vertices and no other $n$-simplex has the same set of vertices. A simplicial complex can be described as a set $X_0$ of vertices and sets $X_n$ of $n$-simplices which are $(n+1)$-elements subsets of $X_0$. It is required that each $(k+1)$-element subset of the vertices of an $n$-simplex in $X_n$ is a $k$-simplex in $X_k$.\\
 
 Compared with $\Delta$-complexes, simplicial complexes require more computation. For example a simplicial complex structure for the torus would require 14 triangles, 21 edges and 7 vertices. It can be shown that any $\Delta$-complex can be subdivided in a simplical complex.\\
 
@@ -666,7 +725,7 @@ It is worth mentionning that simplicial homology has flaws such as the one menti
 \subsection{Homology in our research}
 \label{sec:homology_research}
 
-Our research is concerned with the capacity of neural wetwork to properly express after training different difficulty of problems depending on their width. There would be different approach to chosing a way to measure this difficulty that would relate to different applied problems. The first approach would be to look at the dimension of the problem.\\
+Our research is concerned with the capacity of neural networks to properly express after training different difficulty of problems depending on their width. There would be different approach to chosing a way to measure this difficulty that would relate to different applied problems. The first approach would be to look at the dimension of the problem.\\
 
 \begin{figure}[h]
   \centering
@@ -677,13 +736,13 @@ Our research is concerned with the capacity of neural wetwork to properly expres
 
 For instance the MNIST problem, aims to classify 28x28 pixels images of handwritten digits in 10 classes representing the 10 digits (see Figure \ref{fig:mnist}). For instance in 2003 in \cite{simard_best_2003}, a team of researcher used a simple neural network of 2 layers with respectively 100 and 10 hidden units to classify the MNIST dataset (they used convolutional layers before inputing data in their network making the input dimension even greater) to obtain an accuracy of 98.81\%. One could expect that solving the same problem of image classification for instance and using different image size and depth of networks would be an interesting way to study the problem of expressiveness.\\
 
-However two major problems occur in that case. How to choose the classification problem with the certainty that the problem itself is not going to be a problem simpler than it looks. This relates to an hypothesis called the manifold hypothesis. The manifold hypothesis holds roughly as follows: "real-world high-dimensional data lie on low-dimensional manifolds embedded within the high-dimensional space". Meaning that complex data that needs a lot of parameters to be perfectly described are caracterized by few simple parameters up to continuous deformations defined as above. Considering this hypothesis that has not been disproved, a certain image recognition problem such as MNIST could be relying on the separation of a space of smaller dimension that the 784 dimensions space that you would expect from 28x28 pixels images.\\
+However two major problems occur in that case. First how to choose the classification problem with the certainty that the problem itself is not going to be a problem simpler than it looks? This relates to an hypothesis called the manifold hypothesis. The manifold hypothesis holds roughly as follows: "real-world high-dimensional data lie on low-dimensional manifolds embedded within the high-dimensional space". Meaning that complex data that needs a lot of parameters to be perfectly described are caracterized by few simple parameters up to continuous deformations as defined by topology. Considering this hypothesis that has not been disproved, a certain image recognition problem such as MNIST could be relying on the separation of a space of smaller dimension that the 784 dimensions space that you would expect from 28x28 pixels images.\\
 
 The second problem is the problem of thresholding for accuracy since it is almost impossible to reach 100\%. One would have to chose a value over which one considers the problem as correctly classified and below which it is considered not classified. That choice would be rather arbitrary and it would be hard to evaluate the value of the results as far as they might change radically with a slight change in the choice of the threshold.\\
 
-This point is non-specific to the choice of accuracy as a measure since in any case the training of a neural network is a process with a random component involved and independently of the measure choice, the problem of training artifacts and imprecicions might rise. Although one should try to chose a measure that will reduce as much as possible this incontrollable component in the research.\\
+This point is non-specific to the choice of accuracy as a measure since in any case the training of a neural network is a process with a random component involved and independently of the measure choice, the problem of training artifacts and imprecions might arise. Therefore one should try to chose a measure that will reduce as much as possible this incontrollable component in the research.\\
 
-For that purpose, we have chosen to use homology of the data as our measure. Using homology garantees an independence from the problem chosen since homologies can take different forms du to its topological nature. Moreover if the manifold hypothesis happends to be true, the study of homology in rather small dimension and how neural networks of different depth perform on it might have applications even in high dimension problems. Unlike accuracy the perfect classification in terms of homology is something reachable since homology is studied without regard to continuous deformations ($\approx$ topologically), errors and imprecision will mostly be ignored.\\
+For that purpose, we have chosen to use homology of the data as our measure. Using homology garantees an independence from the problem chosen since homologies can take different forms due to its topological nature. Moreover if the manifold hypothesis happends to be true, the study of homology in rather small dimension and how neural networks of different depth perform on it might have applications even in high dimension problems. Unlike accuracy the perfect classification in terms of homology is something reachable since homology is studied without regard to continuous deformations ($\approx$ topologically), errors and imprecision will mostly be ignored.\\
 
 \newpage
 \thispagestyle{empty}

@@ -36,6 +36,8 @@
 \newenvironment{AMS}{}{}
 \newenvironment{keywords}{}{}
 
+\setcounter{tocdepth}{4}
+
 \def\layersep{2.5cm}
 
 
@@ -49,7 +51,7 @@
 
    \vspace{20mm}
    {\begin{center} \LARGE \textbf{Neural Network Topological Expressiveness} \end{center}}
-   {\begin{center} \Large \textbf{The science of understanding neural networks' behavior problem-independently} \end{center}}
+   {\begin{center} \Large \textbf{Understanding neural networks' behavior problem-independently} \end{center}}
    \vspace{40mm}
    \begin{center}
    {\Large February 2021}
@@ -71,21 +73,6 @@
   {\Large Supervisor: Aoi Honda}
   \end{center}
 
-
-\newpage
-\thispagestyle{empty}
-\mbox{}
-\newpage
-
-{\LARGE \textbf{Acknowledgements}}
-
-\vspace{20mm}
-
-\textit{Thanks to my family and friends for their constant support through my research}\\
-
-\textit{Merci à ma famille et mes amis pour leur soutient sans faille pendant mes recherches}\\
-
-\begin{CJK}{UTF8}{min} 私の研究を通して絶え間ないサポートをしてくれた家族や友人に感謝します  \end{CJK} (Maybe better translation required)\\
 
 
 \newpage
@@ -358,12 +345,14 @@ In 2018, Hannin \& Selke \cite{hanin_approximating_2018} showed that the minimal
 \mbox{}
 \newpage
 
-\section{Homology}
+\section{Mathematical preliminaries}
+
+\subsection{Homology}
 \label{sec:homology}
 
 The study of homology is part of the field of algebraic topology. We will first introduce the concept of homology, then take a look at the theoretical concept behind it by introducing $\Delta$-complexes: a primitive topological structure that allows the study of homology. Then with the introduction of simplicial homology we will complete the presentation of the fundamental objects used in our research in the study of homology. We will then reconsider these tools in the context of our research. This part heavily relies on the book \textit{Algebraic Topolgy} by A. Hatcher \cite{hatcher_algebraic_2002} and the class given by P. Albin at University of Illinois \cite{albin_1_2018} with the same book as class material. 
 
-\subsection{The idea of homology}
+\subsubsection{The idea of homology}
 
 In algebraic topology, the most fundamental object to study is the homotopy, that roughly studies "paths". This study leads to the definition of the fundamental group $\pi_1(X)$ that gives information on the topological stucture of a space $X$ for low-dimensional space. However the fundamental group $\pi_1(X)$ can not for instance distinguish the different spheres $\mathcal{S}^n, n\ge 2$. A workaround for that problem is to generalize the notion of homotopy to higher dimensions with different groups $\pi_n(X)$ generalizing the concept of homotopy in higher dimension. \\
 
@@ -448,7 +437,7 @@ Suppose we attach another 2-cell between $a$ and $b$ to create $X_3$, namely $B$
 
 The pattern we can see appear with these examples is rather clear. The n-cell complexes of $X$ forms free abelian groups $C_n(X)$ and one can define homomorphisms $\delta_n: C_n \to C_{n-1}$ to define homology groups $H_n(X) = ker(\delta_n)/Im(\delta_{n+1})$. The only problem now is to define $\delta_n$ for any $n$. If it is simple for small $n$ (head minus tail for a vertex), it becomes rather complicated when $n$ grows and more complex polyhedral cells appear in $X$. The most efficient approach is to decompose polyhedra into simplices which allows simple orientation and boundary computation. For that purpose we will define nice cellular complexes that will be the fundamental element for homology computation in the homology theories presented after. 
 
-\subsection{$\Delta$-complexes}
+\subsubsection{$\Delta$-complexes}
 \label{sec:delta_complexes}
 
 The most important theory of algebraic topology is called singular homology, since it is technically complicated we will use a simpler version of it called simplicial homology. The natural definition spaces of simplicial homology is called $\Delta$-complexes that we will introduce in this part.\\
@@ -598,7 +587,7 @@ The earlier decompositions of the torus, projective plane, and Klein bottle into
 \label{fig:delta_torus}
 \end{figure}
 
-\subsection{Simplicial homology}
+\subsubsection{Simplicial homology}
 
 Let us now define the simplicial homology groups of a $\Delta$-complex $X$. Let $\Delta_n(X)$ be the free abelian group with basis the open $n$-simplices $e^n_\alpha$ of $X$. The elements of $\Delta_n(X)$ are called n-chains and are of the form $\sum_\alpha n_\alpha e^n_\alpha$ with $n_\alpha \in \Z$. Equivalently, this could be written as $\sum_\alpha n_\alpha \sigma_\alpha$ where $\sigma_\alpha : \Delta^n \to X$ is the characteristic map of $e^n_\alpha$ with image the closure of $e^n_\alpha$. Such a sum can be considered as a finite collection, or "chain", of $n$-simplices in $X$.\\
 
@@ -722,7 +711,7 @@ Compared with $\Delta$-complexes, simplicial complexes require more computation.
 
 It is worth mentionning that simplicial homology has flaws such as the one mentionend before. That is why in the current theory of homology, simplicial homology has been replaced with a more complete theory of homologies named singular homology. The improvements of simplicial homology brought by singular are not useful for our research, that is why we will not be discussing this theory in this paper. The theory is however thoroughly explained in \cite{hatcher_algebraic_2002}.
 
-\subsection{Homology in our research}
+\subsubsection{Homology in our research}
 \label{sec:homology_research}
 
 Our research is concerned with the capacity of neural networks to properly express after training different difficulty of problems depending on their width. There would be different approach to chosing a way to measure this difficulty that would relate to different applied problems. The first approach would be to look at the dimension of the problem.\\
@@ -744,20 +733,15 @@ This point is non-specific to the choice of accuracy as a measure since in any c
 
 For that purpose, we have chosen to use homology of the data as our measure. Using homology garantees an independence from the problem chosen since homologies can take different forms due to its topological nature. Moreover if the manifold hypothesis happends to be true, the study of homology in rather small dimension and how neural networks of different depth perform on it might have applications even in high dimension problems. Unlike accuracy the perfect classification in terms of homology is something reachable since homology is studied without regard to continuous deformations ($\approx$ topologically), errors and imprecision will mostly be ignored.\\
 
-\newpage
-\thispagestyle{empty}
-\mbox{}
-\newpage
-
-\section{Topological data Analysis}
+\subsection{Topological Data Analysis}
 
 Topolgical Data Analysis, also called TDA, is an approach to the analysis of datasets using techniques from topology. The idea behind it is to provide with a framework to rigorously study the "shape" of a dataset. The main tool is persistent homology, that allows the computation of homology of a point cloud dataset. This tool will be presented in detail after a general presentation of the field of TDA. This chapter is based on the paper of L. Wasserman \cite{wasserman_topological_2016}. 
 
-\subsection{Introduction to TDA method's}
+\subsubsection{Introduction to TDA method's}
 
 Topological Data Analysis definition is somewhat vague and if it is very clear that persistent homology belong to this field, the exact set of methods, theories and result that belongs to this field is quite imprecise. According to this imprecision we chose to give the following definition to TDA: It's a "large class of data analysis method that uses the notion of shape and connectivity" \cite{wasserman_topological_2016}. In his paper Wasserman details different approach to this question of shape and conenctivity study starting with density clusters that we will only briefly cover since these methods are of no use for the purpose of our research. We will then in this section present the ideas and tools behind the study of low-dimension support for high dimension sets and their study with TDA's tools. That second part is here in support of the manifold hypothesis discussed briefly in \textbf{Section \ref{sec:homology_research}}.
 
-\subsubsection{Density Clustering}
+\paragraph{Density Clustering}
 
 In his paper, Wasserman covers three types of clustering. More clustering methods could be considered as part of TDA but for explanation purposes of what TDA is, the firt two methods will be sufficient as they will introduce paradigms we will find in persistent homology.\\
 
@@ -811,7 +795,7 @@ The first method introduced is level set clustering. The idea behind this name i
 
   Since $d_{T_p}$ defines a distance on the tree, it induces a topology on $T_p$. Given two densities $p$ and $q$ we can say that $T_p$ is equivalent to $T_q$, denoted $T_p \approx T_q$ if there exists an homeomorphism between the two trees.
 
-\subsubsection{Low dimensional subsets}
+\paragraph{Low dimensional subsets}
 
 The point of study of low dimensional subset relates to the manifold hypothesis and more generally the study of the support of the distribution $P$ when it is only a set $S$ of dimension $r$ with $r < d$ (see Figure \ref{fig:swiss_roll}). Sometimes the support of $P$ is of dimension exactly $d$ but there exists a set $S$ of dimension $r < d$ which has a high concentration of mass (see Figure \ref{fig:high_concentration}).\\  
 
@@ -864,7 +848,7 @@ A result in topology and statistics showed that:
 
 has the homology of $S$ with high probabiity as long as $S$ has a positive reach and $\varepsilon$ remains relatively small compared to it. The reach $r$ of a set $S$ is the largest real number such that any point within distance $r$ of $S$ has a unique projection on $S$.
 
-\subsection{Persistent homology}
+\subsubsection{Persistent homology}
 
 Persistent homology is the computation side of homology theory. Persistent homology is the name given to an algorithm which aim is to compute the topological features of data. We have discussed in detail homology from a mathematical point of view in \textbf{Section \ref{sec:homology}} and have shown that for $n \ge 2$ an $n$-dimensional sphere has for homology group: $H_n^\Delta(\S^n) \approx \Z$. To simplify vocabulary and notation we are now to be writting using betti numbers. Betti numbers of an $n$-dimensional topological space $X$ counts the rank of each group $(H_k^\Delta(X))_{0 \le k \le n}$ is topologically equivalent to. In the case of the torus $T$, the betti number are $(1,2,1,0)$. Recalling the formula to compute $H_k^\Delta(X) = \frac{\text{Ker} \delta_n}{\text{Im} \delta_{n+1}}$, since $C_{n+1} = \emptyset$, $\delta_{n+1} = 0$ and hence any value $(H_k^\Delta(X))_{k > n} = 0$. Therefore, it is conventionally admitted not to write betti numbers above that value. 
 
@@ -934,18 +918,11 @@ To compute the dimension of the structure persistent homology one uses $\Delta$-
 
 A more computationally efficient way to compute complexes is called the Vectoris-Rips complex $V_\epsilon$ and is defined as follows. A simplex is included in $V_\epsilon$ if each parir of vertices is no more than $\varepsilon$ apart. It can be shown that the persistent homology defined by $V_\varepsilon$ approximates the persistent homology defined by $C_\varepsilon$ .
 
-
-
-\newpage
-\thispagestyle{empty}
-\mbox{}
-\newpage
-
-\section{Knot theory}
+\subsection{Knot theory}
 
 Knot theory is a part of topology concerned with the study of mathematical knots. They are inspired by real life knots  that can be done on ropes or shoelaces but differs in the sense that the ends are joined together so that it can not be undone. There are multiple ways to describe knots and we will cover some of them. One of the key concepts of knot theory is equivalence. Two knots are considered equivalent if they can be transformed in each other without cutting the rope open. We will formalize these notions in this part relying on the class given by Pr. Anthony Bosman at Andrew University \cite{anthony_bosman_knot_2019}.
 
-\subsection{Fundamental concepts}
+\subsubsection{Fundamental concepts}
 
 \begin{definition}
   A knot is an embedding of a circle in 3-dimensional euclidian space $\R^3$
@@ -1021,7 +998,7 @@ Knot are composed of crossings and components. The crossings are the point where
   \label{fig:knot_table}
 \end{figure}
 
-\subsection{Knot invariants}
+\subsubsection{Knot invariants}
 
 One of the main question of knot theory is to find a way to identify any two equivalent knots. As of today, such method is still to be found. Two knots that might seem very different can be equivalent as shown in Figure \ref{fig:unknot}. To partially solve the problem, researcher have found knot invariants, that is to say mathematical object computable from any knot representation and that will always be equal for two representation of the same knot. We will be in this section introducing some of these and explain the one we will be using for our research.\\
 
@@ -1065,7 +1042,7 @@ One of the main question of knot theory is to find a way to identify any two equ
   
 \end{figure}
 
-\subsubsection{Tricolorability (or 3-colorability)}
+\paragraph{Tricolorability (or 3-colorability)}
 
 Tricolorability is a criterion to color the components of a knot following two rules:
 
@@ -1173,7 +1150,7 @@ Tricolorability is a useful invariant because it can allow for example to prove 
   \label{fig:tricolor_table}
 \end{figure}
 
-\subsubsection{Knot determinant}
+\paragraph{Knot determinant}
 \label{sec:knot_det}
 
 To be able to compute knot determinant, one must first number components and crossings of a knot as shown in Figure \ref{fig:trefoil_number}.
@@ -1257,7 +1234,7 @@ The results of the computation of knot determinants for the knots up to 7 crossi
 
 We can see that eventhough more values are possible it can not allow to discriminate all knots. Another interesting result obained from the knot determinant is that knot determinant give the $p$-coloration of a knot. Extending the concept of $3$-coloration by keeping the same rules (1 or 3 colors at each crossing), we notice that a $p$-coloration is possible iff $p$ is a divisor of the knot determinant.
 
-\subsubsection{Alexander polynomial}
+\paragraph{Alexander polynomial}
 
 The last knot invariant that we will introduce in this paper is the Alexander polynomial. Its definition is close to the one of the determinant. To compute the Alexander polynomial, one will first construct a matrix $A$ with coefficients $a_{i,j}$ defined as such: 
 
@@ -1348,7 +1325,7 @@ With the Alexander polynomial one can discrimainate any two knots with up to sev
 \mbox{}
 \newpage
 
-\section{Measuring neural network expressiveness}
+\section{Previous research on applied neural network expressiveness}
 
 In this section we will explain how the topic of quantifying neural network expressiveness has been tackled by researchers and introduce the different research articles on which our work relies.\\
 
@@ -1501,7 +1478,7 @@ Therefore, the length of the trajectory grows exponentially with depth and hence
 \mbox{}
 \newpage
 
-\section{The study of trajectories from a knot theory perspective}
+\section{Studying trajectories from a knot theory perspective}
 
 In this section we will detail the work on trajectories inspired by the research detailed in \textbf{Section \ref{sec:using_trajectories}} where we study the trajectories previously introduces from a knot theory point of view.
 
@@ -1628,9 +1605,11 @@ The result of the experiment described in this section are summed up in Figure \
 
 Figure \ref{fig:knot_results} represents the evolution of the knot determinant through the layers of networks. each of the subgraph represents a hidden layer from 1 on the top left to 9 on the bottom right. On each of the subgraph the bar represents the absolute number of occurences of a determinant for instance at layer 1 we obtained about 40 knots with determinant 0, 85 with determinant 1, 45 with determinant 3 and 5 with determinant 5.\\
 
-Note that using our alorithm unknots have determinant 0 if they are entangled unknots (more than 1 component) and 1 if they are trivial unknots (1 component and 0 crossing).\\
+Note that using our alorithm unknots have determinant 0 if they are entangled unknots (more than 1 component) and 1 if they are trivial unknots (1 component and 0 crossing).
 
-We can see that as layers go up, the knots end up as entangled unknots. An interesting following to this research would be to see if it is possible to create a neural network or set of weights that result in a different knot that an entangled unknot. 
+\subsection{Considerations}
+
+We can see that as layer index increases, the knots become entangled unknots. An interesting following to this research would be to see if it is possible to create a neural network or set of weights that result in a different knot that an entangled unknot. 
 
 \newpage
 \thispagestyle{empty}
@@ -1802,9 +1781,11 @@ In Table \ref{tab:betti_res} and Table \ref{tab:bottleneck_res}, one can see the
     \label{tab:bottleneck_res}
 \end{table}
 
-In table \ref{tab:betti_res} we can see a tendency for the number of propercharacterization to first go up since the network gets deeper and more expressive as expected and then down. The drop in the number of proper characterization is due to the difficulty to train big networks since they would require more epoch than used but we could not for time reasons allocate more time to the network training considering how long the process is. Another problem we faced in the case where the topological feature only live in a strict subspace of $X$ is that we might see the appearance of training artifacts in the region where there should be no points. This causes the computation of betti numbers to return a resul different from the original one because it changes the dimension in which the feature lives in.\\
+\subsection{Considerations}
 
-Finally another problem with this experiment is the time required to train enough networks and train them properly. To reproduce Guss' experiment described in \textbf{Section \ref{sec:tda_bib}} with only 2000 epoch of training on an NVIDIA RTX 2080 and 16 GB of RAM we would need approximately 50 days of uninterrupted computation. The results obtained with the various training are yet insufficent to draw any significant conclusion but with the availability of the code and its documentation should allow anyone with enough computation power to run statistically significant experiments and draw the numeric conclusion.
+In table \ref{tab:betti_res} we can see a tendency for the number of proper characterization to first go up since the network gets deeper and more expressive as expected and then down. The drop in the number of proper characterization is due to the difficulty to train big networks since they would require more epoch than used but we could not for time reasons allocate more time to the network training considering how long the process is. Another problem we faced in the case where the topological feature only live in a strict subspace of $X$ is that we might see the appearance of training artifacts in the region where there should be no points. This causes the computation of betti numbers to return a resul different from the original one because it changes the dimension in which the feature lives in.\\
+
+Finally another problem with this experiment is the time required to train enough networks and train them properly. To reproduce Guss' experiment described in \textbf{Section \ref{sec:tda_bib}} with only 2000 epoch of training on an NVIDIA RTX 2080 and 16 GB of RAM we would need approximately 50 days of uninterrupted computation. The results obtained with the various training are yet insufficent to draw any significant conclusion but with the availability of the code and its documentation should allow anyone with enough computation power to run statistically significant experiments and draw the numeric conclusion.\\
 
 \newpage
 \thispagestyle{empty}
@@ -1814,6 +1795,21 @@ Finally another problem with this experiment is the time required to train enoug
 \bibliography{bibliography}
 
 \bibliographystyle{ieeetr}
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+{\LARGE \textbf{Acknowledgements}}
+
+\vspace{20mm}
+
+\textit{Thanks to my family and friends for their constant support through my research}\\
+
+\textit{Merci à ma famille et mes amis pour leur soutient sans faille pendant mes recherches}\\
+
+\begin{CJK}{UTF8}{min} 私の研究を通して絶え間ないサポートをしてくれた家族や友人に感謝します  \end{CJK} (Maybe better translation required)\\
 
 \end{document}
 

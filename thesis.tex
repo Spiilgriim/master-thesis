@@ -735,22 +735,25 @@ For that purpose, we have chosen to use homology of the data as our measure. Usi
 
 \subsection{Topological Data Analysis}
 
-Topolgical Data Analysis, also called TDA, is an approach to the analysis of datasets using techniques from topology. The idea behind it is to provide with a framework to rigorously study the "shape" of a dataset. The main tool is persistent homology, that allows the computation of homology of a point cloud dataset. This tool will be presented in detail after a general presentation of the field of TDA. This chapter is based on the paper of L. Wasserman \cite{wasserman_topological_2016}. 
+Topological Data Analysis, also called TDA, is an approach to the analysis of datasets using techniques from topology. The idea behind it is to provide with a framework to rigorously study the "shape" of a dataset. The main tool is persistent homology, that allows the computation of homology of a point cloud dataset. This tool will be presented in detail after a general presentation of the field of TDA. This chapter is based on the paper of L. Wasserman \cite{wasserman_topological_2016}. 
 
 \subsubsection{Introduction to TDA method's}
 
-Topological Data Analysis definition is somewhat vague and if it is very clear that persistent homology belong to this field, the exact set of methods, theories and result that belongs to this field is quite imprecise. According to this imprecision we chose to give the following definition to TDA: It's a "large class of data analysis method that uses the notion of shape and connectivity" \cite{wasserman_topological_2016}. In his paper Wasserman details different approach to this question of shape and conenctivity study starting with density clusters that we will only briefly cover since these methods are of no use for the purpose of our research. We will then in this section present the ideas and tools behind the study of low-dimension support for high dimension sets and their study with TDA's tools. That second part is here in support of the manifold hypothesis discussed briefly in \textbf{Section \ref{sec:homology_research}}.
+Topological Data Analysis definition is somewhat vague and if it is very clear that persistent homology belong to this field, the exact set of methods, theories and results that belongs to this field is quite imprecise. According to this imprecision we chose to give the following definition to TDA: It's a "large class of data analysis method that uses the notion of shape and connectivity" \cite{wasserman_topological_2016}. In his paper Wasserman details different approaches to this question of shape and conenctivity study starting with density clusters that we will only briefly cover since these methods are of no use for the purpose of our research. We will then in this section present the ideas and tools behind the study of low-dimension support for high dimension sets and their study with TDA's tools. That second part is here in support of the manifold hypothesis discussed briefly in \textbf{Section \ref{sec:homology_research}}.
 
 \paragraph{Density Clustering}
 
-In his paper, Wasserman covers three types of clustering. More clustering methods could be considered as part of TDA but for explanation purposes of what TDA is, the firt two methods will be sufficient as they will introduce paradigms we will find in persistent homology.\\
+In his paper, Wasserman covers three types of clustering. More clustering methods could be considered as part of TDA but for explanation purposes of what TDA is, the first two methods will be sufficient as they will introduce paradigms we will find in persistent homology.\\
 
-The first method introduced is level set clustering. The idea behind this name is the study of the density of random samples regarding a threshold. Formally consider $X_1, ..., X_n$ a random sample of a distribution $P$ with density $p$ where $X_i \in \mathcal{X} \subset \R^d$. For $t \ge 0$ we define:
+The first method introduced is level set clustering. The idea behind this name is the study of the density of random samples regarding a threshold. Formally consider $X_1, ..., X_n$ a random sample of a distribution $P$ with density $p$ where $X_i \in \mathcal{X} \subset \R^d$.\\
+
+For $t \ge 0$ we define:
+
   \begin{center}
     $L_t = \lbrace x : p(x) > t \rbrace$
   \end{center}
 
-  The density clusters at level $t$, denoted $C_t$, are the connected components of $L_t$. Once can define an estimated $L_t$, denoted $\hat{L_t}$ as follows:\\
+  The density clusters at level $t$, denoted $C_t$, are the connected components of $L_t$. One can define an estimation of $L_t$, denoted $\hat{L_t}$ as follows:\\
   \begin{center}
     $\widehat{L_t} = \lbrace x : \widehat{p}(x) > t \rbrace $
   \end{center}
@@ -765,7 +768,7 @@ The first method introduced is level set clustering. The idea behind this name i
 
   To find the clusters, one need to find the connected components  of $\widehat{L_t}$. Let $I_t = \lbrace i : \widehat{p_h}(X_i) > t \rbrace$. Create a graph with vertices $(X_i : i \in I_t)$. Now put an edge between two vertices $X_i$ and $X_j$ if $||X_i - X_j|| \le \varepsilon$ where $\varepsilon > 0$ is a parameter ($\varepsilon = 2h$ works well in practice).\\
 
-  It appears the choice of $t$ is crucial in the level set clusters method and there are different possibilities to chose it. First one can chose some prescribed fraction $1-\beta$ of the total mass. Another idea is to look at clusters at all levels $t$. This will lead us to the idea of density trees.\\
+  It appears the choice of $t$ is crucial in the level set clustering method and there are different possibilities to chose it. First one can chose some prescribed fraction $1-\beta$ of the total mass. Another idea is to look at clusters at all levels $t$. This will lead us to the idea of density trees.\\
 
   The idea of density trees is to create a concept to study level set clustering for all $t$. That concept will give us both a representation of the structure of the data as well as a way to compare its topological similarity with another set.\\
 
@@ -846,13 +849,13 @@ A result in topology and statistics showed that:
   $\widehat{S} = \bigcup\limits_{i=1}^{n}\B(X_i,\varepsilon)$
 \end{center}
 
-has the homology of $S$ with high probabiity as long as $S$ has a positive reach and $\varepsilon$ remains relatively small compared to it. The reach $r$ of a set $S$ is the largest real number such that any point within distance $r$ of $S$ has a unique projection on $S$.
+has the homology of $S$ with high probability as long as $S$ has a positive reach and $\varepsilon$ remains relatively small compared to it. The reach $r$ of a set $S$ is the largest real number such that any point within distance $r$ of $S$ has a unique projection on $S$.
 
 \subsubsection{Persistent homology}
 
-Persistent homology is the computation side of homology theory. Persistent homology is the name given to an algorithm which aim is to compute the topological features of data. We have discussed in detail homology from a mathematical point of view in \textbf{Section \ref{sec:homology}} and have shown that for $n \ge 2$ an $n$-dimensional sphere has for homology group: $H_n^\Delta(\S^n) \approx \Z$. To simplify vocabulary and notation we are now to be writting using betti numbers. Betti numbers of an $n$-dimensional topological space $X$ counts the rank of each group $(H_k^\Delta(X))_{0 \le k \le n}$ is topologically equivalent to. In the case of the torus $T$, the betti number are $(1,2,1,0)$. Recalling the formula to compute $H_k^\Delta(X) = \frac{\text{Ker} \delta_n}{\text{Im} \delta_{n+1}}$, since $C_{n+1} = \emptyset$, $\delta_{n+1} = 0$ and hence any value $(H_k^\Delta(X))_{k > n} = 0$. Therefore, it is conventionally admitted not to write betti numbers above that value. 
+Persistent homology is the computationable side of homology theory. Persistent homology is the name given to an algorithm aiming to compute the topological features of data. We have discussed in detail homology from a mathematical point of view in \textbf{Section \ref{sec:homology}} and have shown that for $n \ge 2$, an $n$-dimensional sphere has for homology group: $H_n^\Delta(\S^n) \approx \Z$. To simplify vocabulary and notation we will be using betti numbers. Betti numbers of an $n$-dimensional topological space $X$ counts the ranks of the groups each $(H_k^\Delta(X))_{0 \le k \le n}$ is topologically equivalent to. In the case of the torus $T$, the betti number are $(1,2,1,0)$. Recalling the formula to compute $H_k^\Delta(X) = \frac{\text{Ker} \delta_n}{\text{Im} \delta_{n+1}}$, since $C_{n+1} = \emptyset$, $\delta_{n+1} = 0$ and hence any value $(H_k^\Delta(X))_{k > n} = 0$. Therefore, it is conventionally admitted not to write betti numbers above that value.\\
 
-To properly define persistet homology one must first define the distance function between a set $S$ and a point $x$. It is written as:
+To properly define persistent homology one must first define the distance function between a set $S$ and a point $x$. It is written as:
 \begin{center}
   $d_s(x) = \inf\limits_{y\in S} ||x-y||$  
 \end{center}
@@ -869,7 +872,7 @@ It is equivalent to writting:
   $L_\varepsilon = \bigcup\limits_{x \in S} B(x,\varepsilon)$ 
 \end{center}
 
-As $\varepsilon$ increases, $L_\varepsilon$ changes. Different topological features (represented by the homology groups and the betti numbers) will appear and disappear. Consider $\S^1$, at first when $\epsilon < 1$, we have the betti numbers being $(0,1,0)$ and once $\varepsilon$ reaches 1, the betti numbers become $(1,0,0)$ (cf Figure \ref{fig:betti_s1}). 
+As $\varepsilon$ increases, $L_\varepsilon$ changes. Different topological features (represented by the homology groups and the betti numbers) will appear and disappear. Consider $\S^1$, at first when $\varepsilon < 1$, we have the betti numbers being $(0,1,0)$ and once $\varepsilon$ reaches 1, the betti numbers become $(1,0,0)$ (cf Figure \ref{fig:betti_s1}). 
 
 \begin{figure}[h]
   \begin{minipage}[c]{.32\linewidth}
@@ -890,7 +893,7 @@ As $\varepsilon$ increases, $L_\varepsilon$ changes. Different topological featu
   \label{fig:betti_s1}
 \end{figure}
 
-Considering the evolution of $L_\varepsilon$, one can draw a persistence diagram (cf Figure \ref{fig:persistence_diagram}) and a barcode diagram (cf Figure \ref{fig:persistence_barcode}) that are equivalent. The barcode diagram represents the time of birth and death of each topological feature with a bar for each persistent generator. You will note that the full circle obtained from the merge of all balls around each point is considered to be the obtained from one of the original generator hence its big persistence. The persistence diagram represent with a point the birth and death of each topological feature, considering the symetry of our figure, there are 9 points on coordinate $\approx(0,0.1)$.\\ 
+Considering the evolution of $L_\varepsilon$, one can draw a persistence diagram (cf Figure \ref{fig:persistence_diagram}) and a barcode diagram (cf Figure \ref{fig:persistence_barcode}) that are equivalent. The barcode diagram represents the time of birth and death of each topological feature with a bar for each persistent generator. You will note that the full circle obtained from the merge of all balls around each point is considered to be the obtained from one of the original generator hence its big persistence. The persistence diagram represents with a point the birth and death of each topological feature, considering the symetry of our figure, there are 9 points on coordinate $\approx(0,0.1)$.\\ 
 
 \begin{figure}[p]
              \centering
@@ -938,7 +941,7 @@ A knot is bounded by all of its homeomorphism since we are studying it from a to
   is defined to be an ambient isotopy taking $g$ to $h$ if $F_0$ is the identity and each map $F_t$ is an homeomorphism from $M$ to itself, and $F_1 \circ g = h$.
 \end{definition}
 
-Knot representation might for further explained purpose be oriented giving an orientation to each of its crossings. We will result with two types of crossings left-handed crossing and right-handed crossings as shown in Figure \ref{fig:oriented_knot}
+  Knot representation might for further explained purpose be oriented giving an orientation to each of its crossings. That result with two types of crossings left-handed crossing and right-handed crossings as shown in Figure \ref{fig:oriented_knot}
 
 \begin{figure}[H]
   \begin{minipage}[c]{.5\textwidth}
@@ -948,12 +951,12 @@ Knot representation might for further explained purpose be oriented giving an or
   \begin{minipage}[c]{.20\textwidth}
   \centering
   \includegraphics[width=.9\textwidth]{left_crossing.png}    
-  \caption{Left crossing}
+  \caption{Left-handed crossing}
   \end{minipage}
   \begin{minipage}[c]{.20\textwidth}
   \centering
   \includegraphics[width=.9\textwidth]{right_crossing.png}    
-  \caption{Right crossing}
+  \caption{Right-handed crossing}
   \end{minipage}
   \caption{On the left an oriented trefoil, on the right a left-handed knot and a right-handed knot}
   \label{fig:oriented_knot} 
@@ -968,21 +971,21 @@ In 1927, Reidemeister showed that ambient isotopy was equivalent to a set of thr
 \begin{figure}[H]
              \centering
             \includegraphics[height=100pt]{r1.png}
-          \caption{By Parcly Taxel- Own work, FAL, https://commons.wikimedia.org/w/index.php?curid=68523335}
+            \caption{The Reidemeister twist transformation}
         \label{fig:r_1}
 \end{figure}
     \item Type II: Poke
 \begin{figure}[H]
              \centering
             \includegraphics[height=100pt]{r2.png}
-          \caption{By Parcly Taxel- Own work, FAL, https://commons.wikimedia.org/w/index.php?curid=68523334}
+            \caption{The Reidemeister poke transformation}
         \label{fig:r_2}
 \end{figure}
     \item Type III: Slide 
 \begin{figure}[H]
              \centering
             \includegraphics[height=100pt]{r3.png}
-          \caption{By Parcly Taxel- Own work, FAL, https://commons.wikimedia.org/w/index.php?curid=68523336}
+            \caption{The Reidemeister slide transformation}
         \label{fig:r_3}
 \end{figure}
   \end{itemize}
@@ -994,7 +997,7 @@ Knot are composed of crossings and components. The crossings are the point where
 \begin{figure}[H]
   \centering
   \includegraphics[width=.6\textwidth]{knot_table.png}
-  \caption{Knot table up to 7 crossings knots By Jkasd - Own work, Public Domain, https://commons.wikimedia.org/w/index.php?curid=3937733}
+  \caption{Knot table up to 7 crossings knots}
   \label{fig:knot_table}
 \end{figure}
 
@@ -1037,7 +1040,7 @@ One of the main question of knot theory is to find a way to identify any two equ
   \includegraphics[width=.95\textwidth]{knot_unfolding-50.png}
     
   \end{minipage}
-  \caption{Knot unfolding By Kuchtact - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=77971069}
+  \caption{Knot unfolding}
   \label{fig:unknot}
   
 \end{figure}
@@ -1048,7 +1051,7 @@ Tricolorability is a criterion to color the components of a knot following two r
 
 \begin{itemize}
   \item All components must be colored
-  \item At each crossing either all three components are either all of the same color either all of different colors ($\Longleftrightarrow$ one can find only one or the three colors at each crossing). 
+  \item At each crossing all three components are either all of the same color either all of different colors ($\Longleftrightarrow$ one can find only one or the three colors at each crossing). 
 \end{itemize}
 
 For instance the trefoil is 3-colorable as shown is Figure \ref{fig:trefoil_color} unlike the figure-eight knot (Figure \ref{fig:figure8})\\
@@ -1058,14 +1061,14 @@ For instance the trefoil is 3-colorable as shown is Figure \ref{fig:trefoil_colo
   \begin{minipage}[c]{.4\textwidth}
     \centering
     \includegraphics[width=.80\textwidth]{trefoil_color.png}
-    \caption{Colored trefoil (original image: By Marnanel - Image:TrefoilKnot-01.png, Public Domain, https://commons.wikimedia.org/w/ index.php?curid=3246080)}
+    \caption{Colored trefoil}
     \label{fig:trefoil_color}
   \end{minipage}
   \hfill
   \begin{minipage}[c]{.4\textwidth}
     \centering
-    \includegraphics[width=.80\textwidth]{figure_eight.png}
-    \caption{Colored trefoil (original image: By Talifero - File:Knots\_eight\_shamrock.svg, Public Domain, https://commons.m.wikimedia.org/wiki/ File:Knots\_eight\_shamrock.svg)}
+    \includegraphics[width=.80\textwidth]{fig_eight_only_nat.png}
+    \caption{Not-colored figure-eight knot}
     \label{fig:figure8}
   \end{minipage}  
 \end{figure}
@@ -1083,7 +1086,7 @@ To prove that 3-colorability is a knot invariant it is sufficient to show that t
 \begin{figure}[H]
              \centering
             \includegraphics[height=100pt]{r1_colored.png}
-          \caption{Original image: By Parcly Taxel- Own work, FAL, https://commons.wikimedia.org/w/index.php?curid=68523335}
+          \caption{Twist tricolorability}
         \label{fig:r_1_colored}
 \end{figure}
 
@@ -1100,11 +1103,11 @@ To prove that 3-colorability is a knot invariant it is sufficient to show that t
             \includegraphics[height=100pt]{r2_colored.png}
     
   \end{minipage}
-          \caption{Original image: By Parcly Taxel- Own work, FAL, https://commons.wikimedia.org/w/index.php?curid=68523334}
+          \caption{Poke tricolorability}
         \label{fig:r_2_colored}
 \end{figure}
 
-\item Type III: Silde. This move could have up to 8 possibilities but the possibilities where exactly one of the crossings is of different colors is not possible since it goes against the rules of tricolorability. We end up with 5 cases that all admit a solution.   
+\item Type III: Slide. This move could have up to 8 possibilities but the possibilities where exactly one of the crossings is of different colors is not possible since it goes against the rules of tricolorability. We end up with 5 cases that all admit a solution.   
 
 \begin{figure}[H]
   \begin{minipage}[c]{.3\textwidth}
@@ -1132,7 +1135,7 @@ To prove that 3-colorability is a knot invariant it is sufficient to show that t
             \includegraphics[height=100pt]{r3_colored_5.png}
     
   \end{minipage}
-          \caption{Original image: By Parcly Taxel- Own work, FAL, https://commons.wikimedia.org/w/index.php?curid=68523336}
+          \caption{Slide tricolorability}
         \label{fig:r_3_colored}
 \end{figure}
 \end{itemize}
@@ -1146,7 +1149,7 @@ Tricolorability is a useful invariant because it can allow for example to prove 
 \begin{figure}[H]
   \centering
   \includegraphics[width=.6\textwidth]{tricolorability_table.png}
-  \caption{Triolorability table (original image: By Jkasd - Own work, Public Domain, https://commons.wikimedia.org/w/index.php?curid=3937733)}
+  \caption{Tricolorability table}
   \label{fig:tricolor_table}
 \end{figure}
 
@@ -1158,7 +1161,7 @@ To be able to compute knot determinant, one must first number components and cro
 \begin{figure}[H]
   \centering
   \includegraphics[width=.6\textwidth]{trefoil_number.png}
-  \caption{Trefoil with numbering to compute determinant (original image: By Marnanel - Image:TrefoilKnot-01.png, Public Domain, https://commons.wikimedia.org/w/index.php?curid=3246080)}
+  \caption{Trefoil with numbering to compute determinant}
   \label{fig:trefoil_number}
 \end{figure}
 
@@ -1196,7 +1199,7 @@ The results of the computation of knot determinants for the knots up to 7 crossi
 \begin{center}
   \begin{tabular}{| c | c |}
     \hline
-    knot & determinant\\
+    knot & $det(K)$\\
     \hline
     $3_1$ & 3\\
     \hline
@@ -1232,7 +1235,9 @@ The results of the computation of knot determinants for the knots up to 7 crossi
 \label{tab:knot_determinant}
 \end{table}
 
-We can see that eventhough more values are possible it can not allow to discriminate all knots. Another interesting result obained from the knot determinant is that knot determinant give the $p$-coloration of a knot. Extending the concept of $3$-coloration by keeping the same rules (1 or 3 colors at each crossing), we notice that a $p$-coloration is possible iff $p$ is a divisor of the knot determinant.
+We can see that even though more values are possible it can not allow to discriminate all knots.\\
+
+Note that the result obtained from the computation of the knot determinant gives the $p$-colorability of a knot. Extending the concept of $3$-coloration by keeping the same rules (1 or 3 colors at each crossing), we notice that a $p$-coloration is possible iff $p$ is a divisor of the knot determinant.
 
 \paragraph{Alexander polynomial}
 
@@ -1241,8 +1246,8 @@ The last knot invariant that we will introduce in this paper is the Alexander po
 \begin{center}
   $a_{i,j} =
   \begin{cases}
-    t &\text{if component $i$ is the enterd under left-handed crossing $j$}\\
-    -1 &\text{if component $i$ is the exits under left-handed crossing $j$}\\
+    t &\text{if component $i$ \textcolor{blue}{enters} \textcolor{red}{exists} under \textcolor{blue}{left} \textcolor{red}{right} handed crossing $j$}\\
+    -1 &\text{if component $i$ \textcolor{red}{exits} \textcolor{blue}{enters} under \textcolor{red}{left} \textcolor{blue}{right} handed crossing $j$}\\
     1-t &\text{if component $i$ is overcrossing at crossing $j$}\\
     0 &\text{otherwise}
   \end{cases}$
@@ -1318,7 +1323,7 @@ After normalization, we obtain the polynomial: $t - 1 + t^{-1}$. The polynomial 
 \label{tab:knot_alexander}
 \end{table}
 
-With the Alexander polynomial one can discrimainate any two knots with up to seven crossings. Though the alexander polynomial can not discriminate any to knots as explained in the introduction. An interesting property of the Alexander polynomial is that $\Delta_k(-1) = det(K)$ (the knot determinant).
+With the Alexander polynomial one can discrimainate any two knots with up to seven crossings. Though the Alexander polynomial can not discriminate any to knots as explained in the introduction. An interesting property of the Alexander polynomial is that $\Delta_k(-1) = det(K)$ (the knot determinant).
 
 \newpage
 \thispagestyle{empty}
@@ -1811,5 +1816,90 @@ Finally another problem with this experiment is the time required to train enoug
 
 \begin{CJK}{UTF8}{min} 私の研究を通して絶え間ないサポートをしてくれた家族や友人に感謝します  \end{CJK} (Maybe better translation required)\\
 
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+\section{Appendix}
+
+\subsection{Figures credit}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.3\textwidth]{mnist.png}
+  \caption[]{By Josef Steppan - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=64810040}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+            \includegraphics[height=100pt]{r1.png}
+            \caption[]{Parcly Taxel- Own work, FAL, https://commons.wikimedia.org/w/index.php?curid=68523335}
+\end{figure}
+\begin{figure}[H]
+             \centering
+            \includegraphics[height=100pt]{r2.png}
+            \caption[]{By Parcly Taxel- Own work, FAL, https://commons.wikimedia.org/w/index.php?curid=68523334}
+\end{figure}
+\begin{figure}[H]
+             \centering
+            \includegraphics[height=100pt]{r3.png}
+            \caption[]{By Parcly Taxel- Own work, FAL, https://commons.wikimedia.org/w/index.php?curid=68523336}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.6\textwidth]{knot_table.png}
+  \caption[]{By Jkasd - Own work, Public Domain, https://commons.wikimedia.org/w/index.php?curid=3937733}
+\end{figure}
+
+\begin{figure}[H]
+  \begin{minipage}[c]{.2\textwidth}
+  \centering
+  \includegraphics[width=.95\textwidth]{knot_unfolding-0.png}
+    
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{.2\textwidth}
+  \centering
+  \includegraphics[width=.95\textwidth]{knot_unfolding-10.png}
+    
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{.2\textwidth}
+  \centering
+  \includegraphics[width=.95\textwidth]{knot_unfolding-20.png}
+    
+  \end{minipage}\\
+  \begin{minipage}[c]{.2\textwidth}
+  \centering
+  \includegraphics[width=.95\textwidth]{knot_unfolding-30.png}
+    
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{.2\textwidth}
+  \centering
+  \includegraphics[width=.95\textwidth]{knot_unfolding-40.png}
+    
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{.2\textwidth}
+  \centering
+  \includegraphics[width=.95\textwidth]{knot_unfolding-50.png}
+    
+  \end{minipage}
+  \caption[]{By Kuchtact - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=77971069}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.3\textwidth]{trefoil_nat.png}
+  \caption[]{By Marnanel - Image:TrefoilKnot-01.png, Public Domain, https://commons.wikimedia.org/w/ index.php?curid=3246080}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.3\textwidth]{fig_eight_nat.png}
+  \caption[]{ By Talifero - File:Knots eight shamrock.svg, Public Domain, https://commons.m.wikimedia.org/wiki/File:Knots eight shamrock.svg}
+\end{figure}
 \end{document}
 

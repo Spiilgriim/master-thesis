@@ -1330,7 +1330,7 @@ With the Alexander polynomial one can discrimainate any two knots with up to sev
 \mbox{}
 \newpage
 
-\section{Previous research on applied neural network expressiveness}
+\section{Previous research on quantification of neural network expressiveness}
 
 In this section we will explain how the topic of quantifying neural network expressiveness has been tackled by researchers and introduce the different research articles on which our work relies.\\
 
@@ -1387,9 +1387,9 @@ To prove these bounds they use the function sum representation of neural network
 
 In \cite{guss_characterizing_2018}, Guss and Salakhutdinov relying on \cite{bianchini_complexity_2014} proposed a statistical approach to the problem of giving a value to the way each Betti numbers would affect the topological expressivity of the neural network since \cite{bianchini_complexity_2014} only relies on the sum $\B(X)$.\\
 
-To study the difficulty of learning homologically complex data, they considered fully-connected ReLU neural networks of depth $d \in [1 ... 6]$ and width $h_l = \beta_0(X)$ when $1 \le l \ge d$ and $h_l \in [1 ... 500]$ when $l = 0$. It sums up with a first layer of variable width (up to 500) and the other layers width being fixed at the number of connected components (0-homology) of $X$. These networks would then be trained using standard cross-entripy loss with Adam optimizer, a fixed learning rate of 0.01 and an increasing batch size schedule.\\
+To study the difficulty of learning homologically complex data, they considered fully-connected ReLU neural networks of depth $d \in [1 ... 6]$ and width $h_l = \beta_0(X)$ when $1 \le l \le d$ and $h_l \in [1 ... 500]$ when $l = 0$. It sums up with a first layer of variable width (up to 500) and the other layers width being fixed at the number of connected components (0-homology) of $X$. These networks would then be trained using standard cross-entropy loss with Adam optimizer, a fixed learning rate of 0.01 and an increasing batch size schedule.\\
 
-They used dataset composed of two classes of 5000 points one of randomly distributed points the other one of mixtures of the uniform distribution on $\S^1$ and $\B^2$. They limited their study to $n=2$. They studied the output for datasets continuously ranging from $H(X) = \{\Z^1, 0\}$ to $H(X) = \{\Z^{30}, \Z^{30}\}$. They trained 100 of the previously described networks on each dataset and compiled the results in Figure \ref{fig:guss_results}.
+They used datasets composed of two classes of 5000 points one of randomly distributed points the other one of mixtures of the uniform distribution on $\S^1$ and $\B^2$. They limited their study to $n=2$. They studied the output for datasets continuously ranging from $H(X) = \{\Z^1, 0\}$ to $H(X) = \{\Z^{30}, \Z^{30}\}$. They trained 100 of the previously described networks on each dataset and compiled the results in Figure \ref{fig:guss_results}.
 
 
 In Figure \ref{fig:guss_results} we can see two distincts parts. The upper part refers to the characterization of $H_0(X)$. Each of the four plots is representing the probability of expressing $H_0(X)$ depending on $\B_0(X)$ and the number of hidden units on the fist layer of the network (the other layers having a number of hidden units fixed to $B_0(X)$). On these plots the number of hidden units ranges from $0$ to $14$ and $\B_0(X)$ from $3$ to $15$.\\
@@ -1398,7 +1398,7 @@ The second plot presents the same results for the proper characterization of $\B
 
 We can see some clear tendency (that would be expected) that expression of $H_n(X)$ is improving with the reduction of $\B_n(X)$, and the increase of $l$ and $d$. The interest of such result lies in the fact of giving a possible approximation of the evolution of the probability depending on each of these parameters.\\
 
-Unfortunately the authors did not provide the full results and code of their research.
+Unfortunately the authors did not provide the full results and code of their research and did not answer my requests to obtain them.
 
 \begin{figure}[H]
   \centering
@@ -1413,16 +1413,16 @@ Unfortunately the authors did not provide the full results and code of their res
 
 The idea of studying trajectories to evaluate neural network expressivity comes from \cite{raghu_expressive_2017} itself relying on \cite{poole_exponential_2016} and \cite{pascanu_number_2014}.\\
 
-In \cite{raghu_expressive_2017}, Raghu introduces various variables of interest for neural network expressivity relying on the otion of transition of activation patterns. Activation patters denotes all the way threshold-based activation functions such as ReLU and hard-tanh can activate or not at the same time. For a ReLU function we would consider it active if in the non-constant part and non-active if in the constant part. Activation patterns is a concept at network scale to summarize the existence of inputs and activation function parameters leading to different activation and non-activation of each neuron of the network.\\
+In \cite{raghu_expressive_2017}, Raghu introduces various variables of interest for neural network expressivity relying on the notion of transition of activation patterns. Activation patters denotes all the way threshold-based activation functions such as ReLU and hard-tanh can activate or not at the same time. For a ReLU function we would consider it active if in the non-constant part and non-active if in the constant part. Activation patterns is a concept at network scale to summarize the existence of inputs and activation function parameters leading to different activation and non-activation of each neuron of the network.\\
 
 To study transition Raghu introduces the unifying concept of trajectories. Trajectories are defined as follows:
 
 \begin{definition}
-  Given two points $x_0, x_1 \in \R^n$, $x(t)$ between $x_0$ and $x_1$ is a trajectory if there exists $f: [0,1] \to \R^n$ with $f(0) = 0$ and $f(1) = 1$ such that $x(t) = (1-f(t))x_0 + f(t)x_1$. 
+  Given two points $x_0, x_1 \in \R^n$, $x(t)$ between $x_0$ and $x_1$ is a trajectory if there exists $f: [0,1] \to \R^n$ with $f(0) = 0_{\R^n}$ and $f(1) = 1_{\R^n}$ such that $x(t) = (x_0-x_1)f(t) + x_0$. 
   \label{def:trajectories}
 \end{definition}
 
-This can include simple example such as a line with $f(t) = t$ or a circular arc with $f(t) = sin(\frac{\pi t}{2})$ but in general $x(t)$ might be more complicated. This definition is obviously linked to the concept of path in topology and therefore includes loops.\\
+This can include simple examples such as a line with $f(t) = t$ or a circular arc with $f(t) = sin(\frac{\pi t}{2})$ but in general $x(t)$ might be more complicated. This definition is obviously linked to the concept of path in topology and therefore includes loops.\\
 
 For piecewise linear activation functions such as ReLU and hard tanh, the function computed by the network is also piecewise linear since the linear sum of composition of piecewise linear functions is itself piecewise linear.
 
@@ -1491,7 +1491,7 @@ In this section we will detail the work on trajectories inspired by the research
 
 For the purpose of studying trajectories as knot we limit the definition of trajectories to the case where the beginning point is the end point ($x_0 = x_1$ in \textbf{Definition \ref{def:trajectories}}). In that case the trajectory becomes an embedding of the circle. We also limit our study to embeddings of $S^1$ in $\R^n, n \ge 3$ to ensure the existence of the knot.\\ 
 
-Since knots can exist in dimension higher than $3$ by simply lying in a 3-dimensional hyperplane. We create trjectories corresponding to the first knots in increasing number of crossings namely: the unknot, the trefoil $3_1$ and the figure-eight knot $4_1$.\\
+Knots can exist in dimension higher than $3$ by simply living in a 3-dimensional hyperplane. We create trajectories corresponding to the first knots in increasing number of crossings namely: the unknot, the trefoil $3_1$ and the figure-eight knot $4_1$.\\
 
 Computationnaly trajectories are arrays of points uniformly distributed along the studied embedding. They are obtained from a B-spline of hand-picked points for each different trajectory.\\
 
@@ -1545,7 +1545,7 @@ The aim is then to feed the trajectories to ReLU neural networks and to study th
 
 \subsection{Algorithms}
 
-In this section we introduce the different algorithm implemented for the research described in this section. All the algorithm have been implemented in python and can be found in the code available on github: \url{https://github.com/Spiilgriim/nn-expressiveness} and the file and line to look for the python file including the implementation can be found in the algorithm title.\\
+In this section we introduce the different algorithm implemented for the research described in this section. All the algorithm have been implemented in python and can be found in the code available on Gitlab \url{https://gitlab.com/Spiilgriim/nnexpy} and the file and line to look for the python file including the implementation can be found in the algorithm title.\\
 
 We write $N$ the number of points in the trajectory and $T$ the array containing the points of the trajectory, $\forall i \in [1$ $...$ $N],$  $T_i$ denotes the point at index $i$ in $T$.\\
 
@@ -1565,11 +1565,11 @@ We write $N$ the number of points in the trajectory and $T$ the array containing
     \ENDFOR
     \STATE add $(components_{-1,2} + 1, components_{1,1})$ to $components$
   \end{algorithmic}
-  \caption{Trajectory to Knot ({\fontfamily{cmtt}\selectfont trajectories.py l.181})}
+  \caption{Trajectory to Knot ({\fontfamily{cmtt}\selectfont nnexpy/trajectories.py l.24})}
   \label{alg:traj_to_knot}
 \end{algorithm}
 
-This algorithm is a simplified version of the one implemented since we implemented the computation of the orientation of the knot (right-hand knot or left-hand knot) but we will not be using this feature in the rest of the section. The code for {\fontfamily{cmtt}\selectfont Overlap} and the other computational geometry functions used to compute the orientation of the knot and determine which piece is over the other can be found in {\fontfamily{cmtt}\selectfont trajectories.py l.135 $\to$ l.171}\\
+This algorithm is a simplified version of the one implemented since we implemented the computation of the orientation of the knot (right-hand knot or left-hand knot) but we will not be using this feature in the rest of the section. An implementation for {\fontfamily{cmtt}\selectfont Overlap} and the other computational geometry functions used to compute the orientation of the knot and determine which piece is over the other can be found in {\fontfamily{cmtt}\selectfont nnexpy/trajectories\_utils.py l.139 $\to$ l.175}\\
 
 This algorithm is valid because it relies on the fact that topologically any representation (in our case projection hyperplane) of a knot is the same knot and the different knot determinant we could use would have the same value whatever the representation used. In our case we then chose to project the knot on the two dimensional hyperplane with base $\{(1,0,0), (0,1,0)\}$ in dimension 3 and $\{(1,0,0,0), (0,1,0,0)\}$ in dimension 4.\\  
 
@@ -1608,7 +1608,7 @@ The result of the experiment described in this section are summed up in Figure \
   \label{fig:knot_results}
 \end{figure}
 
-Figure \ref{fig:knot_results} represents the evolution of the knot determinant through the layers of networks. each of the subgraph represents a hidden layer from 1 on the top left to 9 on the bottom right. On each of the subgraph the bar represents the absolute number of occurences of a determinant for instance at layer 1 we obtained about 40 knots with determinant 0, 85 with determinant 1, 45 with determinant 3 and 5 with determinant 5.\\
+Figure \ref{fig:knot_results} represents the evolution of the knot determinant through the layers of networks. Each of the subgraph represents a layer from 1 on the top left to 9 on the bottom right. On each of the subgraph the bar represents the absolute number of occurences of a determinant for instance at layer 1 we obtained about 40 knots with determinant 0, 85 with determinant 1, 45 with determinant 3 and 5 with determinant 5.\\
 
 Note that using our alorithm unknots have determinant 0 if they are entangled unknots (more than 1 component) and 1 if they are trivial unknots (1 component and 0 crossing).
 
@@ -1647,7 +1647,7 @@ In this section, we detail the work on using homology for neural entwork express
 
 Note that a ball is a particular case of thick sphere where $r_1 = 0$ and spheres are thick spheres with $r_1 = r_2$. Thick sphere is unlike spheres and balls not a rigorous term of topology since it is always equivalent to a sphere or a ball but it is the concept we will use to informatically modelize our balls and spheres.\\
 
-Let $n \in \N^*$, we will consider $X = \R^n$ containing $N_B$ balls $\B_i, 1 \le i \le nB$ and $N_S$ spheres or thick sphere $\S_j, 1 \le j \le N_S$ (cf Definition \ref{def:ball_sphere}) of dimension at most $n$. We informatically modelise this set in the following manner: \\ 
+Let $n \in \N^*$, we will consider $X = \R^n$ containing $N_B$ balls $\B_i, 1 \le i \le nB$ and $N_S$ spheres or thick sphere $\S_j, 1 \le j \le N_S$ (cf Definition \ref{def:ball_sphere}) of dimension at most $n$. We informatically modelize this set in the following manner: \\ 
 
 We used datasets of 50000 points split in two non-intersecting classes labelled "0" and "1". The points of class "1" are uniformly spread across various topological spheres and balls. In our case uniformly will mean that the points are uniformly distributed across the volume of the topological feature and that the number of points in each topological feature is proportional to its importance in the sum of volumes of topological features in our set of interest. \\
 
@@ -1658,9 +1658,21 @@ For the result that we will present in \textbf{Section \ref{sec:homology_results
 
 \subsection{Algorithms}
 
-In this section we introduce the different algorithm implemented for the research described in this section. All the algorithm have been implemented in python and can be found in the code available on github: \url{https://github.com/Spiilgriim/nn-expressiveness} and the file and line to look for the python file including the implementation can be found in the algorithm title.\\
+In this section we introduce the different algorithm implemented for the research described in this section. All the algorithm have been implemented in python and can be found in the code available on Gitlab \url{https://gitlab.com/Spiilgriim/nnexpy} and the file and line to look for the python file including the implementation can be found in the algorithm title.\\
 
-First we will detail the algorithm to generate our datasets consisting of balls and spheres. Denote $n \ge 2$ the dimension of the space, $B = \{(\B(c_i, r_i), d_i, o_i)\}_{1 \le i \le N_B}$ the set of balls in $X$ as well as their dimension $d_i$ and orientation $o_i$, $S = \{(\mathfrak{S}(c_j, [r_{1_j}, r_{2_j}]), d_j, o_i)\}_{1 \le j \le N_S}$ the set of thick sphere and P the number of points in each class. The orintation of balls and spheres is an array of that indicates the index of the elements of the cannonical basis constituing the hyperplane of $\R^n$ in which the feature does not live. For instance in $\R^3$ writting the cannonical basis $\{(1,0,0), (0,1,0), (0,0,1)\}$, $(\B(0,1),2,[1])$ is a 2-dimensional ball centered at the point $(0,0,0)$ of radius $1$ and living in the plane spanned by $\{(0,1,0),(0,0,1)\}$. In the python implementation some of the parameters might be decided randomly or with the help of other parameters.\\
+First we will detail the algorithm to generate our datasets consisting of balls and spheres. Denote $n \ge 2$ the dimension of the space, 
+
+\begin{center}
+ $B = \{(\B(c_i, r_i), d_i, o_i)\}_{1 \le i \le N_B}$ 
+\end{center}
+
+ the set of balls in $X$ as well as their dimension $d_i$ and orientation $o_i$. Finally
+
+ \begin{center}
+  $S = \{(\mathfrak{S}(c_j, [r_{1_j}, r_{2_j}]), d_j, o_i)\}_{1 \le j \le N_S}$ 
+ \end{center}
+
+the set of thick sphere and P the number of points in each class. The orientation of balls and spheres is an array of that indicates the index of the elements of the cannonical basis constituing the hyperplane of $\R^n$ in which the feature does not live. For instance in $\R^3$ writting the cannonical basis $\{(1,0,0), (0,1,0), (0,0,1)\}$, $(\B(0,1),2,[1])$ is a 2-dimensional ball centered at the point $(0,0,0)$ of radius $1$ and living in the plane spanned by $\{(0,1,0),(0,0,1)\}$. In the python implementation some of the parameters might be decided randomly or with the help of other parameters.\\
 
 In the algorithm $z$ will refer to a random number between 0 and 1.
 
@@ -1689,7 +1701,7 @@ In the algorithm $z$ will refer to a random number between 0 and 1.
     \ENDFOR
     
   \end{algorithmic}
-  \caption{Generation of topological features ({\fontfamily{cmtt}\selectfont generate\_data\_dimension.py l.167})}
+  \caption{Generation of topological features \\ ({\fontfamily{cmtt}\selectfont nnexpy/homology\_data\_generation.py l.191})}
   \label{alg:topo_gen}
 \end{algorithm}
 
@@ -1714,7 +1726,7 @@ We have also designed an algorithm to compute betti numbers for spheres and ball
     \ENDIF
     \ENDFOR
   \end{algorithmic}
-\caption{Custom persistent homology}
+\caption{Custom persistent homology ({\fontfamily{cmtt}\selectfont nnexpy/homology\_data\_generation.py l.414})}
 \end{algorithm}
 
 \subsection{Results}
@@ -1750,7 +1762,7 @@ In Table \ref{tab:betti_res} and Table \ref{tab:bottleneck_res}, one can see the
     \hline
   \end{tabular}
 \end{adjustbox}
-    \caption{The number of occurence of the same betti numbers between the original data persistence diagram and the networks data persistence diagram}
+    \caption{The number of occurences of the same betti numbers between the original data persistence diagram and the networks data persistence diagram}
     \label{tab:betti_res}
 \end{table}
 
@@ -1788,7 +1800,7 @@ In Table \ref{tab:betti_res} and Table \ref{tab:bottleneck_res}, one can see the
 
 \subsection{Considerations}
 
-In table \ref{tab:betti_res} we can see a tendency for the number of proper characterization to first go up since the network gets deeper and more expressive as expected and then down. The drop in the number of proper characterization is due to the difficulty to train big networks since they would require more epoch than used but we could not for time reasons allocate more time to the network training considering how long the process is. Another problem we faced in the case where the topological feature only live in a strict subspace of $X$ is that we might see the appearance of training artifacts in the region where there should be no points. This causes the computation of betti numbers to return a resul different from the original one because it changes the dimension in which the feature lives in.\\
+In table \ref{tab:betti_res} we can see a tendency for the number of proper characterizations to first go up since the network gets deeper and more expressive as expected and then down. The drop in the number of proper characterizations is due to the difficulty to train big networks since they would require more epochs than used but we could not for time reasons allocate more time to the network training considering how long the process is. Another problem we faced in the case where the topological feature only live in a strict subspace of $X$ is that we might see the appearance of training artifacts in the region where there should be no points. This causes the computation of betti numbers to return a result different from the original one because it changes the dimension in which the feature lives in.\\
 
 Finally another problem with this experiment is the time required to train enough networks and train them properly. To reproduce Guss' experiment described in \textbf{Section \ref{sec:tda_bib}} with only 2000 epoch of training on an NVIDIA RTX 2080 and 16 GB of RAM we would need approximately 50 days of uninterrupted computation. The results obtained with the various training are yet insufficent to draw any significant conclusion but with the availability of the code and its documentation should allow anyone with enough computation power to run statistically significant experiments and draw the numeric conclusion.\\
 

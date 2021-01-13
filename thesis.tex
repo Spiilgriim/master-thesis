@@ -1483,11 +1483,13 @@ Therefore, the length of the trajectory grows exponentially with depth and hence
 \mbox{}
 \newpage
 
-\section{Studying trajectories from a knot theory perspective}
+\section{Experiments}
+
+\subsection{Studying trajectories from a knot theory perspective}
 
 In this section we will detail the work on trajectories inspired by the research detailed in \textbf{Section \ref{sec:using_trajectories}} where we study the trajectories previously introduces from a knot theory point of view.
 
-\subsection{Methodology}
+\subsubsection{Methodology}
 
 For the purpose of studying trajectories as knot we limit the definition of trajectories to the case where the beginning point is the end point ($x_0 = x_1$ in \textbf{Definition \ref{def:trajectories}}). In that case the trajectory becomes an embedding of the circle. We also limit our study to embeddings of $S^1$ in $\R^n, n \ge 3$ to ensure the existence of the knot.\\ 
 
@@ -1543,7 +1545,7 @@ The points used to generate the B-spline of $3_1$ and $4_1$ in $\R^3$ are repres
 
 The aim is then to feed the trajectories to ReLU neural networks and to study the evolution of the different trajectories through the layers of the network. We proceed by feeding the trajectories to neural networks of depth ranging from one to eight hidden layers of width eight. The input dimension of the networks are either 3 or 4. At each layer we study the trajectory by taking the PCA in dimension 3 of the trajectory points after passing through each of the network layer. We then identify the obtained trajectory to a knot.\\
 
-\subsection{Algorithms}
+\subsubsection{Algorithms}
 
 In this section we introduce the different algorithm implemented for the research described in this section. All the algorithm have been implemented in python and can be found in the code available on Gitlab \url{https://gitlab.com/Spiilgriim/nnexpy} and the file and line to look for the python file including the implementation can be found in the algorithm title.\\
 
@@ -1597,7 +1599,7 @@ We denote $Cr$ of length $L_{Cr}$ the crossings array and $Co$ of length $L_{Co}
 
 We then use the determinant to discriminate knots. As explained in \textbf{Section \ref{sec:knot_det}}, it is not sufficient to discriminate all knots but it turns out to be enough for our purposes. 
 
-\subsection{Results}
+\subsubsection{Results}
 
 The result of the experiment described in this section are summed up in Figure \ref{fig:knot_results}.
 
@@ -1612,20 +1614,15 @@ Figure \ref{fig:knot_results} represents the evolution of the knot determinant t
 
 Note that using our alorithm unknots have determinant 0 if they are entangled unknots (more than 1 component) and 1 if they are trivial unknots (1 component and 0 crossing).
 
-\subsection{Considerations}
+\subsubsection{Considerations}
 
 We can see that as layer index increases, the knots become entangled unknots. An interesting following to this research would be to see if it is possible to create a neural network or set of weights that result in a different knot that an entangled unknot. 
 
-\newpage
-\thispagestyle{empty}
-\mbox{}
-\newpage
-
-\section{Extending the study of expressiveness with topological data analysis} 
+\subsection{Extending the study of expressiveness with topological data analysis} 
 
 In this section, we detail the work on using homology for neural entwork expressiveness inspired by the research detailed in \textbf{Section \ref{sec:tda_bib}} where we try to extend the experiment introduced by Guss in \cite{guss_characterizing_2018} to understand quantitatively the influence of a neural network architecture on it capacity to characterizing homologies in different dimension. 
 
-\subsection{Methodology}
+\subsubsection{Methodology}
 
 \begin{definition}
   Let $(X, D)$ be a metric space with $D : X^2 \to \R^+$. Let $c \in X$ and $r \in \R$.\\
@@ -1656,7 +1653,7 @@ The points of class "0" are distributed uniformly in the space $X \backslash \{\
 For the result that we will present in \textbf{Section \ref{sec:homology_results}}. We trained network on twelve different sets of dimension 2, 3 and 4 with one to three topological features. On each of these sets we trained 20 sets of fully-connected networks of width 8 and depth 1,2,4,6,8,10,12,14,16 with random initialization for 2000 epochs. To train the networks we used the sparse categorical entropy as loss function, a batch size of 10 and the Adam optimizer with 80\% of the data used as training data and 20\% as validation data. We used Keras \cite{chollet2015keras} with a tensorflow backend in python3. 
 
 
-\subsection{Algorithms}
+\subsubsection{Algorithms}
 
 In this section we introduce the different algorithm implemented for the research described in this section. All the algorithm have been implemented in python and can be found in the code available on Gitlab \url{https://gitlab.com/Spiilgriim/nnexpy} and the file and line to look for the python file including the implementation can be found in the algorithm title.\\
 
@@ -1729,7 +1726,7 @@ We have also designed an algorithm to compute betti numbers for spheres and ball
 \caption{Custom persistent homology ({\fontfamily{cmtt}\selectfont nnexpy/homology\_data\_generation.py l.414})}
 \end{algorithm}
 
-\subsection{Results}
+\subsubsection{Results}
 
 \label{sec:homology_results}
 
@@ -1798,7 +1795,7 @@ In Table \ref{tab:betti_res} and Table \ref{tab:bottleneck_res}, one can see the
     \label{tab:bottleneck_res}
 \end{table}
 
-\subsection{Considerations}
+\subsubsection{Considerations}
 
 In table \ref{tab:betti_res} we can see a tendency for the number of proper characterizations to first go up since the network gets deeper and more expressive as expected and then down. The drop in the number of proper characterizations is due to the difficulty to train big networks since they would require more epochs than used but we could not for time reasons allocate more time to the network training considering how long the process is. Another problem we faced in the case where the topological feature only live in a strict subspace of $X$ is that we might see the appearance of training artifacts in the region where there should be no points. This causes the computation of betti numbers to return a result different from the original one because it changes the dimension in which the feature lives in.\\
 

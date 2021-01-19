@@ -138,7 +138,7 @@ In particular if $S_f$ is dense in a subset $A \subseteq \F(I_n, \R)$ we will sa
 
 with $\parallel . \parallel$ the canonical norm on $\F(I_n, \R)$\\
 
-The study of that limit and especially of its asympatotic approximation gives an idea of the efficiency of the approximator, i.e. the amount of node to add to the network to improve the approximation.\\
+The study of that limit and especially of its asympatotic approximation gives an idea of the efficiency of the approximator, i.e. the amount of nodes to add to the network to improve the approximation.\\
 
 \begin{figure}[H]
   
@@ -208,7 +208,7 @@ The sigmoidal functions include the logistic function defined as:
 
 widely used as an activation function for neural networks.\\
 
-The first study of neural network expressiveness with sigmoidal functions dates back to by G.Cybenko in 1989 \cite{cybenko_approximation_1989}. He proved that $S_\sigma$ for $\sigma$ a sigmoidal function is dense in regards of the supremum norm in $C(I_n, \R)$. The demonstration goes as follows.\\
+The first study of neural network expressiveness with sigmoidal functions dates back to \cite{cybenko_approximation_1989} by G.Cybenko in 1989. He proved that $S_\sigma$ for $\sigma$ a sigmoidal function is dense in regards to the supremum norm in $C(I_n, \R)$. The demonstration goes as follows.\\
 
 We denote $M(I_n)$ the space of signed regular Borel measures on $I_n$\\
 
@@ -275,7 +275,7 @@ Let $\Pi_{y,\theta} = \{x \mid y^Tx+\theta = 0\}$ and let $H_{y,\theta} = \{x \m
 \begin{center}
   $0 = \int\limits_{I_n}\sigma_\lambda(x)d\mu(x)$\\
   $ = \int\limits_{I_n} \gamma(x)d\mu(x)$\\
-  $\sigma(\phi)\mu(\Pi_{y,\theta}) + \mu(H_{y,\theta})$
+  $= \sigma(\phi)\mu(\Pi_{y,\theta}) + \mu(H_{y,\theta})$
 \end{center}
 for all $\phi, \theta, y$\\
 \sv
@@ -290,7 +290,7 @@ Note that $F$ is a bounded function on $L^\infty(\R)$ since $\mu$ is a signed me
 By linearity $F(h) = 0$ for indicator functions on any interval and hence for any simple function (sum of indicator functions). Since simple functions are dense in $L^{\infty}(\R), F = 0$.
 In particular it is true for the bounded functions $s(u) = sin(m.u)$ and $c(u) = cos(m.u)$. It gives:
 \begin{center}
-  $F(s+ic) = \int_{I_n} cos(m^Tx) + i sin(m^Tx) d\mu(x) = \int_{I_n} exp(im^Tx)d\mu(x) = 0$
+  $F(s+ic) = \int_{I_n} \cos(m^Tx) + i \sin(m^Tx) d\mu(x) = \int_{I_n} \exp(im^Tx)d\mu(x) = 0$
 \end{center}
 for all $m$. Therefore the fourier transform of $\mu$ is 0 and $\mu$ must be 0. Hence $\sigma$ is discriminatory.
   \end{proof}\\

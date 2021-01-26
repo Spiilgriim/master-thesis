@@ -919,7 +919,7 @@ with $\gamma$ covering the set of bijections between $D_1$ and $D_2$. The image 
 
 To compute the dimension of the structure persistent homology one uses $\Delta$-complexes by using an object called the $\check{C}$ech complex $C_\varepsilon$. It is defined as follows. All singletons are included in $C_\varepsilon$, there are $0$-dimensional simplices. All pairs of points $X_i, X_j$ such that $||X_i - X_j|| \le \varepsilon$ are included in $C_\varepsilon$, these are $1$-dimensional simplices. Each triplet $X_i, X_j, X_k$ such that $B(X_i, \varepsilon/2) \cap B(X_j, \varepsilon/2) \cap B(X_k, \varepsilon/2) \neq \emptyset$ is included, these are 2-dimensional simplices. And so on.\\ 
 
-A more computationally efficient way to compute complexes is called the Vectoris-Rips complex $V_\epsilon$ and is defined as follows. A simplex is included in $V_\epsilon$ if each parir of vertices is no more than $\varepsilon$ apart. It can be shown that the persistent homology defined by $V_\varepsilon$ approximates the persistent homology defined by $C_\varepsilon$ .
+A more computationally efficient way to compute complexes is called the Vectoris-Rips complex $V_\epsilon$ and is defined as follows. A simplex is included in $V_\epsilon$ if each pair of vertices is no more than $\varepsilon$ apart. It can be shown that the persistent homology defined by $V_\varepsilon$ approximates the persistent homology defined by $C_\varepsilon$ .
 
 \subsection{Knot theory}
 
@@ -992,7 +992,7 @@ In 1927, Reidemeister showed that ambient isotopy was equivalent to a set of thr
 
 i.e. two knots are equivalent if they can transformed into each others using only these three moves.\\
 
-Knot are composed of crossings and components. The crossings are the point where the embedding overlaps itself and the components are the parts of the embedding between the crossing. We will later number the components and crossings to perform computations on knots. It is important to note that cannonically the knots are classified in category representing the minimal number of crossing that can be obtained by a representation of a knot. You can find the beginning of the knot table sorted by increasing number of crossings in Figure \ref{fig:knot_table}.
+Knot are composed of crossings and components. The crossings are the point where the embedding overlaps itself and the components are the parts of the embedding between the crossings. We will later number the components and crossings to perform computations on knots. It is important to note that cannonically the knots are classified in category representing the minimal number of crossing that can be obtained by a representation of a knot. You can find the beginning of the knot table sorted by increasing number of crossings in Figure \ref{fig:knot_table}.
 
 \begin{figure}[H]
   \centering
@@ -1165,7 +1165,7 @@ To be able to compute knot determinant, one must first number components and cro
   \label{fig:trefoil_number}
 \end{figure}
 
-One can then create a matrix $A$ with coefficient $a_{i}{j}$ defined as follows:\\
+One can then create a matrix $A$ with coefficient $a_{i,j}$ defined as follows:\\
 
 \begin{center}
   $a_{i,j} =
@@ -1246,8 +1246,8 @@ The last knot invariant that we will introduce in this paper is the Alexander po
 \begin{center}
   $a_{i,j} =
   \begin{cases}
-    t &\text{if component $i$ \textcolor{blue}{enters} \textcolor{red}{exists} under \textcolor{blue}{left} \textcolor{red}{right} handed crossing $j$}\\
-    -1 &\text{if component $i$ \textcolor{red}{exits} \textcolor{blue}{enters} under \textcolor{red}{left} \textcolor{blue}{right} handed crossing $j$}\\
+    t &\text{if component $i$ \textcolor{blue}{enters} \textcolor{red}{(exits)} under \textcolor{blue}{left} \textcolor{red}{(right)} handed crossing $j$}\\
+    -1 &\text{if component $i$ \textcolor{blue}{enters} \textcolor{red}{(exits)} under \textcolor{blue}{right} \textcolor{red}{(left)} handed crossing $j$}\\
     1-t &\text{if component $i$ is overcrossing at crossing $j$}\\
     0 &\text{otherwise}
   \end{cases}$
@@ -1323,7 +1323,7 @@ After normalization, we obtain the polynomial: $t - 1 + t^{-1}$. The polynomial 
 \label{tab:knot_alexander}
 \end{table}
 
-With the Alexander polynomial one can discrimainate any two knots with up to seven crossings. Though the Alexander polynomial can not discriminate any to knots as explained in the introduction. An interesting property of the Alexander polynomial is that $\Delta_k(-1) = det(K)$ (the knot determinant).
+With the Alexander polynomial one can discrimainate any two knots with up to seven crossings. Though the Alexander polynomial can not discriminate any two knots as explained in the introduction. An interesting property of the Alexander polynomial is that $\Delta_k(-1) = det(K)$ (the knot determinant).
 
 \newpage
 \thispagestyle{empty}
@@ -1389,8 +1389,7 @@ In \cite{guss_characterizing_2018}, Guss and Salakhutdinov relying on \cite{bian
 
 To study the difficulty of learning homologically complex data, they considered fully-connected ReLU neural networks of depth $d \in [1 ... 6]$ and width $h_l = \beta_0(X)$ when $1 \le l \le d$ and $h_l \in [1 ... 500]$ when $l = 0$. It sums up with a first layer of variable width (up to 500) and the other layers width being fixed at the number of connected components (0-homology) of $X$. These networks would then be trained using standard cross-entropy loss with Adam optimizer, a fixed learning rate of 0.01 and an increasing batch size schedule.\\
 
-They used datasets composed of two classes of 5000 points one of randomly distributed points the other one of mixtures of the uniform distribution on $\S^1$ and $\B^2$. They limited their study to $n=2$. They studied the output for datasets continuously ranging from $H(X) = \{\Z^1, 0\}$ to $H(X) = \{\Z^{30}, \Z^{30}\}$. They trained 100 of the previously described networks on each dataset and compiled the results in Figure \ref{fig:guss_results}.
-
+They used datasets composed of two classes of 5000 points one of randomly distributed points the other one of mixtures of the uniform distribution on $\S^1$ and $\B^2$. They limited their study to $n=2$. They studied the output for datasets continuously ranging from $H(X) = \{\Z^1, 0\}$ to $H(X) = \{\Z^{30}, \Z^{30}\}$. They trained 100 of the previously described networks on each dataset and compiled the results in Figure \ref{fig:guss_results}.\\
 
 In Figure \ref{fig:guss_results} we can see two distincts parts. The upper part refers to the characterization of $H_0(X)$. Each of the four plots is representing the probability of expressing $H_0(X)$ depending on $\B_0(X)$ and the number of hidden units on the fist layer of the network (the other layers having a number of hidden units fixed to $B_0(X)$). On these plots the number of hidden units ranges from $0$ to $14$ and $\B_0(X)$ from $3$ to $15$.\\
 
@@ -1436,7 +1435,7 @@ With all the previously introduced concepts we can now give a proper definition 
   The activation pattern $AP(F_A(x,W))$ of network with weights $W$, architecture $A$ and input $x$ is a string of form $\{0,1\}^{\text{number of neurons}}$ for ReLU networks and $\{-1,0,1\}^{\text{number of neurons}}$ for hard tanh networks coding the linear region of the activation function of every neuron.
 \end{definition}
 
-We can aswell define $T(F_A(x(t),W))$ the number of transition undergone by the network when $x$ sweept along $x(t)$.\\
+We can aswell define $T(F_A(x(t),W))$ the number of transition undergone by the network when $x$ sweeps along $x(t)$.\\
 
 In \cite{pascanu_number_2014}, Montufar et al. provide a bound on the number of transition by constructing a set of weights $W_0$ resulting in an exponential increase of the number of transition with the depth of the network i.e.\\
 
@@ -1487,13 +1486,13 @@ Therefore, the length of the trajectory grows exponentially with depth and hence
 
 \subsection{Studying trajectories from a knot theory perspective}
 
-In this section we will detail the work on trajectories inspired by the research detailed in \textbf{Section \ref{sec:using_trajectories}} where we study the trajectories previously introduces from a knot theory point of view.
+In this section we will detail the work on trajectories inspired by the research detailed in \textbf{Section \ref{sec:using_trajectories}} where we study the trajectories previously introduced from a knot theory point of view.
 
 \subsubsection{Methodology}
 
 For the purpose of studying trajectories as knot we limit the definition of trajectories to the case where the beginning point is the end point ($x_0 = x_1$ in \textbf{Definition \ref{def:trajectories}}). In that case the trajectory becomes an embedding of the circle. We also limit our study to embeddings of $S^1$ in $\R^n, n \ge 3$ to ensure the existence of the knot.\\ 
 
-Knots can exist in dimension higher than $3$ by simply living in a 3-dimensional hyperplane. We create trajectories corresponding to the first knots in increasing number of crossings namely: the unknot, the trefoil $3_1$ and the figure-eight knot $4_1$.\\
+Knots can exist in dimension higher than $3$ by simply living in a 3-dimensional hyperplane. We create trajectories corresponding to the first knots in increasing number of crossings, namely: the unknot, the trefoil $3_1$ and the figure-eight knot $4_1$.\\
 
 Computationnaly trajectories are arrays of points uniformly distributed along the studied embedding. They are obtained from a B-spline of hand-picked points for each different trajectory.\\
 
@@ -1511,7 +1510,7 @@ For some $t_0, t_1, ... , t_n$ there is up to a scaling factor a unique spline $
   \end{cases}$
 \end{center}
 
-Adding the constraint $\sum\limits_i B_{i,n}(x) = 1$ for all $x$ between the first and last knot, then we obtain unicity and $B_{i,n}(x)$ is called B-spline. Figuratively B-spline allow to create a smooth curve passing through a set of different points (knots). When some points of a B-spline repeats the smoothness is lost at those points. That last property will be important since embeddings of the circle admit the same first and last point and its B-spline representation the same first and last knot. Figure \ref{fig:knot_bspline} shows the B-spline for the trefoil and the figure-eight knot. 
+Adding the constraint $\sum\limits_i B_{i,n}(x) = 1$ for all $x$ between the first and last knot, then we obtain unicity and $B_{i,n}(x)$ is called B-spline. Figuratively B-spline allow to create a smooth curve passing through a set of different points (called knots). When some points of a B-spline repeats the smoothness is lost at those points. That last property will be important since embeddings of the circle admit the same first and last point and its B-spline representation the same first and last knot. Figure \ref{fig:knot_bspline} shows the B-spline for the trefoil and the figure-eight knot. 
 
 \begin{figure}[H]
   \begin{minipage}[c]{.5\linewidth}
@@ -1823,7 +1822,7 @@ Finally another problem with this experiment is the time required to train enoug
 
 \textit{Merci à ma famille et mes amis pour leur soutient sans faille pendant mes recherches}\\
 
-\begin{CJK}{UTF8}{min} 私の研究を通して絶え間ないサポートをしてくれた家族や友人に感謝します  \end{CJK} (Maybe better translation required)\\
+\begin{CJK}{UTF8}{min}  私の研究を通して絶え間ない支援をしてくれた家族や友人に心から感謝します \end{CJK}\\
 
 \newpage
 \thispagestyle{empty}

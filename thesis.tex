@@ -866,10 +866,10 @@ The lower level sets of the distance function are
   $L_\varepsilon = \lbrace x : d_S(x) \le \varepsilon \rbrace$
 \end{center}
 
-It is equivalent to writting:
+It is equivalent to writing:
 
 \begin{center}
-  $L_\varepsilon = \bigcup\limits_{x \in S} B(x,\varepsilon)$ 
+  $L_\varepsilon = \bigcup\limits_{x \in S} \B(x,\varepsilon)$ 
 \end{center}
 
 As $\varepsilon$ increases, $L_\varepsilon$ changes. Different topological features (represented by the homology groups and the betti numbers) will appear and disappear. Consider $\S^1$, at first when $\varepsilon < 1$, we have the betti numbers being $(0,1,0)$ and once $\varepsilon$ reaches 1, the betti numbers become $(1,0,0)$ (cf Figure \ref{fig:betti_s1}). 
@@ -917,7 +917,7 @@ Note that an infinite is defined on the right of the barcode and the top of the 
 
 with $\gamma$ covering the set of bijections between $D_1$ and $D_2$. The image behind it is to overlay the two diagrams and look at how to match the points as well as possible to minimize the distance between them.\\
 
-To compute the dimension of the structure persistent homology one uses $\Delta$-complexes by using an object called the $\check{C}$ech complex $C_\varepsilon$. It is defined as follows. All singletons are included in $C_\varepsilon$, there are $0$-dimensional simplices. All pairs of points $X_i, X_j$ such that $||X_i - X_j|| \le \varepsilon$ are included in $C_\varepsilon$, these are $1$-dimensional simplices. Each triplet $X_i, X_j, X_k$ such that $B(X_i, \varepsilon/2) \cap B(X_j, \varepsilon/2) \cap B(X_k, \varepsilon/2) \neq \emptyset$ is included, these are 2-dimensional simplices. And so on.\\ 
+To compute the dimension of the structure persistent homology one uses $\Delta$-complexes by using an object called the $\check{C}$ech complex $C_\varepsilon$. It is defined as follows. All singletons are included in $C_\varepsilon$, there are $0$-dimensional simplices. All pairs of points $X_i, X_j$ such that $||X_i - X_j|| \le \varepsilon$ are included in $C_\varepsilon$, these are $1$-dimensional simplices. Each triplet $X_i, X_j, X_k$ such that $\B(X_i, \varepsilon/2) \cap \B(X_j, \varepsilon/2) \cap \B(X_k, \varepsilon/2) \neq \emptyset$ is included, these are 2-dimensional simplices. And so on.\\ 
 
 A more computationally efficient way to compute complexes is called the Vectoris-Rips complex $V_\epsilon$ and is defined as follows. A simplex is included in $V_\epsilon$ if each pair of vertices is no more than $\varepsilon$ apart. It can be shown that the persistent homology defined by $V_\varepsilon$ approximates the persistent homology defined by $C_\varepsilon$ .
 
@@ -1668,7 +1668,7 @@ First we will detail the algorithm to generate our datasets consisting of balls 
   $S = \{(\mathfrak{S}(c_j, [r_{1_j}, r_{2_j}]), d_j, o_i)\}_{1 \le j \le N_S}$ 
  \end{center}
 
-the set of thick sphere and P the number of points in each class. The orientation of balls and spheres is an array of that indicates the index of the elements of the cannonical basis constituing the hyperplane of $\R^n$ in which the feature does not live. For instance in $\R^3$ writting the cannonical basis $\{(1,0,0), (0,1,0), (0,0,1)\}$, $(\B(0,1),2,[1])$ is a 2-dimensional ball centered at the point $(0,0,0)$ of radius $1$ and living in the plane spanned by $\{(0,1,0),(0,0,1)\}$. In the python implementation some of the parameters might be decided randomly or with the help of other parameters.\\
+the set of thick sphere and P the number of points in each class. The orientation of balls and spheres is an array of that indicates the index of the elements of the cannonical basis constituing the hyperplane of $\R^n$ in which the feature does not live. For instance in $\R^3$ writing the cannonical basis $\{(1,0,0), (0,1,0), (0,0,1)\}$, $(\B(0,1),2,[1])$ is a 2-dimensional ball centered at the point $(0,0,0)$ of radius $1$ and living in the plane spanned by $\{(0,1,0),(0,0,1)\}$. In the python implementation some of the parameters might be decided randomly or with the help of other parameters.\\
 
 In the algorithm $z$ will refer to a random number between 0 and 1.
 

@@ -4,6 +4,7 @@
 \usepackage{multicol}
 \usepackage{multirow}
 \usepackage{tabularx}
+\usepackage{hyperref}
 
 %dummy command to be able to use macros
 \newcommand{\I}{\mathcal{I}}
@@ -37,7 +38,7 @@ Title          & \multicolumn{3}{c|}{Neural network expressiveness} \\ \hline
 
 \begin{multicols}{2}
   \section{Introduction}
-With the current use of neural networks to solve many problems ranging from pattern recognition to medical diagnosis, the necessity to get an understanding on the theory behind these algorithms grew. Neural network expressiveness is the field that aims to provide tools to better understand the efficiency of the neural networks. It aims to use topological tools to categorize the different of classes that can be approximated by a certain neural network architecture. In addition to that we used topological data analysis, a group of computing tools obtained from classical topology, to try to give a quantitative understanding view on networks expressiveness using topological data analysis and especially Betti numbers as the measure to do so.
+With the current use of neural networks to solve many problems ranging from pattern recognition to medical diagnosis, the necessity to get an understanding on the theory behind these algorithms grew. Neural network expressiveness is the field that aims to provide tools to better understand the efficiency of the neural networks. It aims to use topological tools to categorize the different classes that can be approximated by a certain neural network architecture. In addition to that we used topological data analysis, a group of computing tools obtained from classical topology, to try to give a quantitative understanding view on networks expressiveness using topological data analysis and especially Betti numbers as the measure to do so.
 
 \section{Mathematical Definitions}
 
@@ -47,7 +48,7 @@ A simple example of homology are the balls and spheres. A topological ball in $X
 
 The computational analog of homology called persistent homology aims to compute the homology of discrete datasets. Persistent homology relies on the computation of topological feature using the computation of structures called $\Delta$-complexes in the dataset. These are the smallest polygons containing $n+1$ points not lying in an hyperplane of dimension less than $n$. An example of it is the pyramid when $n = 3$.\\
 
-The last concept we will need is the mathematical knot. A knot is an embedding of a circle in a $3$-dimensional euclidian space $\R^3$. One of the critical question of knot theory is to universally discriminate knots. Though this question has no aswer today, various discriminant have been created by mathematicians, the simplest one being the knot determinant. It is an integer that can be computed from the components and crossings of a knot and is equal for two representations of the same knot.
+The last concept we will need is the mathematical knot. A knot is an embedding of a circle in a $3$-dimensional euclidian space $\R^3$. One of the critical question of knot theory is to universally discriminate knots. Though this question has no aswer today, various discriminants have been created by mathematicians, the simplest one being the knot determinant. It is an integer that can be computed from the components and crossings of a knot and is equal for two representations of the same knot.
 
 \section{Experiments}
 
@@ -57,7 +58,7 @@ The second one aims to give a quantitative evaluation of the capacity of neural 
 
 \section{Results}
 
-The results of the first experiment is that all trajectoris will, with enough layers, end up as entangled unknots. The number of experiments ran is greatly insufficient to come to any general conclusion and this could lay ground to larger experiments to find the specificity of various neural networks architecture. \\
+The results of the first experiment is that all trajectories will, with enough layers, end up as entangled unknots. The number of experiments ran is greatly insufficient to come to any general conclusion and this could lay ground to larger experiments to find the specificity of various neural networks architecture. \\
 
 The second experiment saw various computational problems and would need more data to be relevant. A general tendency is as expected that deeper and wider networks have greater chances to properly characterize a higher-homology dataset. 
 

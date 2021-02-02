@@ -51,7 +51,7 @@
 
    \vspace{20mm}
    {\begin{center} \LARGE \textbf{Neural Network Topological Expressiveness} \end{center}}
-   {\begin{center} \Large \textbf{Understanding neural networks behavior problem-independently} \end{center}}
+   {\begin{center} \Large \textbf{Understanding neural networks behaviour problem independently} \end{center}}
    \vspace{40mm}
    \begin{center}
    {\Large February 2021}
@@ -126,7 +126,7 @@ Let $I_n$ denote the $n$-dimensional unit cube $[0,1]^n$ and $\F(I_n,\R)$ be the
   $S_f = \{G_N(x) \in \F(I_n,\R) \mid G(x) = \sum\limits_{i=1}^{N} \alpha_i f(y_j^T x + \theta_j )\}$, $N \in \N $
 \end{center}
 
-depending on the choice of $f \in \F(\R,\R)$. In the previous equation $y_j \in \R^n$ and $\alpha_j, \theta \in \R$, $y^T$ is the transpose of y and $y^Tx$ is the inner product of $y$ and $x$.\\
+Depending on the choice of $f \in \F(\R,\R)$. In the previous equation $y_j \in \R^n$ and $\alpha_j, \theta \in \R$, $y^T$ is the transpose of y and $y^Tx$ is the inner product of $y$ and $x$.\\
 
 The study of neural network expressiveness consists of the problem described above when $f$ is a function used as an activation function for neural network. The study of density can be on the whole set $\F(I_n,\R)$ or on subsets of it such as $\mathcal{C}(I_n,\R)$ the set of continuous functions from $I_n$ to $\R$.\\
 
@@ -138,7 +138,7 @@ In particular if $S_f$ is dense in a subset $A \subseteq \F(I_n, \R)$ we will sa
 
 with $\parallel . \parallel$ the canonical norm on $\F(I_n, \R)$\\
 
-The study of that limit and especially of its asympatotic approximation gives an idea of the efficiency of the approximator, i.e. the amount of nodes to add to the network to improve the approximation.\\
+The study of that limit and especially of its asymptotic approximation gives an idea of the efficiency of the approximator, i.e. the amount of nodes to add to the network to improve the approximation.\\
 
 \begin{figure}[H]
   
@@ -186,7 +186,7 @@ The study of that limit and especially of its asympatotic approximation gives an
 
 \subsection{Universal Approximator}
 
-In this section we will study the different subsets on which the logistic and ReLU functions act as universal approximators.\\ 
+In this section we will study the different subsets on which the logistic and ReLU functions act as universal approximator.\\ 
 
 \subsubsection{Sigmoidal functions}
 
@@ -220,7 +220,7 @@ We denote $M(I_n)$ the space of signed regular Borel measures on $I_n$\\
 \end{definition}
 
 \begin{theorem}
-  Let $\sigma$ be a contininuous discriminatory function. Then finite sums of the form\\\begin{center}
+  Let $\sigma$ be a continuous discriminatory function. Then finite sums of the form\\\begin{center}
     $G(x) = \sum\limits_{i=1}^N \alpha_i \sigma(y^Tx + \theta_i)$
   \end{center}
   are dense in $C(I_n, \R)$
@@ -283,7 +283,7 @@ Fix $y$, we write
 \begin{center}
   $F(h) = \int_{I_n}h(y^Tx)d\mu(x)$
 \end{center}
-Note that $F$ is a bounded function on $L^\infty(\R)$ since $\mu$ is a signed mesure. By chosing  $h$ as the indicator function on $[\theta, \infty[$, we have:
+Note that $F$ is a bounded function on $L^\infty(\R)$ since $\mu$ is a signed mesure. By choosing  $h$ as the indicator function on $[\theta, \infty[$, we have:
 \begin{center}
   $F(h) = \int_{I_n} h(y^Tx) d\mu(x) = \mu(\Pi_{y,-\theta}) + \mu(H_{y,-\theta}) = 0$
 \end{center}
@@ -292,12 +292,12 @@ In particular it is true for the bounded functions $s(u) = sin(m.u)$ and $c(u) =
 \begin{center}
   $F(s+ic) = \int_{I_n} \cos(m^Tx) + i \sin(m^Tx) d\mu(x) = \int_{I_n} \exp(im^Tx)d\mu(x) = 0$
 \end{center}
-for all $m$. Therefore the fourier transform of $\mu$ is 0 and $\mu$ must be 0. Hence $\sigma$ is discriminatory.
+for all $m$. Therefore the Fourier transform of $\mu$ is 0 and $\mu$ must be 0. Hence $\sigma$ is discriminatory.
   \end{proof}\\
 
-  This proves that any function of $C(I_n, \R)$ can be approximated by a single-layer network with sigmoidal functions as activation function.\\
+  This proves that any function of $C(I_n, \R)$ can be approximated by a single layer network with sigmoidal functions as activation function.\\
 
-  In 1991, Hornik extended in \cite{hornik_approximation_1991} Cybenko's theorem giving the proof for bounded non-constant functions of $F(I_n,\R)$. The proof is very similar to the original one.\\
+  In 1991, Hornik extended in \cite{hornik_approximation_1991} Cybenko's theorem giving the proof for bounded non constant functions of $F(I_n,\R)$. The proof is very similar to the original one.\\
 
 \subsubsection{ReLU functions}
 
@@ -330,9 +330,9 @@ In 2016 Arora et al. \cite{arora_understanding_2018} showed a version of the uni
     $f_n(x) = (x - \frac{k}{n})f(\frac{k}{n}) + (1 - x + \frac{k}{n})f(\frac{k+1}{n})$ with $\frac{k}{n} \le x < \frac{k+1}{n}, n \ge 1$ 
   \end{center}
 
-  $f_n \xrightarrow[n \to \infty]{} f$, and $\forall n, f_n$ is a PWL continous function. Therefore the continuous PWL functions are dense in $L^p(\R^n)$.
+  $f_n \xrightarrow[n \to \infty]{} f$, and $\forall n, f_n$ is a PWL continuous function. Therefore the continuous PWL functions are dense in $L^p(\R^n)$.
   \SV
-  Since any PWL function $\R^n \to \R$ is representable by a ReLU DNN, unniversal approximation theorem follows from the fact that the family of continuous PWL functions is dense in any $L^p(\R^n)$ space for $1 \le p \le \infty$. 
+  Since any PWL function $\R^n \to \R$ is representable by a ReLU DNN, universal approximation theorem follows from the fact that the family of continuous PWL functions is dense in any $L^p(\R^n)$ space for $1 \le p \le \infty$. 
   
 \end{proof}\\
 \SV
@@ -350,13 +350,13 @@ In 2018, Hannin \& Selke \cite{hanin_approximating_2018} showed that the minimal
 \subsection{Homology}
 \label{sec:homology}
 
-The study of homology is part of the field of algebraic topology. We will first introduce the concept of homology, then take a look at the theoretical concept behind it by introducing $\Delta$-complexes: a primitive topological structure that allows the study of homology. Then with the introduction of simplicial homology we will complete the presentation of the fundamental objects used in our research in the study of homology. We will then reconsider these tools in the context of our research. This part heavily relies on the book \textit{Algebraic Topolgy} by A. Hatcher \cite{hatcher_algebraic_2002} and the class given by P. Albin at University of Illinois \cite{albin_1_2018} with the same book as class material. 
+The study of homology is part of the field of algebraic topology. We will first introduce the concept of homology, then take a look at the theoretical concept behind it by introducing $\Delta$-complexes: a primitive topological structure that allows the study of homology. Then with the introduction of simplicial homology we will complete the presentation of the fundamental objects used in our research in the study of homology. We will then reconsider these tools in the context of our research. This part heavily relies on the book \textit{Algebraic Topology} by A. Hatcher \cite{hatcher_algebraic_2002} and the class given by P. Albin at University of Illinois \cite{albin_1_2018} with the same book as class material. 
 
 \subsubsection{The idea of homology}
 
-In algebraic topology, the most fundamental object to study is the homotopy, that roughly studies "paths". This study leads to the definition of the fundamental group $\pi_1(X)$ that gives information on the topological stucture of a space $X$ for low-dimensional space. However the fundamental group $\pi_1(X)$ can not for instance distinguish the different spheres $\mathcal{S}^n, n\ge 2$. A workaround for that problem is to generalize the notion of homotopy to higher dimensions with different groups $\pi_n(X)$ generalizing the concept of homotopy in higher dimension. \\
+In algebraic topology, the most fundamental object to study is the homotopy, that roughly studies "paths". This study leads to the definition of the fundamental group $\pi_1(X)$ that gives information on the topological structure of a space $X$ for low dimensional space. However the fundamental group $\pi_1(X)$ can not for instance distinguish the different spheres $\mathcal{S}^n, n\ge 2$. A workaround for that problem is to generalize the notion of homotopy to higher dimensions with different groups $\pi_n(X)$ generalizing the concept of homotopy in higher dimension. \\
 
-However the homotopy groups suffers a serious drawback in their difficult computationality for high dimensions. Even for simple spaces like spheres, the calculation of $\pi_i(\mathcal{S}^n)$ turns out to be very difficult for $i > n$. That is why homology exists as a computable alternative homotopy.\\
+However the homotopy groups suffers a serious drawback in their difficult computationally for high dimensions. Even for simple spaces like spheres, the calculation of $\pi_i(\mathcal{S}^n)$ turns out to be very difficult for $i > n$. That is why homology exists as a computable alternative homotopy.\\
 
 \begin{center}
   \begin{tikzpicture}[node distance={20mm}] 
@@ -378,7 +378,7 @@ However the homotopy groups suffers a serious drawback in their difficult comput
 \end{tikzpicture} 
 \end{center}
 
-Consider the space $X_1$ in the figure drawn above. We can see two points $x$ and $y$ as well as four edges $a$, $b$, $c$ and $d$. Consider the loops formed by travelling along the edges, for instance the path $ab^{-1}$ is a loop with $x$ as the basepoint. Something to consider is that the loop $b^{-1}a$ is basically the same loop but starting from a different basepoint, $y$ in that case. By abelianizing, we can consider cycles instead of loops without any basepoint.\\
+Consider the space $X_1$ in the figure drawn above. We can see two points $x$ and $y$ as well as four edges $a$, $b$, $c$ and $d$. Consider the loops formed by travelling along the edges, for instance the path $ab^{-1}$ is a loop with $x$ as the base point. Something to consider is that the loop $b^{-1}a$ is basically the same loop but starting from a different base point, $y$ in that case. By abelianizing, we can consider cycles instead of loops without any base point.\\
 
 The abelian groups having only one operation, we will then switch to additive notations to remain in accordance with Hatcher's notations. With that new notation we can write equalities such as $(a-c) + (b-d) = (a-d) + (b-c)$. This is justified by the fact that from an algebraic point of view, there is no difference between these two cycles.\\
 
@@ -442,7 +442,7 @@ The pattern we can see appear with these examples is rather clear. The n-cell co
 
 The most important theory of algebraic topology is called singular homology, since it is technically complicated we will use a simpler version of it called simplicial homology. The natural definition spaces of simplicial homology is called $\Delta$-complexes that we will introduce in this part.\\
 
-The projective plane, the klein bottle and the torus can be obtained from squares by identifying edges and giving them orientation as draw below.
+The projective plane, the Klein bottle and the torus can be obtained from squares by identifying edges and giving them orientation as draw below.
 
 \tcbset{top=0pt,right=10pt,left=10pt,bottom=0pt,nobeforeafter, colframe=blue!75!black,colback=white,fonttitle=\bfseries,center title}
 \begin{center}
@@ -523,7 +523,7 @@ The projective plane, the klein bottle and the torus can be obtained from square
 }
 \end{center}
 
-In fact any closed surface can be constructed this way, i.e. by cutting a polygon along its diagonals and identifying pairs of edges. The idea between $\Delta$-complexes is to generalize this idea to any dimension. The n-dimensional analog of the triangle is called the n-simplex.This is the smallest convex set in a Euclidean space $\R^m$ containing $n + 1$ points $v_0 , ... , v_n$ that do not lie in a hyperplane of dimension less than $n$. The points $v_i$ are the vertices of the simplex and the simplex is denoted $[v_0, ..., v_n]$. The standard n-simplex is:\\
+In fact any closed surface can be constructed this way, i.e. by cutting a polygon along its diagonals and identifying pairs of edges. The idea between $\Delta$-complexes is to generalize this idea to any dimension. The n-dimensional analogue of the triangle is called the n-simplex.This is the smallest convex set in a Euclidean space $\R^m$ containing $n + 1$ points $v_0 , ... , v_n$ that do not lie in a hyperplane of dimension less than $n$. The points $v_i$ are the vertices of the simplex and the simplex is denoted $[v_0, ..., v_n]$. The standard n-simplex is:\\
 
 \begin{center}
   $\Delta^n = \{ (t_0,...t_n) \in \R^{n+1} \mid \sum_i t_i  = 1$ and $t_i \ge 0$ for all $i \}$
@@ -533,7 +533,7 @@ Its vertices are the unit vectors along the coordinate axes.\\
 
 It is important to keep track of an ordering for the vertices and an n-simplex will always be considered with an ordering for its vertices. That will allow us to give an orientation for its edges $[v_iv_j]$ with respect to the ordering of the indices. It also determines a canonical linear homeomorphism from the standard n-simplex $\Delta^n$ into any other n-simplex preserving the order of the vertices: $(t_0, ..., t_n) \mapsto \sum_i t_i v_i$. The coefficients are the barycentric coordinates of the points $\sum_i t_i v_i$ in $[v_0, ..., v_n]$.\\
 
-If we delete one of the vertices of an n-simplex $[v_0, ..., v_n]$, the remaining n vertices span an (n-1)-simplex, called face of $[v_0, ..., v_n]$ that will conventionnaly keep the same orientation as in $[v_0, ..., v_n]$. The union of all the face of $\Delta^n$ is the boundary of $\Delta^n$, noted $\delta \Delta^n$. The open simplex $\mathring{\Delta}^n$ is $\Delta^n - \delta \Delta^n$, is the interior of $\Delta^n$.\\
+If we delete one of the vertices of an n-simplex $[v_0, ..., v_n]$, the remaining n vertices span an (n-1)-simplex, called face of $[v_0, ..., v_n]$ that will conventionally keep the same orientation as in $[v_0, ..., v_n]$. The union of all the face of $\Delta^n$ is the boundary of $\Delta^n$, noted $\delta \Delta^n$. The open simplex $\mathring{\Delta}^n$ is $\Delta^n - \delta \Delta^n$, is the interior of $\Delta^n$.\\
 
 A $\Delta$-complex on a topological space $X$ is a collection of maps $\sigma_\alpha : \Delta^n \to X$  with the following properties:\\
 
@@ -543,7 +543,7 @@ A $\Delta$-complex on a topological space $X$ is a collection of maps $\sigma_\a
   \item A set $A \subset X$ is open if and only if $\sigma_\alpha^{-1}(A)$ is open in $\Delta^n$ for each $\sigma_\alpha$.
 \end{enumerate}
 
-The earlier decompositions of the torus, projective plane, and Klein bottle into two triangles, three edges, and one or two vertices allow well-definess of associated $\Delta$-complex structures with a total of six $\sigma_\alpha$'s for the torus and Klein bottle and seven for the projective plane. The orientation of edges are compatible with an ordering of the vertices (example below). This ordering determines the maps $\sigma_\alpha$.
+The earlier decompositions of the torus, projective plane, and Klein bottle into two triangles, three edges, and one or two vertices allow well-definedess of associated $\Delta$-complex structures with a total of six $\sigma_\alpha$'s for the torus and Klein bottle and seven for the projective plane. The orientation of edges are compatible with an ordering of the vertices (example below). This ordering determines the maps $\sigma_\alpha$.
 
 \begin{figure}[H]
 \begin{center}
@@ -651,7 +651,7 @@ We define a boundary homomorphism for a general $\Delta$-complex $X$, $\delta_n 
 
 \end{center}
 
-The image set of $\delta_n$ is $\Delta_{n-1} (X)$ since each restriction $\sigma_\alpha \mid [v_0 , ... , \hat{v_i} , ... , v_n]$ is the caracteristic map of an $(n-1)$-simplex of $X$.\\
+The image set of $\delta_n$ is $\Delta_{n-1} (X)$ since each restriction $\sigma_\alpha \mid [v_0 , ... , \hat{v_i} , ... , v_n]$ is the characteristic map of an $(n-1)$-simplex of $X$.\\
 
 \begin{lemma}
 
@@ -704,9 +704,9 @@ Therefore:
 A $\Delta$-complex structure can be obtained on $\S^n$ by taking two copies of $\Delta^n$ and identifying boundaries using the identity map. Using previous notations, we have Ker $\delta_n$ an infinite cycle generated by $U-L$. Therefore $H_n^\Delta(\S^n) \approx \Z$.
 \end{proof}\\
 
-The simplicial homology is defined for simplical complexes. These are the $\Delta$-complexed whose simplices are uniquely determined by their vertices. Each $n$-simplex has $n+1$ distinct vertices and no other $n$-simplex has the same set of vertices. A simplicial complex can be described as a set $X_0$ of vertices and sets $X_n$ of $n$-simplices which are $(n+1)$-elements subsets of $X_0$. It is required that each $(k+1)$-elements subset of the vertices of an $n$-simplex in $X_n$ is a $k$-simplex in $X_k$.\\
+The simplicial homology is defined for simplicial complexes. These are the $\Delta$-complexed whose simplices are uniquely determined by their vertices. Each $n$-simplex has $n+1$ distinct vertices and no other $n$-simplex has the same set of vertices. A simplicial complex can be described as a set $X_0$ of vertices and sets $X_n$ of $n$-simplices which are $(n+1)$-elements subsets of $X_0$. It is required that each $(k+1)$-elements subset of the vertices of an $n$-simplex in $X_n$ is a $k$-simplex in $X_k$.\\
 
-Compared with $\Delta$-complexes, simplicial complexes require more computation. For example a simplicial complex structure for the torus would require 14 triangles, 21 edges and 7 vertices. It can be shown that any $\Delta$-complex can be subdivided in a simplical complex.\\
+Compared with $\Delta$-complexes, simplicial complexes require more computation. For example a simplicial complex structure for the torus would require 14 triangles, 21 edges and 7 vertices. It can be shown that any $\Delta$-complex can be subdivided in a simplicial complex.\\
 
 
 It is worth mentioning that simplicial homology has flaws such as the one mentioned before. That is why in the current theory of homology, simplicial homology has been replaced with a more complete theory of homologies named singular homology. The improvements of simplicial homology brought by singular are not useful for our research, that is why we will not be discussing this theory in this paper. The theory is however thoroughly explained in \cite{hatcher_algebraic_2002}.
@@ -714,7 +714,7 @@ It is worth mentioning that simplicial homology has flaws such as the one mentio
 \subsubsection{Homology in our research}
 \label{sec:homology_research}
 
-Our research is concerned with the capacity of neural networks to properly express, after training, different difficulty of problems depending on their width. There would be different approaches to chosing a way to measure this difficulty that would relate to different applied problems. The first approach would be to look at the dimension of the problem.\\
+Our research is concerned with the capacity of neural networks to properly express, after training, different difficulty of problems depending on their width. There would be different approaches to choosing a way to measure this difficulty that would relate to different applied problems. The first approach would be to look at the dimension of the problem.\\
 
 \begin{figure}[h]
   \centering
@@ -723,15 +723,15 @@ Our research is concerned with the capacity of neural networks to properly expre
   \label{fig:mnist}
 \end{figure}
 
-For instance the MNIST problem, aims to classify 28x28 pixels images of handwritten digits in 10 classes representing the 10 digits (see Figure \ref{fig:mnist}). For instance in 2003 in \cite{simard_best_2003}, a team of researcher used a simple neural network of 2 layers with respectively 100 and 10 hidden units to classify the MNIST dataset (they used convolutional layers before inputing data in their network making the input dimension even greater) to obtain an accuracy of 98.81\%. One could expect that solving the same problem of image classification for instance and using different image size and depth of networks would be an interesting way to study the problem of expressiveness.\\
+For instance the MNIST problem, aims to classify 28x28 pixels images of handwritten digits in 10 classes representing the 10 digits (see Figure \ref{fig:mnist}). For instance in 2003 in \cite{simard_best_2003}, a team of researcher used a simple neural network of 2 layers with respectively 100 and 10 hidden units to classify the MNIST dataset (they used convolutional layers before inputting data in their network making the input dimension even greater) to obtain an accuracy of 98.81\%. One could expect that solving the same problem of image classification for instance and using different image size and depth of networks would be an interesting way to study the problem of expressiveness.\\
 
-However two major problems occur in that case. First how to choose the classification problem with the certainty that the problem itself is not going to be a problem simpler than it looks? This relates to an hypothesis called the manifold hypothesis. The manifold hypothesis holds roughly as follows: "real-world high-dimensional data lie on low-dimensional manifolds embedded within the high-dimensional space". Meaning that complex data that needs a lot of parameters to be perfectly described are caracterized by few simple parameters up to continuous deformations as defined by topology. Considering this hypothesis that has not been disproved, a certain image recognition problem such as MNIST could be relying on the separation of a space of smaller dimension that the 784 dimensions space that you would expect from 28x28 pixels images.\\
+However two major problems occur in that case. First how to choose the classification problem with the certainty that the problem itself is not going to be a problem simpler than it looks? This relates to an hypothesis called the manifold hypothesis. The manifold hypothesis holds roughly as follows: "real world high dimensional data lie on low dimensional manifolds embedded within the high dimensional space". Meaning that complex data that needs a lot of parameters to be perfectly described are characterized by few simple parameters up to continuous deformations as defined by topology. Considering this hypothesis that has not been disproved, a certain image recognition problem such as MNIST could be relying on the separation of a space of smaller dimension that the 784 dimensions space that you would expect from 28x28 pixels images.\\
 
 The second problem is the problem of thresholding for accuracy since it is almost impossible to reach 100\%. One would have to chose a value over which one considers the problem as correctly classified and below which it is considered not classified. That choice would be rather arbitrary and it would be hard to evaluate the value of the results as far as they might change radically with a slight change in the choice of the threshold.\\
 
-This point is non-specific to the choice of accuracy as a measure since in any case the training of a neural network is a process with a random component involved and independently of the measure choice, the problem of training artifacts and imprecions might arise. Therefore one should try to chose a measure that will reduce as much as possible this incontrollable component in the research.\\
+This point is non-specific to the choice of accuracy as a measure since in any case the training of a neural network is a process with a random component involved and independently of the measure choice, the problem of training artefacts and imprecisions might arise. Therefore one should try to chose a measure that will reduce as much as possible this uncontrollable component in the research.\\
 
-For that purpose, we have chosen to use homology of the data as our measure. Using homology garantees an independence from the problem chosen since homologies can take different forms due to its topological nature. Moreover if the manifold hypothesis happends to be true, the study of homology in rather small dimension and how neural networks of different depth perform on it might have applications even in high dimension problems. Unlike accuracy the perfect classification in terms of homology is something reachable since homology is studied without regard to continuous deformations ($\approx$ topologically), errors and imprecision will mostly be ignored.\\
+For that purpose, we have chosen to use homology of the data as our measure. Using homology guarantees an independence from the problem chosen since homologies can take different forms due to its topological nature. Moreover if the manifold hypothesis happens to be true, the study of homology in rather small dimension and how neural networks of different depth perform on it might have applications even in high dimension problems. Unlike accuracy the perfect classification in terms of homology is something reachable since homology is studied without regard to continuous deformations ($\approx$ topologically), errors and imprecision will mostly be ignored.\\
 
 \subsection{Topological Data Analysis}
 
@@ -739,7 +739,7 @@ Topological Data Analysis, also called TDA, is an approach to the analysis of da
 
 \subsubsection{Introduction to TDA method's}
 
-Topological Data Analysis definition is somewhat vague and if it is very clear that persistent homology belong to this field, the exact set of methods, theories and results that belongs to this field is quite imprecise. According to this imprecision we chose to give the following definition to TDA: It's a "large class of data analysis method that uses the notion of shape and connectivity" \cite{wasserman_topological_2016}. In his paper Wasserman details different approaches to this question of shape and conenctivity study starting with density clusters that we will only briefly cover since these methods are of no use for the purpose of our research. We will then in this section present the ideas and tools behind the study of low-dimension support for high dimension sets and their study with TDA's tools. That second part is here in support of the manifold hypothesis discussed briefly in \textbf{Section \ref{sec:homology_research}}.
+Topological Data Analysis definition is somewhat vague and if it is very clear that persistent homology belong to this field, the exact set of methods, theories and results that belongs to this field is quite imprecise. According to this imprecision we chose to give the following definition to TDA: It's a "large class of data analysis method that uses the notion of shape and connectivity" \cite{wasserman_topological_2016}. In his paper Wasserman details different approaches to this question of shape and connectivity study starting with density clusters that we will only briefly cover since these methods are of no use for the purpose of our research. We will then in this section present the ideas and tools behind the study of low dimension support for high dimension sets and their study with TDA's tools. That second part is here in support of the manifold hypothesis discussed briefly in \textbf{Section \ref{sec:homology_research}}.
 
 \paragraph{Density Clustering}
 
@@ -772,7 +772,7 @@ For $t \ge 0$ we define:
 
   The idea of density trees is to create a concept to study level set clustering for all $t$. That concept will give us both a representation of the structure of the data as well as a way to compare its topological similarity with another set.\\
 
-  The set of all density clusters $\mathcal{C}$ has a tree structure, indeed if $A,B \in \mathcal{C}$ then either $A \subset B$ or $B \subset A$ or $A \cap B = \emptyset$. The tree shows the number of level sets at some level $t$. The number of branches of the tree correponds to the number of connected components. Two density trees have the same "shape" if their tree structure is the same. Given a tree $T_p$ the distance on the tree is defined as: 
+  The set of all density clusters $\mathcal{C}$ has a tree structure, indeed if $A,B \in \mathcal{C}$ then either $A \subset B$ or $B \subset A$ or $A \cap B = \emptyset$. The tree shows the number of level sets at some level $t$. The number of branches of the tree corresponds to the number of connected components. Two density trees have the same "shape" if their tree structure is the same. Given a tree $T_p$ the distance on the tree is defined as: 
 
   \begin{center}
     $d_{T_p}(x,y) = |p(x) + p(y) - 2m_p(x,y)|$
@@ -805,7 +805,7 @@ The point of study of low dimensional subset relates to the manifold hypothesis 
   \begin{figure}[p]
     \centering
   \includegraphics[height=0.4\textheight]{swiss_roll.png}
-  \caption{A plot of the swiss roll dataset. We have $d=3$ but the support of the data $S$ is of dimension $r=2$}
+  \caption{A plot of the Swiss roll dataset. We have $d=3$ but the support of the data $S$ is of dimension $r=2$}
   \label{fig:swiss_roll}
 \end{figure}
   
@@ -830,7 +830,7 @@ where
   $A \oplus \varepsilon = \bigcup\limits_{x \in A} \B(x,\varepsilon)$ 
 \end{center}
 
-with $\B(x, \varepsilon)$ the ball of radius $\varepsilon$ centered on $x$. Assume $S$ to be $r$-dimensional and $P$ to have its mass spread all over $S$. Formally: $\exists c > 0 \mid \forall x \in S, \varepsilon > 0, P(B(x, \varepsilon)) \ge c\varepsilon^r$ and the number of balls of size $\varepsilon$ required to cover $S$ is $C(\frac{1}{\varepsilon})^r$. Then:\\
+with $\B(x, \varepsilon)$ the ball of radius $\varepsilon$ centred on $x$. Assume $S$ to be $r$-dimensional and $P$ to have its mass spread all over $S$. Formally: $\exists c > 0 \mid \forall x \in S, \varepsilon > 0, P(B(x, \varepsilon)) \ge c\varepsilon^r$ and the number of balls of size $\varepsilon$ required to cover $S$ is $C(\frac{1}{\varepsilon})^r$. Then:\\
 
   $P(H(\widehat{S},S) > 2\varepsilon)$\\
   $= P($there is no ball in $S \oplus \varepsilon$ with no sample point inside)\\
@@ -853,7 +853,7 @@ has the homology of $S$ with high probability as long as $S$ has a positive reac
 
 \subsubsection{Persistent homology}
 
-Persistent homology is the computationable side of homology theory. Persistent homology is the name given to an algorithm aiming to compute the topological features of data. We have discussed in detail homology from a mathematical point of view in \textbf{Section \ref{sec:homology}} and have shown that for $n \ge 2$, an $n$-dimensional sphere has for homology group: $H_n^\Delta(\S^n) \approx \Z$. To simplify vocabulary and notation we will be using betti numbers. Betti numbers of an $n$-dimensional topological space $X$ counts the ranks of the groups each $(H_k^\Delta(X))_{0 \le k \le n}$ is topologically equivalent to. In the case of the torus $T$, the betti number are $(1,2,1,0)$. Recalling the formula to compute $H_k^\Delta(X) = \frac{\text{Ker} \delta_n}{\text{Im} \delta_{n+1}}$, since $C_{n+1} = \emptyset$, $\delta_{n+1} = 0$ and hence any value $(H_k^\Delta(X))_{k > n} = 0$. Therefore, it is conventionally admitted not to write betti numbers above that value.\\
+Persistent homology is the computational side of homology theory. Persistent homology is the name given to an algorithm aiming to compute the topological features of data. We have discussed in detail homology from a mathematical point of view in \textbf{Section \ref{sec:homology}} and have shown that for $n \ge 2$, an $n$-dimensional sphere has for homology group: $H_n^\Delta(\S^n) \approx \Z$. To simplify vocabulary and notation we will be using betti numbers. Betti numbers of an $n$-dimensional topological space $X$ counts the ranks of the groups each $(H_k^\Delta(X))_{0 \le k \le n}$ is topologically equivalent to. In the case of the torus $T$, the betti number are $(1,2,1,0)$. Recalling the formula to compute $H_k^\Delta(X) = \frac{\text{Ker} \delta_n}{\text{Im} \delta_{n+1}}$, since $C_{n+1} = \emptyset$, $\delta_{n+1} = 0$ and hence any value $(H_k^\Delta(X))_{k > n} = 0$. Therefore, it is conventionally admitted not to write betti numbers above that value.\\
 
 To properly define persistent homology one must first define the distance function between a set $S$ and a point $x$. It is written as:
 \begin{center}
@@ -893,7 +893,7 @@ As $\varepsilon$ increases, $L_\varepsilon$ changes. Different topological featu
   \label{fig:betti_s1}
 \end{figure}
 
-Considering the evolution of $L_\varepsilon$, one can draw a persistence diagram (cf Figure \ref{fig:persistence_diagram}) and a barcode diagram (cf Figure \ref{fig:persistence_barcode}) that are equivalent. The barcode diagram represents the time of birth and death of each topological feature with a bar for each persistent generator. You will note that the full circle obtained from the merge of all balls around each point is considered to be the obtained from one of the original generator hence its big persistence. The persistence diagram represents with a point the birth and death of each topological feature, considering the symetry of our figure, there are 9 points on coordinate $\approx(0,0.1)$.\\ 
+Considering the evolution of $L_\varepsilon$, one can draw a persistence diagram (cf Figure \ref{fig:persistence_diagram}) and a bar code diagram (cf Figure \ref{fig:persistence_barcode}) that are equivalent. The bar code diagram represents the time of birth and death of each topological feature with a bar for each persistent generator. You will note that the full circle obtained from the merge of all balls around each point is considered to be the obtained from one of the original generator hence its big persistence. The persistence diagram represents with a point the birth and death of each topological feature, considering the symmetry of our figure, there are 9 points on coordinate $\approx(0,0.1)$.\\ 
 
 \begin{figure}[p]
              \centering
@@ -905,11 +905,11 @@ Considering the evolution of $L_\varepsilon$, one can draw a persistence diagram
 \begin{figure}[p]
              \centering
             \includegraphics[width=.45\textheight]{circle_persistence_barcode.png}
-        \caption{The barcode diagram of dataset from Figure \ref{fig:betti_s1}}
+        \caption{The bar code diagram of dataset from Figure \ref{fig:betti_s1}}
         \label{fig:persistence_barcode}
 \end{figure}
 
-Note that an infinite is defined on the right of the barcode and the top of the y-axis of the persistence diagram. It corresponds to the value of $\varepsilon_\infty = \max\limits_{x,y \in S} ||x-y||$. Equivalently $\forall x,y \in \S, x \in \B(y ,\varepsilon_\infty)$ and $y \in \B(x, \varepsilon_\infty)$. To the different persistence, we define the bottleneck distance. Given two persistence diagram $D_1, D_2$:
+Note that an infinite is defined on the right of the bar code and the top of the y-axis of the persistence diagram. It corresponds to the value of $\varepsilon_\infty = \max\limits_{x,y \in S} ||x-y||$. Equivalently $\forall x,y \in \S, x \in \B(y ,\varepsilon_\infty)$ and $y \in \B(x, \varepsilon_\infty)$. To the different persistence, we define the bottleneck distance. Given two persistence diagram $D_1, D_2$:
 
 \begin{center}
   $\delta_\infty(D_1, D_2) = \inf\limits_{\gamma} \sup\limits_{z \in D_1} ||z - \gamma(z)||_\infty$
@@ -928,7 +928,7 @@ Knot theory is a part of topology concerned with the study of mathematical knots
 \subsubsection{Fundamental concepts}
 
 \begin{definition}
-  A knot is an embedding of a circle in 3-dimensional euclidian space $\R^3$
+  A knot is an embedding of a circle in 3-dimensional euclidean space $\R^3$
 \end{definition}
 
 A knot is bounded by all of its homeomorphism since we are studying it from a topological point of view. Two mathematical knots are equivalent if they are ambient isotopic (can be deformed into the other via a deformation of $\R^3$ upon itself).\\
@@ -992,7 +992,7 @@ In 1927, Reidemeister showed that ambient isotopy was equivalent to a set of thr
 
 i.e. two knots are equivalent if they can transformed into each others using only these three moves.\\
 
-Knot are composed of crossings and components. The crossings are the point where the embedding overlaps itself and the components are the parts of the embedding between the crossings. We will later number the components and crossings to perform computations on knots. It is important to note that cannonically the knots are classified in category representing the minimal number of crossing that can be obtained by a representation of a knot. You can find the beginning of the knot table sorted by increasing number of crossings in Figure \ref{fig:knot_table}.
+Knot are composed of crossings and components. The crossings are the point where the embedding overlaps itself and the components are the parts of the embedding between the crossings. We will later number the components and crossings to perform computations on knots. It is important to note that canonically the knots are classified in category representing the minimal number of crossing that can be obtained by a representation of a knot. You can find the beginning of the knot table sorted by increasing number of crossings in Figure \ref{fig:knot_table}.
 
 \begin{figure}[H]
   \centering
@@ -1045,52 +1045,52 @@ One of the main question of knot theory is to find a way to identify any two equ
   
 \end{figure}
 
-\paragraph{Tricolorability (or 3-colorability)}
+\paragraph{Tricolourability (or 3-colourability)}
 
-Tricolorability is a criterion to color the components of a knot following two rules:
+Tricolourability is a criterion to colour the components of a knot following two rules:
 
 \begin{itemize}
-  \item All components must be colored
-  \item At each crossing all three components are either all of the same color either all of different colors ($\Longleftrightarrow$ one can find only one or the three colors at each crossing). 
+  \item All components must be coloured
+  \item At each crossing all three components are either all of the same colour either all of different colours ($\Longleftrightarrow$ one can find only one or the three colours at each crossing). 
 \end{itemize}
 
-For instance the trefoil is 3-colorable as shown is Figure \ref{fig:trefoil_color} unlike the figure-eight knot (Figure \ref{fig:figure8})\\
+For instance the trefoil is 3-colourable as shown is Figure \ref{fig:trefoil_color} unlike the figure-eight knot (Figure \ref{fig:figure8})\\
 
 
 \begin{figure}[H]
   \begin{minipage}[c]{.4\textwidth}
     \centering
     \includegraphics[width=.80\textwidth]{trefoil_color.png}
-    \caption{Colored trefoil}
+    \caption{Coloured trefoil}
     \label{fig:trefoil_color}
   \end{minipage}
   \hfill
   \begin{minipage}[c]{.4\textwidth}
     \centering
     \includegraphics[width=.80\textwidth]{fig_eight_only_nat.png}
-    \caption{Not-colored figure-eight knot}
+    \caption{Not coloured figure-eight knot}
     \label{fig:figure8}
   \end{minipage}  
 \end{figure}
 
 \begin{proposition}
-  Tricolorabitily is a knot invariant
+  Tricolourability is a knot invariant
 \end{proposition}
 
 \begin{proof}
 
-To prove that 3-colorability is a knot invariant it is sufficient to show that the tricolorability of a knot is preserved with the Reidemeister moves. This task is fairly simple though it might involve to test a lot of cases.
+To prove that 3-colourability is a knot invariant it is sufficient to show that the tricolourability of a knot is preserved with the Reidemeister moves. This task is fairly simple though it might involve to test a lot of cases.
 
 \begin{itemize}
-  \item Type I: Twist. This move is straight forward since starting with only one component, the only starting point is of having a single color, the solution of keeping the same color is obvious.
+  \item Type I: Twist. This move is straight forward since starting with only one component, the only starting point is of having a single colour, the solution of keeping the same colour is obvious.
 \begin{figure}[H]
              \centering
             \includegraphics[height=100pt]{r1_colored.png}
-          \caption{Twist tricolorability}
+          \caption{Twist tricolourability}
         \label{fig:r_1_colored}
 \end{figure}
 
-\item Type II: Poke. For this move there are two possible configuration as starter since both components can have the same color or a different one. In both case it is possible to find a coloration that fits.
+\item Type II: Poke. For this move there are two possible configuration as starter since both components can have the same colour or a different one. In both case it is possible to find a coloration that fits.
 
 \begin{figure}[H]
   \begin{minipage}[c]{.5\textwidth}
@@ -1103,11 +1103,11 @@ To prove that 3-colorability is a knot invariant it is sufficient to show that t
             \includegraphics[height=100pt]{r2_colored.png}
     
   \end{minipage}
-          \caption{Poke tricolorability}
+          \caption{Poke tricolourability}
         \label{fig:r_2_colored}
 \end{figure}
 
-\item Type III: Slide. This move could have up to 8 possibilities but the possibilities where exactly one of the crossings is of different colors is not possible since it goes against the rules of tricolorability. We end up with 5 cases that all admit a solution.   
+\item Type III: Slide. This move could have up to 8 possibilities but the possibilities where exactly one of the crossings is of different colours is not possible since it goes against the rules of tricolourability. We end up with 5 cases that all admit a solution.   
 
 \begin{figure}[H]
   \begin{minipage}[c]{.3\textwidth}
@@ -1135,21 +1135,21 @@ To prove that 3-colorability is a knot invariant it is sufficient to show that t
             \includegraphics[height=100pt]{r3_colored_5.png}
     
   \end{minipage}
-          \caption{Slide tricolorability}
+          \caption{Slide tricolourability}
         \label{fig:r_3_colored}
 \end{figure}
 \end{itemize}
 
-Note that a solution is admissible only if the components that link with the rest of the knot can preserve their color so that the move do not interfere with the rest of the knot.
+Note that a solution is admissible only if the components that link with the rest of the knot can preserve their colour so that the move do not interfere with the rest of the knot.
 
 \end{proof}
 
-Tricolorability is a useful invariant because it can allow for example to prove that the trefoil ($3_1$) and the figure-eight knot ($4_1$) or different knots, however it does not allow to discriminate a lot of knots since for example with tricolorability only, there is no way to know wether the unknot is different from the figure-eight knot. In Figure \ref{fig:tricolor_table} we see which knots are tricolorable. To be able to discriminate more knots we will introduce another tool, the knot determinant. 
+Tricolourability is a useful invariant because it can allow for example to prove that the trefoil ($3_1$) and the figure-eight knot ($4_1$) or different knots, however it does not allow to discriminate a lot of knots since for example with tricolourability only, there is no way to know whether the unknot is different from the figure-eight knot. In Figure \ref{fig:tricolor_table} we see which knots are tricolourable. To be able to discriminate more knots we will introduce another tool, the knot determinant. 
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=.6\textwidth]{tricolorability_table.png}
-  \caption{Tricolorability table}
+  \caption{Tricolourability table}
   \label{fig:tricolor_table}
 \end{figure}
 
@@ -1191,7 +1191,7 @@ $
 
 The knot determinant is then the determinant of the matrix $A$ with one line and column removed. In the case of the previously obtained matrix, 3.\\
 
-In the same fashion as the proof done for tricolorability one can show that the determinant is a knot invariant by showing its invariability under the Reidemeister moves.\\
+In the same fashion as the proof done for tricolourability one can show that the determinant is a knot invariant by showing its invariability under the Reidemeister moves.\\
 
 The results of the computation of knot determinants for the knots up to 7 crossings can be seen in Table \ref{tab:knot_determinant}.
 
@@ -1237,7 +1237,7 @@ The results of the computation of knot determinants for the knots up to 7 crossi
 
 We can see that even though more values are possible it can not allow to discriminate all knots.\\
 
-Note that the result obtained from the computation of the knot determinant gives the $p$-colorability of a knot. Extending the concept of $3$-coloration by keeping the same rules (1 or 3 colors at each crossing), we notice that a $p$-coloration is possible iff $p$ is a divisor of the knot determinant.
+Note that the result obtained from the computation of the knot determinant gives the $p$-colourability of a knot. Extending the concept of $3$-coloration by keeping the same rules (1 or 3 colours at each crossing), we notice that a $p$-coloration is possible iff $p$ is a divisor of the knot determinant.
 
 \paragraph{Alexander polynomial}
 
@@ -1248,7 +1248,7 @@ The last knot invariant that we will introduce in this paper is the Alexander po
   \begin{cases}
     t &\text{if component $i$ \textcolor{blue}{enters} \textcolor{red}{(exits)} under \textcolor{blue}{left} \textcolor{red}{(right)} handed crossing $j$}\\
     -1 &\text{if component $i$ \textcolor{blue}{enters} \textcolor{red}{(exits)} under \textcolor{blue}{right} \textcolor{red}{(left)} handed crossing $j$}\\
-    1-t &\text{if component $i$ is overcrossing at crossing $j$}\\
+    1-t &\text{if component $i$ is over crossing at crossing $j$}\\
     0 &\text{otherwise}
   \end{cases}$
 \end{center}
@@ -1281,7 +1281,7 @@ $
 $
 \end{center}
 
-After normalization, we obtain the polynomial: $t - 1 + t^{-1}$. The polynomial obtained by this method can differ from a factor $\pm t^n, n \in \N$. To solve that issue we normalize it so that it looks symetric (Laurent polynomial) and denote if $\Delta_k(t)$. We can with that method write a table of the Alexander polynomial as seen in Table \ref{tab:knot_alexander} for the knots up to 7 crossings.
+After normalization, we obtain the polynomial: $t - 1 + t^{-1}$. The polynomial obtained by this method can differ from a factor $\pm t^n, n \in \N$. To solve that issue we normalize it so that it looks symmetric (Laurent polynomial) and denote if $\Delta_k(t)$. We can with that method write a table of the Alexander polynomial as seen in Table \ref{tab:knot_alexander} for the knots up to 7 crossings.
 
 \begin{table}[H]
 \begin{center}
@@ -1323,7 +1323,7 @@ After normalization, we obtain the polynomial: $t - 1 + t^{-1}$. The polynomial 
 \label{tab:knot_alexander}
 \end{table}
 
-With the Alexander polynomial one can discrimainate any two knots with up to seven crossings. Though the Alexander polynomial can not discriminate any two knots as explained in the introduction. An interesting property of the Alexander polynomial is that $\Delta_k(-1) = det(K)$ (the knot determinant).
+With the Alexander polynomial one can discriminate any two knots with up to seven crossings. Though the Alexander polynomial can not discriminate any two knots as explained in the introduction. An interesting property of the Alexander polynomial is that $\Delta_k(-1) = det(K)$ (the knot determinant).
 
 \newpage
 \thispagestyle{empty}
@@ -1340,7 +1340,7 @@ The concept of measuring neural network expressiveness induces to use some conce
 
 \label{sec:tda_bib}
 
-In this section we will focus on the use of betti as a measure for neural netwok expresiveness.\\
+In this section we will focus on the use of betti as a measure for neural network expressiveness.\\
 
 In \cite{bianchini_complexity_2014}, Bianchini and Scarselli have offered proofs on the number of neurons required in different architecture of neural network to properly express a dataset betti numbers. They have worked on determining upper bounds and lower bounds on the number of neurons required in network of a certain depth to be able to express the homology represented by its sum of betti numbers with different activation functions. Their result are summed up in Table \ref{tab:betti_up_low_bound} that can also be found in \cite{bianchini_complexity_2014}.\\
 
@@ -1385,9 +1385,9 @@ n      & any      & polynomial of degree $r \ge 2$    & $2^{l-1}$\\
 
 To prove these bounds they use the function sum representation of neural networks as introduced in \textbf{Section \ref{sec:nn_express}} as well as classical function analysis inequalities.\\
 
-In \cite{guss_characterizing_2018}, Guss and Salakhutdinov relying on \cite{bianchini_complexity_2014} proposed a statistical approach to the problem of giving a value to the way each Betti numbers would affect the topological expressivity of the neural network since \cite{bianchini_complexity_2014} only relies on the sum $\B(X)$.\\
+In \cite{guss_characterizing_2018}, Guss and Salakhutdinov relying on \cite{bianchini_complexity_2014} proposed a statistical approach to the problem of giving a value to the way each Betti numbers would affect the topological expressiveness of the neural network since \cite{bianchini_complexity_2014} only relies on the sum $\B(X)$.\\
 
-To study the difficulty of learning homologically complex data, they considered fully-connected ReLU neural networks of depth $d \in [1 ... 6]$ and width $h_l = \beta_0(X)$ when $1 \le l \le d$ and $h_l \in [1 ... 500]$ when $l = 0$. It sums up with a first layer of variable width (up to 500) and the other layers width being fixed at the number of connected components (0-homology) of $X$. These networks would then be trained using standard cross-entropy loss with Adam optimizer, a fixed learning rate of 0.01 and an increasing batch size schedule.\\
+To study the difficulty of learning homologically complex data, they considered fully connected ReLU neural networks of depth $d \in [1 ... 6]$ and width $h_l = \beta_0(X)$ when $1 \le l \le d$ and $h_l \in [1 ... 500]$ when $l = 0$. It sums up with a first layer of variable width (up to 500) and the other layers width being fixed at the number of connected components (0-homology) of $X$. These networks would then be trained using standard cross-entropy loss with Adam optimizer, a fixed learning rate of 0.01 and an increasing batch size schedule.\\
 
 They used datasets composed of two classes of 5000 points one of randomly distributed points the other one of mixtures of the uniform distribution on $\S^1$ and $\B^2$. They limited their study to $n=2$. They studied the output for datasets continuously ranging from $H(X) = \{\Z^1, 0\}$ to $H(X) = \{\Z^{30}, \Z^{30}\}$. They trained 100 of the previously described networks on each dataset and compiled the results in Figure \ref{fig:guss_results}.\\
 
@@ -1410,9 +1410,9 @@ Unfortunately the authors did not provide the full results and code of their res
 \subsection{Using trajectories}
 \label{sec:using_trajectories}
 
-The idea of studying trajectories to evaluate neural network expressivity comes from \cite{raghu_expressive_2017} itself relying on \cite{poole_exponential_2016} and \cite{pascanu_number_2014}.\\
+The idea of studying trajectories to evaluate neural network expressiveness comes from \cite{raghu_expressive_2017} itself relying on \cite{poole_exponential_2016} and \cite{pascanu_number_2014}.\\
 
-In \cite{raghu_expressive_2017}, Raghu introduces various variables of interest for neural network expressivity relying on the notion of transition of activation patterns. Activation patters denotes all the way threshold-based activation functions such as ReLU and hard-tanh can activate or not at the same time. For a ReLU function we would consider it active if in the non-constant part and non-active if in the constant part. Activation patterns is a concept at network scale to summarize the existence of inputs and activation function parameters leading to different activation and non-activation of each neuron of the network.\\
+In \cite{raghu_expressive_2017}, Raghu introduces various variables of interest for neural network expressiveness relying on the notion of transition of activation patterns. Activation patters denotes all the way threshold-based activation functions such as ReLU and hard-tanh can activate or not at the same time. For a ReLU function we would consider it active if in the non constant part and non-active if in the constant part. Activation patterns is a concept at network scale to summarize the existence of inputs and activation function parameters leading to different activation and non activation of each neuron of the network.\\
 
 To study transition Raghu introduces the unifying concept of trajectories. Trajectories are defined as follows:
 
@@ -1435,7 +1435,7 @@ With all the previously introduced concepts we can now give a proper definition 
   The activation pattern $AP(F_A(x,W))$ of network with weights $W$, architecture $A$ and input $x$ is a string of form $\{0,1\}^{\text{number of neurons}}$ for ReLU networks and $\{-1,0,1\}^{\text{number of neurons}}$ for hard tanh networks coding the linear region of the activation function of every neuron.
 \end{definition}
 
-We can aswell define $T(F_A(x(t),W))$ the number of transition undergone by the network when $x$ sweeps along $x(t)$.\\
+We can as well define $T(F_A(x(t),W))$ the number of transition undergone by the network when $x$ sweeps along $x(t)$.\\
 
 In \cite{pascanu_number_2014}, Montufar et al. provide a bound on the number of transition by constructing a set of weights $W_0$ resulting in an exponential increase of the number of transition with the depth of the network i.e.\\
 
@@ -1460,7 +1460,7 @@ Going back to the definition of trajectory, we define the trajectory length:
 Raghu then show that length grows exponentially with length in most cases. Formally:\\
 
 \begin{theorem}
-  Let $F_A(x,W)$ be a ReLU or hard tanh random neural network and $x(t)$ a one-dimensional trajectory with $x(t + \delta)$ having a non trivial perpendicular component to $x(t)$ for all $t,\delta$. Then with $z^{(d)}(x(t)) = z^{(d)}(t)$ the image of the trajectory in layer $d$ of the network we have:
+  Let $F_A(x,W)$ be a ReLU or hard tanh random neural network and $x(t)$ a one dimensional trajectory with $x(t + \delta)$ having a non trivial perpendicular component to $x(t)$ for all $t,\delta$. Then with $z^{(d)}(x(t)) = z^{(d)}(t)$ the image of the trajectory in layer $d$ of the network we have:
   \begin{center}
     $\mathbb{E}[l(z^{(d)}(t))] \ge O(\frac{\sigma_w \sqrt{k}}{\sqrt{k+1}})^d l(x(t))$ for ReLU networks\\
     $\mathbb{E}[l(z^{(d)}(t))] \ge O(\frac{\sigma_w \sqrt{k}}{\sqrt{\sigma_w^2 + \sigma_b^2 + k\sqrt{\sigma_w^2 + \sigma_b^2}}})^d l(x(t))$ for hard tanh
@@ -1468,7 +1468,7 @@ Raghu then show that length grows exponentially with length in most cases. Forma
   with $\sigma_w$ the standard deviation of weights, $\sigma_b$ the standard deviation of bias and $k$ the width of the network.
 \end{theorem}
 
-Therefore, the length of the trajectory grows exponentially with depth and hence expressivity. A figure of that growth can be seen in Figure \ref{fig:traj_growth}.
+Therefore, the length of the trajectory grows exponentially with depth and hence expressiveness. A figure of that growth can be seen in Figure \ref{fig:traj_growth}.
 
 \begin{figure}[H]
   \centering
@@ -1494,7 +1494,7 @@ For the purpose of studying trajectories as knot we limit the definition of traj
 
 Knots can exist in dimension higher than $3$ by simply living in a 3-dimensional hyperplane. We create trajectories corresponding to the first knots in increasing number of crossings, namely: the unknot, the trefoil $3_1$ and the figure-eight knot $4_1$.\\
 
-Computationnaly trajectories are arrays of points uniformly distributed along the studied embedding. They are obtained from a B-spline of hand-picked points for each different trajectory.\\
+Computationally trajectories are arrays of points uniformly distributed along the studied embedding. They are obtained from a B-spline of hand-picked points for each different trajectory.\\
 
 \begin{definition}
   A spline of order $n$ is a piecewise polynomial function of degree $n-1$. The values where the polynomial pieces meet are called knots and denoting them $t_0,t_1, ... , t_n$. When the knots are distincts the $n-2$ derivatives of the polynomials are continuous across each knot. When $r$ knots are coincident, only the first $n-r-1$ derivatives are continuous.
@@ -1506,11 +1506,11 @@ For some $t_0, t_1, ... , t_n$ there is up to a scaling factor a unique spline $
   $B_{i,n} = 
   \begin{cases}
     0 &\text{if $x < t_i$ or $x \ge t_{i+n}$}\\
-    \text{nonzero} & \text{otherwise}
+    \text{non-zero} & \text{otherwise}
   \end{cases}$
 \end{center}
 
-Adding the constraint $\sum\limits_i B_{i,n}(x) = 1$ for all $x$ between the first and last knot, then we obtain unicity and $B_{i,n}(x)$ is called B-spline. Figuratively B-spline allow to create a smooth curve passing through a set of different points (called knots). When some points of a B-spline repeats the smoothness is lost at those points. That last property will be important since embeddings of the circle admit the same first and last point and its B-spline representation the same first and last knot. Figure \ref{fig:knot_bspline} shows the B-spline for the trefoil and the figure-eight knot. 
+Adding the constraint $\sum\limits_i B_{i,n}(x) = 1$ for all $x$ between the first and last knot, then we obtain uniqueness and $B_{i,n}(x)$ is called B-spline. Figuratively B-spline allow to create a smooth curve passing through a set of different points (called knots). When some points of a B-spline repeats the smoothness is lost at those points. That last property will be important since embeddings of the circle admit the same first and last point and its B-spline representation the same first and last knot. Figure \ref{fig:knot_bspline} shows the B-spline for the trefoil and the figure-eight knot. 
 
 \begin{figure}[H]
   \begin{minipage}[c]{.5\linewidth}
@@ -1609,9 +1609,9 @@ The result of the experiment described in this section are summed up in Figure \
   \label{fig:knot_results}
 \end{figure}
 
-Figure \ref{fig:knot_results} represents the evolution of the knot determinant through the layers of networks. Each of the subgraph represents a layer from 1 on the top left to 9 on the bottom right. On each of the subgraph the bar represents the absolute number of occurences of a determinant for instance at layer 1 we obtained about 40 knots with determinant 0, 85 with determinant 1, 45 with determinant 3 and 5 with determinant 5.\\
+Figure \ref{fig:knot_results} represents the evolution of the knot determinant through the layers of networks. Each of the subgraph represents a layer from 1 on the top left to 9 on the bottom right. On each of the subgraph the bar represents the absolute number of occurrences of a determinant for instance at layer 1 we obtained about 40 knots with determinant 0, 85 with determinant 1, 45 with determinant 3 and 5 with determinant 5.\\
 
-Note that using our alorithm unknots have determinant 0 if they are entangled unknots (more than 1 component) and 1 if they are trivial unknots (1 component and 0 crossing).
+Note that using our algorithm unknots have determinant 0 if they are entangled unknots (more than 1 component) and 1 if they are trivial unknots (1 component and 0 crossing).
 
 \subsubsection{Considerations}
 
@@ -1619,37 +1619,37 @@ We can see that as layer index increases, the knots become entangled unknots. An
 
 \subsection{Extending the study of expressiveness with topological data analysis} 
 
-In this section, we detail the work on using homology for neural entwork expressiveness inspired by the research detailed in \textbf{Section \ref{sec:tda_bib}} where we try to extend the experiment introduced by Guss in \cite{guss_characterizing_2018} to understand quantitatively the influence of a neural network architecture on it capacity to characterizing homologies in different dimension. 
+In this section, we detail the work on using homology for neural network expressiveness inspired by the research detailed in \textbf{Section \ref{sec:tda_bib}} where we try to extend the experiment introduced by Guss in \cite{guss_characterizing_2018} to understand quantitatively the influence of a neural network architecture on it capacity to characterizing homologies in different dimension. 
 
 \subsubsection{Methodology}
 
 \begin{definition}
   Let $(X, D)$ be a metric space with $D : X^2 \to \R^+$. Let $c \in X$ and $r \in \R$.\\
   \\
-  $\B(c,r)$ is the topological ball of radius $r > 0 $ centered on $x$:
+  $\B(c,r)$ is the topological ball of radius $r > 0 $ centred on $x$:
   \begin{center}
     $\B(c,r) = \{ x \in X \mid D(x,c) \le r \}$ 
   \end{center}
-  $\S(c,r)$ is the topological sphere of radius $r > 0$ centered on $x$:
+  $\S(c,r)$ is the topological sphere of radius $r > 0$ centred on $x$:
   \begin{center}
     $\S(c,r) = \{ x \in X \mid D(x,c) = r \}$ 
   \end{center}
-  $\mathfrak{S}(c,[r_1,r_2])$ is the thick sphere of border ranging from $r_1$ to $r_2 \ne 0$ ($0 \le r1 \le r_2$) centered on $x$:
+  $\mathfrak{S}(c,[r_1,r_2])$ is the thick sphere of border ranging from $r_1$ to $r_2 \ne 0$ ($0 \le r1 \le r_2$) centred on $x$:
   \begin{center}
     $\mathfrak{S}(c,[r_1, r_2]) = \{ x \in X \mid r1 \le D(x,c) \le r_2 \}$ 
   \end{center}
   \label{def:ball_sphere}
 \end{definition}
 
-Note that a ball is a particular case of thick sphere where $r_1 = 0$ and spheres are thick spheres with $r_1 = r_2$. Thick sphere is unlike spheres and balls not a rigorous term of topology since it is always equivalent to a sphere or a ball but it is the concept we will use to informatically modelize our balls and spheres.\\
+Note that a ball is a particular case of thick sphere where $r_1 = 0$ and spheres are thick spheres with $r_1 = r_2$. Thick sphere is unlike spheres and balls not a rigorous term of topology since it is always equivalent to a sphere or a ball but it is the concept we will use to informationally model our balls and spheres.\\
 
-Let $n \in \N^*$, we will consider $X = \R^n$ containing $N_B$ balls $\B_i, 1 \le i \le nB$ and $N_S$ spheres or thick sphere $\S_j, 1 \le j \le N_S$ (cf Definition \ref{def:ball_sphere}) of dimension at most $n$. We informatically modelize this set in the following manner: \\ 
+Let $n \in \N^*$, we will consider $X = \R^n$ containing $N_B$ balls $\B_i, 1 \le i \le nB$ and $N_S$ spheres or thick sphere $\S_j, 1 \le j \le N_S$ (cf Definition \ref{def:ball_sphere}) of dimension at most $n$. We informationally model this set in the following manner: \\ 
 
-We used datasets of 50000 points split in two non-intersecting classes labelled "0" and "1". The points of class "1" are uniformly spread across various topological spheres and balls. In our case uniformly will mean that the points are uniformly distributed across the volume of the topological feature and that the number of points in each topological feature is proportional to its importance in the sum of volumes of topological features in our set of interest. \\
+We used datasets of 50000 points split in two non intersecting classes labelled "0" and "1". The points of class "1" are uniformly spread across various topological spheres and balls. In our case uniformly will mean that the points are uniformly distributed across the volume of the topological feature and that the number of points in each topological feature is proportional to its importance in the sum of volumes of topological features in our set of interest. \\
 
 The points of class "0" are distributed uniformly in the space $X \backslash \{\bigcup\limits_{i=1}^{N_B} \B_i \bigcup \bigcup\limits_{j=1}^{N_S} \S_i \}$.\\
 
-For the result that we will present in \textbf{Section \ref{sec:homology_results}}. We trained network on twelve different sets of dimension 2, 3 and 4 with one to three topological features. On each of these sets we trained 20 sets of fully-connected networks of width 8 and depth 1,2,4,6,8,10,12,14,16 with random initialization for 2000 epochs. To train the networks we used the sparse categorical entropy as loss function, a batch size of 10 and the Adam optimizer with 80\% of the data used as training data and 20\% as validation data. We used Keras \cite{chollet2015keras} with a tensorflow backend in python3. 
+For the result that we will present in \textbf{Section \ref{sec:homology_results}}. We trained network on twelve different sets of dimension 2, 3 and 4 with one to three topological features. On each of these sets we trained 20 sets of fully connected networks of width 8 and depth 1,2,4,6,8,10,12,14,16 with random initialization for 2000 epochs. To train the networks we used the sparse categorical entropy as loss function, a batch size of 10 and the Adam optimizer with 80\% of the data used as training data and 20\% as validation data. We used Keras \cite{chollet2015keras} with a tensorflow backend in python3. 
 
 
 \subsubsection{Algorithms}
@@ -1668,7 +1668,7 @@ First we will detail the algorithm to generate our datasets consisting of balls 
   $S = \{(\mathfrak{S}(c_j, [r_{1_j}, r_{2_j}]), d_j, o_i)\}_{1 \le j \le N_S}$ 
  \end{center}
 
-the set of thick sphere and P the number of points in each class. The orientation of balls and spheres is an array of that indicates the index of the elements of the cannonical basis constituing the hyperplane of $\R^n$ in which the feature does not live. For instance in $\R^3$ writing the cannonical basis $\{(1,0,0), (0,1,0), (0,0,1)\}$, $(\B(0,1),2,[1])$ is a 2-dimensional ball centered at the point $(0,0,0)$ of radius $1$ and living in the plane spanned by $\{(0,1,0),(0,0,1)\}$. In the python implementation some of the parameters might be decided randomly or with the help of other parameters.\\
+the set of thick sphere and P the number of points in each class. The orientation of balls and spheres is an array of that indicates the index of the elements of the canonical basis constituting the hyperplane of $\R^n$ in which the feature does not live. For instance in $\R^3$ writing the canonical basis $\{(1,0,0), (0,1,0), (0,0,1)\}$, $(\B(0,1),2,[1])$ is a 2-dimensional ball centred at the point $(0,0,0)$ of radius $1$ and living in the plane spanned by $\{(0,1,0),(0,0,1)\}$. In the python implementation some of the parameters might be decided randomly or with the help of other parameters.\\
 
 In the algorithm $z$ will refer to a random number between 0 and 1.
 
@@ -1701,7 +1701,7 @@ In the algorithm $z$ will refer to a random number between 0 and 1.
   \label{alg:topo_gen}
 \end{algorithm}
 
-We have also designed an algorithm to compute betti numbers for spheres and balls that is a more efficient than persistent homology memory-wise due to the limitation to simple topological features. We write $T \in \R^+$ the threshold chosen to compute betti numbers, it corresponds to the radius up to which imaginary balls around each point grow in the persistent homology algorithm. We denote $G$ a graph, $C(G)$ the list of connected components of $G$, $M(X)$ the matrix corresponding to the concatenation of the points of the set $X$ and we extend the definition of $D: X \times A \to \R$ with $A$ a subset of $X$ as $D(x,A) = \underset{y \in A}{\min}$ $D(x,y)$.
+We have also designed an algorithm to compute betti numbers for spheres and balls that is a more efficient than persistent homology memorywise due to the limitation to simple topological features. We write $T \in \R^+$ the threshold chosen to compute betti numbers, it corresponds to the radius up to which imaginary balls around each point grow in the persistent homology algorithm. We denote $G$ a graph, $C(G)$ the list of connected components of $G$, $M(X)$ the matrix corresponding to the concatenation of the points of the set $X$ and we extend the definition of $D: X \times A \to \R$ with $A$ a subset of $X$ as $D(x,A) = \underset{y \in A}{\min}$ $D(x,y)$.
 
 \begin{algorithm}[H]
   \begin{algorithmic}[1]
@@ -1758,7 +1758,7 @@ In Table \ref{tab:betti_res} and Table \ref{tab:bottleneck_res}, one can see the
     \hline
   \end{tabular}
 \end{adjustbox}
-    \caption{The number of occurences of the same betti numbers between the original data persistence diagram and the networks data persistence diagram}
+    \caption{The number of occurrences of the same betti numbers between the original data persistence diagram and the networks data persistence diagram}
     \label{tab:betti_res}
 \end{table}
 
@@ -1796,9 +1796,9 @@ In Table \ref{tab:betti_res} and Table \ref{tab:bottleneck_res}, one can see the
 
 \subsubsection{Considerations}
 
-In table \ref{tab:betti_res} we can see a tendency for the number of proper characterizations to first go up since the network gets deeper and more expressive as expected and then down. The drop in the number of proper characterizations is due to the difficulty to train big networks since they would require more epochs than used but we could not for time reasons allocate more time to the network training considering how long the process is. Another problem we faced in the case where the topological feature only live in a strict subspace of $X$ is that we might see the appearance of training artifacts in the region where there should be no points. This causes the computation of betti numbers to return a result different from the original one because it changes the dimension in which the feature lives in.\\
+In table \ref{tab:betti_res} we can see a tendency for the number of proper characterizations to first go up since the network gets deeper and more expressive as expected and then down. The drop in the number of proper characterizations is due to the difficulty to train big networks since they would require more epochs than used but we could not for time reasons allocate more time to the network training considering how long the process is. Another problem we faced in the case where the topological feature only live in a strict subspace of $X$ is that we might see the appearance of training artefacts in the region where there should be no points. This causes the computation of betti numbers to return a result different from the original one because it changes the dimension in which the feature lives in.\\
 
-Finally another problem with this experiment is the time required to train enough networks and train them properly. To reproduce Guss' experiment described in \textbf{Section \ref{sec:tda_bib}} with only 2000 epoch of training on an NVIDIA RTX 2080 and 16 GB of RAM we would need approximately 50 days of uninterrupted computation. The results obtained with the various training are yet insufficent to draw any significant conclusion but with the availability of the code and its documentation should allow anyone with enough computation power to run statistically significant experiments and draw the numeric conclusion.\\
+Finally another problem with this experiment is the time required to train enough networks and train them properly. To reproduce Guss' experiment described in \textbf{Section \ref{sec:tda_bib}} with only 2000 epoch of training on an NVIDIA RTX 2080 and 16 GB of RAM we would need approximately 50 days of uninterrupted computation. The results obtained with the various training are yet insufficient to draw any significant conclusion but with the availability of the code and its documentation should allow anyone with enough computation power to run statistically significant experiments and draw the numeric conclusion.\\
 
 \newpage
 \thispagestyle{empty}

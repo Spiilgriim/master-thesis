@@ -42,25 +42,25 @@ With the current use of neural networks to solve many problems ranging from patt
 
 \section{Mathematical Definitions}
 
-For the purpose of our research we need to introduce various mathematical concepts starting with homology.  Let $X$ be a a topological space. The purpose of homology is to distinguish topological features of $X$. Visually this concept is assimilated to the concept of "holes". Suppose $X$ is of dimension $n \in \N$. The betti numbers of $X$ will be an element of $B \in \N^n$ with $(B_i)_{1 \le i \le n} = \{$The number of $i$-dimensional homology in $X \}$.\\
+For the purpose of our research we need to introduce various mathematical concepts starting with homology.  Let $X$ be a topological space. The purpose of homology is to distinguish topological features of $X$. Visually this concept is assimilated to the concept of "holes". Suppose $X$ is of dimension $n \in \N$. The betti numbers of $X$ will be an element of $B \in \N^n$ with $(B_i)_{1 \le i \le n} = \{$The number of $i$-dimensional homology in $X \}$.\\
 
-Simple examples of homology are the balls and spheres. A topological ball in $X$ of radius $r$ and center $c \in X$ is: $\B(c,r) = \{x \in X \mid ||x,c||) \le r\}$ with $||\cdot|| : X^2 \mapsto \R_+$ a distance on $X$. The topological sphere in $X$ of radius $r$ and center $c \in X$ is: $\B(c,r) = \{x \in X \mid ||x,c||) = r\}$. A result of homology study is that a topological ball of dimension $m$ is a 0-homology for $m \ge 1$ and a topological sphere of dmension $m \ge 2$ is an $(m - 1)$-homology.\\
+Simple examples of homology are the balls and spheres. A topological ball in $X$ of radius $r$ and center $c \in X$ is: $\B(c,r) = \{x \in X \mid ||x,c||) \le r\}$ with $||\cdot|| : X^2 \mapsto \R_+$ a distance on $X$. The topological sphere in $X$ of radius $r$ and center $c \in X$ is: $\B(c,r) = \{x \in X \mid ||x,c||) = r\}$. A result of homology study is that a topological ball of dimension $m$ is a 0-homology for $m \ge 1$ and a topological sphere of dimension $m \ge 2$ is an $(m - 1)$-homology.\\
 
-The computational analog of homology called persistent homology aims to compute the homology of discrete datasets. Persistent homology relies on the computation of topological feature using the computation of structures called $\Delta$-complexes in the dataset. These are the smallest polygons containing $n+1$ points not lying in an hyperplane of dimension less than $n$. An example of it is the pyramid when $n = 3$.\\
+The computational analogue of homology called persistent homology aims to compute the homology of discrete datasets. Persistent homology relies on the computation of topological feature using the computation of structures called $\Delta$-complexes in the dataset. These are the smallest polygons containing $n+1$ points not lying in an hyperplane of dimension less than $n$. An example of it is the pyramid when $n = 3$.\\
 
-The last concept we will need is the mathematical knot. A knot is an embedding of a circle in a $3$-dimensional euclidian space $\R^3$. One of the critical question of knot theory is to universally discriminate knots. Though this question has no aswer today, various discriminants have been created by mathematicians, the simplest one being the knot determinant. It is an integer that can be computed from the components and crossings of a knot and is equal for two representations of the same knot.
+The last concept we will need is the mathematical knot. A knot is an embedding of a circle in a $3$-dimensional euclidean space $\R^3$. One of the critical question of knot theory is to universally discriminate knots. Though this question has no answer today, various discriminants have been created by mathematicians, the simplest one being the knot determinant. It is an integer that can be computed from the components and crossings of a knot and is equal for two representations of the same knot.
 
 \section{Experiments}
 
 Relying on the works of Guss \cite{guss_characterizing_2018} and Raghu \cite{raghu_expressive_2017}, we propose two experiments. The first one aims to understand from a knot theory perspective the evolution of knot trajectories inside neural networks of various depth. To do so we input points array representing circles, trefoils and figure-eight knots inside neural network and look at their evolution at each layer of the networks.\\
 
-The second one aims to give a quantitative evaluation of the capacity of neural networks of different depth to propoerly characterize datasets depending on their topological features (homology). To do so we generate datasets with points classified in two classes and train neural networks on them. The first one random points forming the "background" of the dataset and the second one representing various homologies. We then compare the topological feature of the original data and the datasets obtained by making neural networks evaluate an unlabeled set. 
+The second one aims to give a quantitative evaluation of the capacity of neural networks of different depth to properly characterize datasets depending on their topological features (homology). To do so we generate datasets with points classified in two classes and train neural networks on them. The first one random points forming the "background" of the dataset and the second one representing various homologies. We then compare the topological feature of the original data and the datasets obtained by making neural networks evaluate an unlabelled set. 
 
 \section{Results}
 
 The results of the first experiment is that all trajectories will, with enough layers, end up as entangled unknots. The number of experiments ran is greatly insufficient to come to any general conclusion and this could lay ground to larger experiments to find the specificity of various neural networks architecture. \\
 
-The second experiment saw various computational problems and would need more data to be relevant. A general tendency is as expected that deeper and wider networks have greater chances to properly characterize a higher-homology dataset. 
+The second experiment saw various computational problems and would need more data to be relevant. A general tendency is as expected that deeper and wider networks have greater chances to properly characterize a higher homology dataset. 
 
 
 \section{Short Bibliography}
